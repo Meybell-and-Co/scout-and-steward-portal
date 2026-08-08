@@ -9,6 +9,30 @@ export default {
             });
         }
 
+        if (url.pathname === "/api/db-health") {
+            try {
+                const result = await env.DB.prepare(
+                    "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name"
+                ).all();
+
+                return Response.json({
+                    status: "ok",
+                    database: "connected",
+                    tables: result.results.map((row) => row.name)
+                });
+            } catch (error) {
+                console.error("D1 health check failed:", error);
+
+                return Response.json(
+                    {
+                        status: "error",
+                        database: "unavailable"
+                    },
+                    { status: 500 }
+                );
+            }
+        }
+
         return env.ASSETS.fetch(request);
     }
 };
