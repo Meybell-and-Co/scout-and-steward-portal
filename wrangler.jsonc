@@ -12,5 +12,8 @@
             "database_name": "scout-and-steward-portal",
             "database_id": "195035f9-1d3e-488e-9a07-1da7d942cd54"
         }
-    ]
+    ],
+    "observability": {
+        "enabled": true
+    }
 }
