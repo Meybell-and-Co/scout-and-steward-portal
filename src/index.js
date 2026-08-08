@@ -8,12 +8,22 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
 
+
+        /* -------------------------------------------------
+           Health
+           ------------------------------------------------- */
+
         if (url.pathname === "/api/health") {
             return Response.json({
                 status: "ok",
                 service: "scout-and-steward-portal"
             });
         }
+
+
+        /* -------------------------------------------------
+           Database health
+           ------------------------------------------------- */
 
         if (url.pathname === "/api/db-health") {
             try {
@@ -39,11 +49,19 @@ export default {
             }
         }
 
+
+        /* -------------------------------------------------
+           Inventory API
+           ------------------------------------------------- */
+
         if (url.pathname === "/api/items" && request.method === "GET") {
             return handleGetItems(env);
         }
 
-        if (url.pathname.startsWith("/api/items/") && request.method === "GET") {
+        if (
+            url.pathname.startsWith("/api/items/") &&
+            request.method === "GET"
+        ) {
             const itemId = decodeURIComponent(
                 url.pathname.slice("/api/items/".length)
             );
@@ -60,9 +78,39 @@ export default {
 
             return handleGetItem(env, itemId);
         }
-        if (url.pathname === "/api/publish" && request.method === "POST") {
+
+
+        /* -------------------------------------------------
+           Publication API
+           ------------------------------------------------- */
+
+        if (
+            url.pathname === "/api/publish" &&
+            request.method === "POST"
+        ) {
             return handlePublish(request, env);
         }
+
+
+        /* -------------------------------------------------
+           Application routes
+           ------------------------------------------------- */
+
+        if (
+            url.pathname.startsWith("/item/") &&
+            request.method === "GET"
+        ) {
+            const appUrl = new URL("/index.html", request.url);
+
+            return env.ASSETS.fetch(
+                new Request(appUrl, request)
+            );
+        }
+
+
+        /* -------------------------------------------------
+           Static assets
+           ------------------------------------------------- */
 
         return env.ASSETS.fetch(request);
     }
