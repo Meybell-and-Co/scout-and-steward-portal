@@ -91,23 +91,6 @@ export default {
             return handlePublish(request, env);
         }
 
-
-        /* -------------------------------------------------
-           Application routes
-           ------------------------------------------------- */
-
-        if (
-            url.pathname.startsWith("/item/") &&
-            request.method === "GET"
-        ) {
-            const appUrl = new URL("/index.html", request.url);
-
-            return env.ASSETS.fetch(
-                new Request(appUrl, request)
-            );
-        }
-
-
         /* -------------------------------------------------
            Static assets
            ------------------------------------------------- */
