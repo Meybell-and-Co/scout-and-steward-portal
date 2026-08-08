@@ -1,17 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scout & Steward Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Scout & Steward</title>
+
     <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
-    <main>
-        <h1>Scout & Steward</h1>
-        <p>Portal infrastructure is operational.</p>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <div>
+                <p class="eyebrow">Scout & Steward</p>
+                <h1>Inventory</h1>
+            </div>
+
+            <p class="inventory-count" id="inventory-count" aria-live="polite">
+                Loading inventory…
+            </p>
+        </div>
+    </header>
+
+    <main class="inventory">
+        <section class="inventory-toolbar" aria-label="Inventory controls">
+            <label class="search">
+                <span class="search__label">
+                    Search inventory
+                </span>
+
+                <input id="inventory-search" type="search" placeholder="Player, team, set, card number…"
+                    autocomplete="off">
+            </label>
+        </section>
+
+        <div id="inventory-status" class="inventory-status" aria-live="polite">
+            Loading cards…
+        </div>
+
+        <section id="inventory-grid" class="inventory-grid" aria-label="Sports card inventory"></section>
     </main>
 
     <script src="/app.js"></script>
