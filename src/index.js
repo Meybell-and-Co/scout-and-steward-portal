@@ -1,5 +1,8 @@
 import { handlePublish } from "./services/publish.js";
-import { handleGetItems } from "./services/items.js";
+import {
+    handleGetItem,
+    handleGetItems
+} from "./services/items.js";
 
 export default {
     async fetch(request, env) {
@@ -40,6 +43,23 @@ export default {
             return handleGetItems(env);
         }
 
+        if (url.pathname.startsWith("/api/items/") && request.method === "GET") {
+            const itemId = decodeURIComponent(
+                url.pathname.slice("/api/items/".length)
+            );
+
+            if (!itemId || itemId.includes("/")) {
+                return Response.json(
+                    {
+                        status: "error",
+                        error: "invalid_item_id"
+                    },
+                    { status: 400 }
+                );
+            }
+
+            return handleGetItem(env, itemId);
+        }
         if (url.pathname === "/api/publish" && request.method === "POST") {
             return handlePublish(request, env);
         }

@@ -2,31 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Scout & Steward</title>
+    <title>Inventory | Scout & Steward</title>
 
     <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
-    <header class="site-header">
-        <div class="site-header__inner">
-            <div>
-                <p class="eyebrow">Scout & Steward</p>
-                <h1>Inventory</h1>
-            </div>
+
+    <header class="app-header">
+        <div class="app-header__inner">
+
+            <a class="brand" href="/" aria-label="Scout & Steward home">
+                <img class="brand__mark" src="https://pub-d20e9b83446841a986f4f36061db36b4.r2.dev/ss-round-logo.png"
+                    alt="" width="48" height="48">
+
+                <span class="brand__name">
+                    Scout & Steward
+                </span>
+            </a>
+
+        </div>
+    </header>
+
+    <main class="app-main">
+
+        <section class="page-heading" aria-labelledby="inventory-heading">
+            <p class="page-heading__eyebrow">
+                Inventory
+            </p>
+
+            <h1 id="inventory-heading">
+                The Collection
+            </h1>
 
             <p class="inventory-count" id="inventory-count" aria-live="polite">
                 Loading inventory…
             </p>
-        </div>
-    </header>
+        </section>
 
-    <main class="inventory">
+
         <section class="inventory-toolbar" aria-label="Inventory controls">
-            <label class="search">
+            <label class="search" for="inventory-search">
                 <span class="search__label">
                     Search inventory
                 </span>
@@ -36,14 +55,34 @@
             </label>
         </section>
 
+
         <div id="inventory-status" class="inventory-status" aria-live="polite">
             Loading cards…
         </div>
 
+
         <section id="inventory-grid" class="inventory-grid" aria-label="Sports card inventory"></section>
+
     </main>
 
+
+    <nav class="app-nav" aria-label="Primary navigation">
+        <a class="app-nav__item" href="/">
+            <span class="app-nav__label">Tasks</span>
+        </a>
+
+        <a class="app-nav__item app-nav__item--active" href="/" aria-current="page">
+            <span class="app-nav__label">Inventory</span>
+        </a>
+
+        <a class="app-nav__item" href="/">
+            <span class="app-nav__label">Search</span>
+        </a>
+    </nav>
+
+
     <script src="/app.js"></script>
+
 </body>
 
 </html>
