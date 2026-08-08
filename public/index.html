@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Inventory | Scout & Steward</title>
+    <title>Scout & Steward</title>
 
     <link rel="stylesheet" href="/styles.css">
 </head>
@@ -27,42 +27,11 @@
         </div>
     </header>
 
-    <main class="app-main">
 
-        <section class="page-heading" aria-labelledby="inventory-heading">
-            <p class="page-heading__eyebrow">
-                Inventory
-            </p>
-
-            <h1 id="inventory-heading">
-                The Collection
-            </h1>
-
-            <p class="inventory-count" id="inventory-count" aria-live="polite">
-                Loading inventory…
-            </p>
-        </section>
-
-
-        <section class="inventory-toolbar" aria-label="Inventory controls">
-            <label class="search" for="inventory-search">
-                <span class="search__label">
-                    Search inventory
-                </span>
-
-                <input id="inventory-search" type="search" placeholder="Player, team, set, card number…"
-                    autocomplete="off">
-            </label>
-        </section>
-
-
-        <div id="inventory-status" class="inventory-status" aria-live="polite">
-            Loading cards…
-        </div>
-
-
-        <section id="inventory-grid" class="inventory-grid" aria-label="Sports card inventory"></section>
-
+    <main class="app-main" id="app">
+        <p class="app-loading" aria-live="polite">
+            Loading…
+        </p>
     </main>
 
 
@@ -71,7 +40,7 @@
             <span class="app-nav__label">Tasks</span>
         </a>
 
-        <a class="app-nav__item app-nav__item--active" href="/" aria-current="page">
+        <a class="app-nav__item" id="nav-inventory" href="/">
             <span class="app-nav__label">Inventory</span>
         </a>
 
