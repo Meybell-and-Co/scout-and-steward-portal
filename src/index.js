@@ -1,4 +1,5 @@
 import { handlePublish } from "./services/publish.js";
+import { handleGetItems } from "./services/items.js";
 
 export default {
     async fetch(request, env) {
@@ -33,6 +34,10 @@ export default {
                     { status: 500 }
                 );
             }
+        }
+
+        if (url.pathname === "/api/items" && request.method === "GET") {
+            return handleGetItems(env);
         }
 
         if (url.pathname === "/api/publish" && request.method === "POST") {
