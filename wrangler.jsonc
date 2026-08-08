@@ -1,4 +1,9 @@
 {
+    "secrets": {
+        "required": [
+            "PUBLISH_TOKEN"
+        ]
+    },
     "name": "scout-and-steward-portal",
     "main": "src/index.js",
     "compatibility_date": "2026-08-08",
@@ -15,5 +20,10 @@
     ],
     "observability": {
         "enabled": true
+    },
+    "secrets": {
+        "required": [
+            "PUBLISH_TOKEN"
+        ]
     }
 }
