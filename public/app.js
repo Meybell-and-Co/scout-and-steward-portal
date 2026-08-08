@@ -509,28 +509,49 @@ function getItemTitle(item) {
 
 
 function getItemIdentity(item) {
-    const setParts = [
-        item.year,
-        item.manufacturer,
-        item.set_name
-    ]
-        .filter(Boolean)
-        .map(String);
+    const year = item.year
+        ? String(item.year).trim()
+        : "";
 
-    const uniqueParts = setParts.filter(
-        (part, index) =>
-            setParts.indexOf(part) === index
-    );
+    const manufacturer = item.manufacturer
+        ? String(item.manufacturer).trim()
+        : "";
 
-    const identity = uniqueParts.join(" · ");
+    const setName = item.set_name
+        ? String(item.set_name).trim()
+        : "";
 
-    if (!item.card_number) {
-        return identity;
+    const cardNumber = item.card_number
+        ? String(item.card_number).trim()
+        : "";
+
+    const identityParts = [];
+
+    const normalizedSetName = setName.toLowerCase();
+
+    if (
+        year &&
+        !normalizedSetName.includes(year.toLowerCase())
+    ) {
+        identityParts.push(year);
     }
 
-    return identity
-        ? `${identity} · #${item.card_number}`
-        : `#${item.card_number}`;
+    if (
+        manufacturer &&
+        !normalizedSetName.includes(manufacturer.toLowerCase())
+    ) {
+        identityParts.push(manufacturer);
+    }
+
+    if (setName) {
+        identityParts.push(setName);
+    }
+
+    if (cardNumber) {
+        identityParts.push(`#${cardNumber}`);
+    }
+
+    return identityParts.join(" · ");
 }
 
 
