@@ -132,11 +132,93 @@ export async function handlePublish(request, env) {
         );
     }
 
-    return Response.json({
-        status: "ok",
-        authenticated: true,
-        validated: true,
-        item_count: payload.items.length,
-        message: "Publication validated. No data written."
-    });
+    const publicationId = crypto.randomUUID();
+    const publishedAt = new Date().toISOString();
+
+    const statements = [
+        env.DB.prepare(
+            `INSERT INTO publications (
+            publication_id,
+            source_version,
+            status,
+            item_count,
+            published_at,
+            completed_at
+        ) VALUES (?, ?, ?, ?, ?, ?)`
+        ).bind(
+            publicationId,
+            payload.source_version.trim(),
+            "completed",
+            payload.items.length,
+            publishedAt,
+            publishedAt
+        )
+    ];
+
+    for (const item of payload.items) {
+        const snapshotId = crypto.randomUUID();
+
+        statements.push(
+            env.DB.prepare(
+                `INSERT INTO inventory_snapshots (
+                snapshot_id,
+                publication_id,
+                item_id,
+                player_name,
+                team,
+                year,
+                manufacturer,
+                set_name,
+                card_number,
+                classification,
+                image_front_url,
+                image_back_url,
+                recommended_price_cents,
+                created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+            ).bind(
+                snapshotId,
+                publicationId,
+                item.item_id.trim(),
+                item.player_name ?? null,
+                item.team ?? null,
+                item.year ?? null,
+                item.manufacturer ?? null,
+                item.set_name ?? null,
+                item.card_number ?? null,
+                item.classification ?? null,
+                item.image_front_url ?? null,
+                item.image_back_url ?? null,
+                item.recommended_price_cents ?? null,
+                publishedAt
+            )
+        );
+    }
+
+    try {
+        await env.DB.batch(statements);
+    } catch (error) {
+        console.error("Publication write failed:", error);
+
+        return Response.json(
+            {
+                status: "error",
+                error: "publication_failed"
+            },
+            { status: 500 }
+        );
+    }
+
+    return Response.json(
+        {
+            status: "ok",
+            authenticated: true,
+            validated: true,
+            published: true,
+            publication_id: publicationId,
+            source_version: payload.source_version.trim(),
+            item_count: payload.items.length
+        },
+        { status: 201 }
+    );
 }
