@@ -20,6 +20,21 @@ export async function handleGetItems(env) {
             INNER JOIN publications AS p
                 ON p.publication_id = s.publication_id
             WHERE p.status = 'completed'
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM inventory_snapshots AS newer_s
+                  INNER JOIN publications AS newer_p
+                      ON newer_p.publication_id = newer_s.publication_id
+                  WHERE newer_s.item_id = s.item_id
+                    AND newer_p.status = 'completed'
+                    AND (
+                        newer_p.published_at > p.published_at
+                        OR (
+                            newer_p.published_at = p.published_at
+                            AND newer_s.snapshot_id > s.snapshot_id
+                        )
+                    )
+              )
             ORDER BY s.item_id ASC`
         ).all();
 
