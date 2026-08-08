@@ -1,0 +1,9 @@
+{
+    "name": "scout-and-steward-portal",
+    "main": "src/index.js",
+    "compatibility_date": "2026-08-08",
+    "assets": {
+        "directory": "./public",
+        "binding": "ASSETS"
+    }
+}
