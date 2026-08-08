@@ -33,6 +33,48 @@ export default {
             }
         }
 
+        if (url.pathname === "/api/publish" && request.method === "POST") {
+            const authorization = request.headers.get("Authorization");
+            const expectedAuthorization = `Bearer ${env.PUBLISH_TOKEN}`;
+
+            if (!authorization || authorization !== expectedAuthorization) {
+                return Response.json(
+                    {
+                        status: "error",
+                        error: "unauthorized"
+                    },
+                    { status: 401 }
+                );
+            }
+
+            return Response.json({
+                status: "ok",
+                authenticated: true,
+                message: "Publisher authenticated. No data written."
+            });
+        }
+
+        if (url.pathname === "/api/publish" && request.method === "POST") {
+            const authorization = request.headers.get("Authorization");
+            const expectedAuthorization = `Bearer ${env.PUBLISH_TOKEN}`;
+
+            if (!authorization || authorization !== expectedAuthorization) {
+                return Response.json(
+                    {
+                        status: "error",
+                        error: "unauthorized"
+                    },
+                    { status: 401 }
+                );
+            }
+
+            return Response.json({
+                status: "ok",
+                authenticated: true,
+                message: "Publisher authenticated. No data written."
+            });
+        }
+
         return env.ASSETS.fetch(request);
     }
 };
