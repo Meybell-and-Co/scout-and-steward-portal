@@ -51,6 +51,13 @@ export const BUSINESS_RULES = {
         category_era: 5
     },
 
+    COMP_EVIDENCE_SCORES: {
+        exact: 100,
+        same_issue: 70,
+        same_player_era: 45,
+        category_era: 20
+    },
+
     PRICING_FACTOR_RUBRICS: {
         condition: {
             label: "Condition",
