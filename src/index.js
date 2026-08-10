@@ -1,5 +1,8 @@
 import { handlePublish } from "./services/publish.js";
 import {
+    handleCreatePriceRecommendation
+} from "./services/recommendations.js";
+import {
     handleApprovePrice,
     handleMarkListedOnEbay,
     handleGetApprovedItems
@@ -69,6 +72,34 @@ export default {
         }
 
         if (
+        url.pathname.startsWith("/api/items/") &&
+        url.pathname.endsWith("/recommend-price") &&
+        request.method === "POST"
+    ) {
+        const itemId = decodeURIComponent(
+            url.pathname.slice(
+                "/api/items/".length,
+                -"/recommend-price".length
+            )
+        );
+
+        if (!itemId || itemId.includes("/")) {
+            return Response.json(
+                {
+                    status: "error",
+                    error: "invalid_item_id"
+                },
+                { status: 400 }
+            );
+        }
+
+        return handleCreatePriceRecommendation(
+            request,
+            env,
+            itemId
+        );
+    }
+    if (
             url.pathname.startsWith("/api/items/") &&
             url.pathname.endsWith("/approve-price") &&
             request.method === "POST"
@@ -156,3 +187,5 @@ export default {
         return env.ASSETS.fetch(request);
     }
 };
+
+

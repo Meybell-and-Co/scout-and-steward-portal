@@ -51,6 +51,7 @@ export function buildMarketRecommendation(
             tier_code: tierCode,
             evidence_quality: baseline.price_agreement,
             evidence_sufficient: true,
+        evidence_window_days: baseline.observation_window_days,
             market_baseline_cents: baseline.baseline_cents,
             recommended_price_cents:
                 baseline.recommended_price_cents,
@@ -91,3 +92,4 @@ export function buildMarketRecommendation(
         active_to_sold_ratio: null,
     };
 }
+

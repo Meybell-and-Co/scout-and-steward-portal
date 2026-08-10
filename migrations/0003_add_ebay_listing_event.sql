@@ -1,7 +1,4 @@
 PRAGMA foreign_keys = OFF;
-
-BEGIN TRANSACTION;
-
 CREATE TABLE workflow_events_new (
     event_id TEXT PRIMARY KEY,
 
@@ -88,7 +85,5 @@ ON workflow_events (event_type);
 
 CREATE INDEX idx_workflow_events_created_at
 ON workflow_events (created_at);
-
-COMMIT;
-
 PRAGMA foreign_keys = ON;
+

@@ -30,6 +30,7 @@ test("builds a recommendation using the strongest defensible comparable tier", (
     assert.equal(result.tier_code, "exact");
     assert.equal(result.evidence_quality, "strong");
     assert.equal(result.evidence_sufficient, true);
+assert.equal(result.evidence_window_days, 90);
     assert.equal(result.market_baseline_cents, 1500);
     assert.equal(result.recommended_price_cents, 1500);
 });
@@ -200,3 +201,4 @@ test("includes pricing factor evidence in the recommendation", () => {
         "up"
     );
 });
+
