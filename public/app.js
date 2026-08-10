@@ -423,9 +423,9 @@ function renderItemDetail(item) {
                     Pricing
                 </h2>
 
-                <p class="item-detail__price-label">
-                    Recommended price
-                </p>
+                <p class="item-detail__label">
+    ${item.price_approval ? "Approved price" : "Recommended price"}
+</p>
 
                 <p class="item-detail__price">
                     ${formatPrice(item.recommended_price_cents)}
@@ -440,12 +440,61 @@ ${item.recommended_price_cents == null
                 ? "Price approved"
                 : "Awaiting price approval"}
 </p>
+${item.recommended_price_cents != null && !item.price_approval
+            ? `
+        <button
+            type="button"
+            class="item-detail__approve-button"
+            data-action="approve-price"
+        >
+            Approve ${formatPrice(item.recommended_price_cents)}
+        </button>
+    `
+            : ""}
             </section>
 
         </section>
     `;
 
     wireImageControls(item);
+    wirePriceApproval(item);
+}
+
+async function wirePriceApproval(item) {
+    const button = document.querySelector(
+        '[data-action="approve-price"]'
+    );
+
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener("click", async () => {
+        button.disabled = true;
+        button.textContent = "Approving…";
+
+        try {
+            const response = await fetch(
+                `/api/items/${encodeURIComponent(item.item_id)}/approve-price`,
+                {
+                    method: "POST"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            await loadItem(item.item_id);
+        } catch (error) {
+            console.error("Unable to approve price:", error);
+
+            button.disabled = false;
+            button.textContent = `Approve ${formatPrice(
+                item.recommended_price_cents
+            )}`;
+        }
+    });
 }
 
 
