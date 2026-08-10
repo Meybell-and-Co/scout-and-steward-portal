@@ -1,0 +1,3 @@
+export const BUSINESS_RULES = {
+    SHIPPING_ALLOWANCE_CENTS: 1000
+};
