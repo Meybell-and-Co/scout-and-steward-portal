@@ -788,3 +788,27 @@ textarea {
         font-size: clamp(3rem, 5vw, 4.25rem);
     }
 }
+/* ---------------------------------------------------------
+   Item approval status
+   --------------------------------------------------------- */
+
+.item-detail__approval-status {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin: 12px 0 0;
+    padding: 6px 10px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.item-detail__approval-status--pending {
+    opacity: 0.7;
+}
+
+.item-detail__approval-status--approved {
+    opacity: 1;
+}

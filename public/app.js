@@ -430,6 +430,16 @@ function renderItemDetail(item) {
                 <p class="item-detail__price">
                     ${formatPrice(item.recommended_price_cents)}
                 </p>
+             <p class="item-detail__approval-status ${item.price_approval
+            ? "item-detail__approval-status--approved"
+            : "item-detail__approval-status--pending"
+        }">
+${item.recommended_price_cents == null
+            ? "Pricing recommendation pending"
+            : item.price_approval
+                ? "Price approved"
+                : "Awaiting price approval"}
+</p>
             </section>
 
         </section>
