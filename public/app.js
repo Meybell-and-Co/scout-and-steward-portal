@@ -522,6 +522,7 @@ function renderItemDetail(item) {
                 <h2 id="pricing-heading">
                     Pricing
                 </h2>
+            ${renderPriceRecommendation(item)}
 
                 <p class="item-detail__label">
     ${item.price_approval ? "Approved price" : "Recommended price"}
@@ -641,6 +642,47 @@ async function wireMarkListedOnEbay(item) {
     });
 }
 
+function renderPriceRecommendation(item) {
+    const recommendation = item.price_recommendation;
+    const priceCents = getRecommendedPriceCents(item);
+
+    if (priceCents === null) {
+        return `
+            <p class="item-detail__approval-status item-detail__approval-status--pending">
+                Pricing recommendation pending
+            </p>
+        `;
+    }
+
+    const confidence = recommendation?.confidence
+        ? `${recommendation.confidence.charAt(0).toUpperCase()}${recommendation.confidence.slice(1)} confidence`
+        : "";
+
+    const evidenceWindow = recommendation?.evidence_window_days
+        ? `${recommendation.evidence_window_days}-day evidence window`
+        : "";
+
+    const details = [confidence, evidenceWindow]
+        .filter(Boolean)
+        .join(" · ");
+
+    return `
+        <p class="item-detail__price">
+            ${formatPrice(priceCents)}
+        </p>
+
+        ${details
+            ? `
+                <p class="item-detail__price-evidence">
+                    ${escapeHtml(details)}
+                </p>
+            `
+            : ""
+        }
+    `;
+}
+
+
 function renderMetadataRow(label, value) {
     if (
         value === null ||
@@ -754,6 +796,15 @@ function getItemIdentity(item) {
     }
 
     return identityParts.join(" · ");
+}
+
+
+function getRecommendedPriceCents(item) {
+    return (
+        item.price_recommendation?.recommended_price_cents ??
+        item.recommended_price_cents ??
+        null
+    );
 }
 
 

@@ -32,7 +32,22 @@ export async function handleApprovePrice(request, env, itemId) {
             );
         }
 
-        if (snapshot.recommended_price_cents === null) {
+        const recommendation = await env.DB.prepare(`
+    SELECT
+        recommendation_id,
+        item_id,
+        recommended_price_cents,
+        confidence,
+        created_at
+    FROM price_recommendations
+    WHERE item_id = ?
+    ORDER BY created_at DESC, recommendation_id DESC
+    LIMIT 1
+`)
+            .bind(snapshot.item_id)
+            .first();
+
+        if (!recommendation) {
             return Response.json(
                 {
                     status: "error",
@@ -53,10 +68,15 @@ export async function handleApprovePrice(request, env, itemId) {
     WHERE snapshot_id = ?
       AND item_id = ?
       AND event_type = 'price_approved'
+      AND json_extract(payload_json, '$.recommendation_id') = ?
     ORDER BY created_at DESC
     LIMIT 1
 `)
-            .bind(snapshot.snapshot_id, snapshot.item_id)
+            .bind(
+                snapshot.snapshot_id,
+                snapshot.item_id,
+                recommendation.recommendation_id
+            )
             .first();
 
         if (existingApproval) {
@@ -68,8 +88,9 @@ export async function handleApprovePrice(request, env, itemId) {
                     snapshot_id: snapshot.snapshot_id,
                     item_id: snapshot.item_id,
                     event_type: "price_approved",
+                    recommendation_id: recommendation.recommendation_id,
                     recommended_price_cents:
-                        snapshot.recommended_price_cents,
+                        recommendation.recommended_price_cents,
                     created_at: existingApproval.created_at
                 }
             });
@@ -78,7 +99,8 @@ export async function handleApprovePrice(request, env, itemId) {
         const createdAt = new Date().toISOString();
 
         const payload = JSON.stringify({
-            recommended_price_cents: snapshot.recommended_price_cents
+            recommendation_id: recommendation.recommendation_id,
+            recommended_price_cents: recommendation.recommended_price_cents
         });
 
         await env.DB.prepare(`
@@ -115,8 +137,9 @@ export async function handleApprovePrice(request, env, itemId) {
                     snapshot_id: snapshot.snapshot_id,
                     item_id: snapshot.item_id,
                     event_type: "price_approved",
+                    recommendation_id: recommendation.recommendation_id,
                     recommended_price_cents:
-                        snapshot.recommended_price_cents,
+                        recommendation.recommended_price_cents,
                     created_at: createdAt
                 }
             },
@@ -234,6 +257,28 @@ export async function handleMarkListedOnEbay(env, itemId) {
            Require price approval first
            ------------------------------------------------- */
 
+        const recommendation = await env.DB.prepare(`
+            SELECT
+                recommendation_id,
+                recommended_price_cents
+            FROM price_recommendations
+            WHERE item_id = ?
+            ORDER BY created_at DESC, recommendation_id DESC
+            LIMIT 1
+        `)
+            .bind(snapshot.item_id)
+            .first();
+
+        if (!recommendation) {
+            return Response.json(
+                {
+                    status: "error",
+                    error: "price_not_available"
+                },
+                { status: 409 }
+            );
+        }
+
         const approval = await env.DB.prepare(`
             SELECT
                 event_id,
@@ -242,10 +287,15 @@ export async function handleMarkListedOnEbay(env, itemId) {
             WHERE snapshot_id = ?
               AND item_id = ?
               AND event_type = 'price_approved'
+          AND json_extract(payload_json, '$.recommendation_id') = ?
             ORDER BY created_at DESC
             LIMIT 1
         `)
-            .bind(snapshot.snapshot_id, snapshot.item_id)
+        .bind(
+            snapshot.snapshot_id,
+            snapshot.item_id,
+            recommendation.recommendation_id
+        )
             .first();
 
         if (!approval) {
@@ -270,10 +320,15 @@ export async function handleMarkListedOnEbay(env, itemId) {
             WHERE snapshot_id = ?
               AND item_id = ?
               AND event_type = 'listed_on_ebay'
+              AND json_extract(payload_json, '$.recommendation_id') = ?
             ORDER BY created_at DESC
             LIMIT 1
         `)
-            .bind(snapshot.snapshot_id, snapshot.item_id)
+            .bind(
+                snapshot.snapshot_id,
+                snapshot.item_id,
+                recommendation.recommendation_id
+            )
             .first();
 
         if (existingListing) {
@@ -294,7 +349,8 @@ export async function handleMarkListedOnEbay(env, itemId) {
         const createdAt = new Date().toISOString();
 
         const payload = JSON.stringify({
-            approved_price_cents: snapshot.recommended_price_cents
+            recommendation_id: recommendation.recommendation_id,
+            approved_price_cents: recommendation.recommended_price_cents
         });
 
         await env.DB.prepare(`

@@ -95,47 +95,80 @@ export async function handleGetItem(env, itemId) {
             );
         }
 
-        const priceApproval = await env.DB.prepare(
-            `SELECT
-        event_id,
-        actor_id,
-        actor_role,
-        payload_json,
-        created_at
-     FROM workflow_events
-     WHERE snapshot_id = ?
-       AND item_id = ?
-       AND event_type = 'price_approved'
-     ORDER BY created_at DESC, event_id DESC
-     LIMIT 1`
-        )
-            .bind(item.snapshot_id, item.item_id)
-            .first();
+        const priceRecommendation = await env.DB.prepare(
+        `SELECT
+            recommendation_id,
+            item_id,
+            recommended_price_cents,
+            confidence,
+            evidence_window_days,
+            factors_json,
+            evidence_json,
+            created_at
+         FROM price_recommendations
+         WHERE item_id = ?
+         ORDER BY created_at DESC, recommendation_id DESC
+         LIMIT 1`
+    )
+        .bind(item.item_id)
+        .first();
 
-        const ebayListing = await env.DB.prepare(`
-    SELECT
-        event_id,
-        snapshot_id,
-        item_id,
-        actor_id,
-        actor_role,
-        event_type,
-        payload_json,
-        created_at
-    FROM workflow_events
-    WHERE snapshot_id = ?
-      AND item_id = ?
-      AND event_type = 'listed_on_ebay'
-    ORDER BY created_at DESC, event_id DESC
-    LIMIT 1
-`)
-            .bind(item.snapshot_id, item.item_id)
-            .first();
+        const priceApproval = priceRecommendation
+            ? await env.DB.prepare(
+                `SELECT
+                    event_id,
+                    actor_id,
+                    actor_role,
+                    payload_json,
+                    created_at
+                 FROM workflow_events
+                 WHERE snapshot_id = ?
+                   AND item_id = ?
+                   AND event_type = 'price_approved'
+                   AND json_extract(payload_json, '$.recommendation_id') = ?
+                 ORDER BY created_at DESC, event_id DESC
+                 LIMIT 1`
+            )
+                .bind(
+                    item.snapshot_id,
+                    item.item_id,
+                    priceRecommendation.recommendation_id
+                )
+                .first()
+            : null;
+
+        const ebayListing = priceRecommendation
+            ? await env.DB.prepare(`
+                SELECT
+                    event_id,
+                    snapshot_id,
+                    item_id,
+                    actor_id,
+                    actor_role,
+                    event_type,
+                    payload_json,
+                    created_at
+                FROM workflow_events
+                WHERE snapshot_id = ?
+                  AND item_id = ?
+                  AND event_type = 'listed_on_ebay'
+                  AND json_extract(payload_json, '$.recommendation_id') = ?
+                ORDER BY created_at DESC, event_id DESC
+                LIMIT 1
+            `)
+                .bind(
+                    item.snapshot_id,
+                    item.item_id,
+                    priceRecommendation.recommendation_id
+                )
+                .first()
+            : null;
 
         return Response.json({
             status: "ok",
             item: {
                 ...item,
+            price_recommendation: priceRecommendation ?? null,
                 price_approval: priceApproval ?? null,
                 ebay_listing: ebayListing ?? null
             }
