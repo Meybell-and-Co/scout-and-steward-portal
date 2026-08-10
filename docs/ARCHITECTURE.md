@@ -406,6 +406,8 @@ Client price:      $18.00
 The original recommendation must not be destroyed merely because the
 client proposes another value.
 
+A recommendation is not required when available market evidence is insufficient. Items without a defensible recommendation must require human pricing rather than receiving an arbitrary fallback value. Market assessment methodology is documented in docs/MARKET-METHODOLOGY.md.
+
 ---
 
 # Metadata Corrections

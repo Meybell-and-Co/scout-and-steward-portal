@@ -1,6 +1,16 @@
 export const BUSINESS_RULES = {
     SHIPPING_ALLOWANCE_CENTS: 1000,
     MIN_ADJUSTED_MARKET_VALUE_CENTS: 0,
+    MARKET_BASELINE: {
+        defaultWindowDays: 90,
+
+        representativeTolerance: {
+            percent: 0.25,
+            minimumCents: 200
+        },
+
+        strongAgreementMinimum: 0.75
+    },
 
     PRICING_FACTOR_WEIGHTS: {
         condition: 0.30,
