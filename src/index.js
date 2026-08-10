@@ -1,5 +1,9 @@
 import { handlePublish } from "./services/publish.js";
-import { handleApprovePrice } from "./services/workflow.js";
+import {
+    handleApprovePrice,
+    handleMarkListedOnEbay,
+    handleGetApprovedItems
+} from "./services/workflow.js";
 import {
     handleGetItem,
     handleGetItems
@@ -54,7 +58,12 @@ export default {
         /* -------------------------------------------------
            Inventory API
            ------------------------------------------------- */
-
+        if (
+            url.pathname === "/api/workflow/approved" &&
+            request.method === "GET"
+        ) {
+            return handleGetApprovedItems(env);
+        }
         if (url.pathname === "/api/items" && request.method === "GET") {
             return handleGetItems(env);
         }
@@ -104,7 +113,30 @@ export default {
 
             return handleGetItem(env, itemId);
         }
+        if (
+            url.pathname.startsWith("/api/items/") &&
+            url.pathname.endsWith("/mark-listed") &&
+            request.method === "POST"
+        ) {
+            const itemId = decodeURIComponent(
+                url.pathname.slice(
+                    "/api/items/".length,
+                    -"/mark-listed".length
+                )
+            );
 
+            if (!itemId || itemId.includes("/")) {
+                return Response.json(
+                    {
+                        status: "error",
+                        error: "invalid_item_id"
+                    },
+                    { status: 400 }
+                );
+            }
+
+            return handleMarkListedOnEbay(env, itemId);
+        }
 
         /* -------------------------------------------------
            Publication API

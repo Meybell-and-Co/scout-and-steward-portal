@@ -112,11 +112,32 @@ export async function handleGetItem(env, itemId) {
             .bind(item.snapshot_id, item.item_id)
             .first();
 
+        const ebayListing = await env.DB.prepare(`
+    SELECT
+        event_id,
+        snapshot_id,
+        item_id,
+        actor_id,
+        actor_role,
+        event_type,
+        payload_json,
+        created_at
+    FROM workflow_events
+    WHERE snapshot_id = ?
+      AND item_id = ?
+      AND event_type = 'listed_on_ebay'
+    ORDER BY created_at DESC, event_id DESC
+    LIMIT 1
+`)
+            .bind(item.snapshot_id, item.item_id)
+            .first();
+
         return Response.json({
             status: "ok",
             item: {
                 ...item,
-                price_approval: priceApproval ?? null
+                price_approval: priceApproval ?? null,
+                ebay_listing: ebayListing ?? null
             }
         });
 

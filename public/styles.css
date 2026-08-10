@@ -812,3 +812,107 @@ textarea {
 .item-detail__approval-status--approved {
     opacity: 1;
 }
+/* ---------------------------------------------------------
+   Ready to List
+   --------------------------------------------------------- */
+
+.inventory-ready {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.inventory-ready__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.inventory-ready__eyebrow {
+    margin: 0 0 0.25rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.inventory-ready__header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.inventory-ready__count {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.inventory-ready__list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.inventory-ready__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1rem 1.125rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+}
+
+.inventory-ready__item-content {
+    min-width: 0;
+}
+
+.inventory-ready__item-title,
+.inventory-ready__item-meta {
+    margin: 0;
+}
+
+.inventory-ready__item-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+}
+
+.inventory-ready__item-meta {
+    margin-top: 0.2rem;
+    font-size: 0.875rem;
+}
+
+.inventory-ready__item-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.inventory-ready__price {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+}
+
+.inventory-ready__link {
+    white-space: nowrap;
+}
+
+.inventory-ready__empty {
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .inventory-ready__item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .inventory-ready__item-action {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

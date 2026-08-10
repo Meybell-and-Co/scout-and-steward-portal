@@ -62,6 +62,8 @@ async function loadInventory() {
     const inventoryCount = document.querySelector("#inventory-count");
     const inventoryStatus = document.querySelector("#inventory-status");
     const inventorySearch = document.querySelector("#inventory-search");
+    const inventoryReadyList = document.querySelector("#inventory-ready-list");
+    const inventoryReadyCount = document.querySelector("#inventory-ready-count");
 
     try {
         const response = await fetch("/api/items");
@@ -73,6 +75,20 @@ async function loadInventory() {
         const payload = await response.json();
 
         allItems = payload.items ?? [];
+
+        const approvedResponse = await fetch("/api/workflow/approved");
+
+        if (!approvedResponse.ok) {
+            throw new Error(`Approved queue HTTP ${approvedResponse.status}`);
+        }
+
+        const approvedPayload = await approvedResponse.json();
+
+        renderApprovedQueue(
+            approvedPayload.items ?? [],
+            inventoryReadyList,
+            inventoryReadyCount
+        );
 
         console.log("Scout & Steward inventory:", payload);
 
@@ -147,7 +163,35 @@ function renderInventoryShell() {
                 >
             </label>
         </section>
+<section
+    class="inventory-ready"
+    aria-labelledby="inventory-ready-heading"
+>
+    <div class="inventory-ready__header">
+        <div>
+            <p class="inventory-ready__eyebrow">
+                Next step
+            </p>
 
+            <h2 id="inventory-ready-heading">
+                Ready to List
+            </h2>
+        </div>
+
+        <p
+            class="inventory-ready__count"
+            id="inventory-ready-count"
+            aria-live="polite"
+        >
+            Loading…
+        </p>
+    </div>
+
+    <div
+        id="inventory-ready-list"
+        class="inventory-ready__list"
+    ></div>
+</section>
         <div
             id="inventory-status"
             class="inventory-status"
@@ -247,6 +291,62 @@ function renderItems(items, inventoryGrid) {
     }
 }
 
+function renderApprovedQueue(items, container, countElement) {
+    container.innerHTML = "";
+
+    countElement.textContent =
+        `${items.length} item${items.length === 1 ? "" : "s"}`;
+
+    if (items.length === 0) {
+        container.innerHTML = `
+            <p class="inventory-ready__empty">
+                Nothing is ready to list yet.
+            </p>
+        `;
+        return;
+    }
+
+    for (const item of items) {
+        const card = document.createElement("article");
+        card.className = "inventory-ready__item";
+
+        const inventoryItem = allItems.find(
+            (inventoryItem) =>
+                inventoryItem.item_id === item.item_id
+        );
+
+        const title = inventoryItem
+            ? getItemTitle(inventoryItem)
+            : item.item_id;
+
+        card.innerHTML = `
+            <div class="inventory-ready__item-content">
+                <p class="inventory-ready__item-title">
+                    ${escapeHtml(title)}
+                </p>
+
+                <p class="inventory-ready__item-meta">
+                    ${item.item_id}
+                </p>
+            </div>
+
+            <div class="inventory-ready__item-action">
+                <span class="inventory-ready__price">
+                    ${formatPrice(item.approved_price_cents)}
+                </span>
+
+                <a
+                    class="inventory-ready__link"
+                    href="/item/${encodeURIComponent(item.item_id)}"
+                >
+                    View card
+                </a>
+            </div>
+        `;
+
+        container.appendChild(card);
+    }
+}
 
 function filterInventory(
     inventorySearch,
@@ -425,32 +525,37 @@ function renderItemDetail(item) {
 
                 <p class="item-detail__label">
     ${item.price_approval ? "Approved price" : "Recommended price"}
+
+<p class="item-detail__approval-status ${item.ebay_listing
+            ? "item-detail__approval-status--approved"
+            : item.price_approval
+                ? "item-detail__approval-status--approved"
+                : "item-detail__approval-status--pending"
+        }">
+    ${item.recommended_price_cents == null
+            ? "Pricing recommendation pending"
+            : item.ebay_listing
+                ? "Listed on eBay"
+                : item.price_approval
+                    ? "Price approved"
+                    : "Awaiting price approval"
+        }
 </p>
 
-                <p class="item-detail__price">
-                    ${formatPrice(item.recommended_price_cents)}
-                </p>
-             <p class="item-detail__approval-status ${item.price_approval
-            ? "item-detail__approval-status--approved"
-            : "item-detail__approval-status--pending"
-        }">
-${item.recommended_price_cents == null
-            ? "Pricing recommendation pending"
-            : item.price_approval
-                ? "Price approved"
-                : "Awaiting price approval"}
-</p>
-${item.recommended_price_cents != null && !item.price_approval
+${item.recommended_price_cents != null &&
+            item.price_approval &&
+            !item.ebay_listing
             ? `
-        <button
-            type="button"
-            class="item-detail__approve-button"
-            data-action="approve-price"
-        >
-            Approve ${formatPrice(item.recommended_price_cents)}
-        </button>
+    <button
+        type="button"
+        class="item-detail__approve-button"
+        data-action="mark-listed"
+    >
+        Mark as listed on eBay
+    </button>
     `
-            : ""}
+            : ""
+        }
             </section>
 
         </section>
@@ -458,6 +563,7 @@ ${item.recommended_price_cents != null && !item.price_approval
 
     wireImageControls(item);
     wirePriceApproval(item);
+    wireMarkListedOnEbay(item);
 }
 
 async function wirePriceApproval(item) {
@@ -497,6 +603,43 @@ async function wirePriceApproval(item) {
     });
 }
 
+async function wireMarkListedOnEbay(item) {
+    const button = document.querySelector(
+        '[data-action="mark-listed"]'
+    );
+
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener("click", async () => {
+        button.disabled = true;
+        button.textContent = "Marking listed…";
+
+        try {
+            const response = await fetch(
+                `/api/items/${encodeURIComponent(item.item_id)}/mark-listed`,
+                {
+                    method: "POST"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            await loadItem(item.item_id);
+        } catch (error) {
+            console.error(
+                "Unable to mark item as listed on eBay:",
+                error
+            );
+
+            button.disabled = false;
+            button.textContent = "Mark as listed on eBay";
+        }
+    });
+}
 
 function renderMetadataRow(label, value) {
     if (
