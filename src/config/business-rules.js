@@ -12,6 +12,22 @@ export const BUSINESS_RULES = {
         strongAgreementMinimum: 0.75
     },
 
+    MARKET_ACTIVITY: {
+        neutralActiveToSoldRatio: {
+            min: 2 / 3,
+            max: 1.25
+        },
+
+        healthyActivityMaxActiveToSoldRatio: 0.5,
+
+        softActivityMinActiveToSoldRatio: 1.25,
+        softActivityMaxActiveToSoldRatio: 2,
+
+        strongSoftActivityMinActiveToSoldRatio: 2,
+
+        staleSupplySoftActivityMinimum: 1 / 3,
+    },
+
     PRICING_FACTOR_WEIGHTS: {
         condition: 0.30,
         player_significance: 0.15,
