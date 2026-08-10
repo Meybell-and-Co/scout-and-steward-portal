@@ -14,6 +14,43 @@ export const BUSINESS_RULES = {
         max: 3
     },
 
+    COMP_TIERS: {
+        EXACT: {
+            code: "exact",
+            rank: 1,
+            label: "Exact card",
+            description: "Same player, year, set, and card number"
+        },
+
+        SAME_ISSUE: {
+            code: "same_issue",
+            rank: 2,
+            label: "Same issue",
+            description: "Same year, set, and classification with a comparable subject"
+        },
+
+        SAME_PLAYER_ERA: {
+            code: "same_player_era",
+            rank: 3,
+            label: "Same player / era",
+            description: "Same player with broadly comparable cards from the same era"
+        },
+
+        CATEGORY_ERA: {
+            code: "category_era",
+            rank: 4,
+            label: "Category / era",
+            description: "Similar sport, card category, and era"
+        }
+    },
+
+    COMP_MINIMUM_REQUIREMENTS: {
+        exact: 1,
+        same_issue: 2,
+        same_player_era: 3,
+        category_era: 5
+    },
+
     PRICING_FACTOR_RUBRICS: {
         condition: {
             label: "Condition",
