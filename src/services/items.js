@@ -4,6 +4,7 @@
 
 const CURRENT_INVENTORY_SELECT = `
     SELECT
+        s.snapshot_id,
         s.item_id,
         s.player_name,
         s.team,
@@ -94,10 +95,31 @@ export async function handleGetItem(env, itemId) {
             );
         }
 
+        const priceApproval = await env.DB.prepare(
+            `SELECT
+        event_id,
+        actor_id,
+        actor_role,
+        payload_json,
+        created_at
+     FROM workflow_events
+     WHERE snapshot_id = ?
+       AND item_id = ?
+       AND event_type = 'price_approved'
+     ORDER BY created_at DESC, event_id DESC
+     LIMIT 1`
+        )
+            .bind(item.snapshot_id, item.item_id)
+            .first();
+
         return Response.json({
             status: "ok",
-            item
+            item: {
+                ...item,
+                price_approval: priceApproval ?? null
+            }
         });
+
     } catch (error) {
         console.error("Inventory item read failed:", error);
 
