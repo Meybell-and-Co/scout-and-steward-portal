@@ -1,4 +1,5 @@
 import { handlePublish } from "./services/publish.js";
+import { handleApprovePrice } from "./services/workflow.js";
 import {
     handleGetItem,
     handleGetItems
@@ -56,6 +57,31 @@ export default {
 
         if (url.pathname === "/api/items" && request.method === "GET") {
             return handleGetItems(env);
+        }
+
+        if (
+            url.pathname.startsWith("/api/items/") &&
+            url.pathname.endsWith("/approve-price") &&
+            request.method === "POST"
+        ) {
+            const itemId = decodeURIComponent(
+                url.pathname.slice(
+                    "/api/items/".length,
+                    -"/approve-price".length
+                )
+            );
+
+            if (!itemId || itemId.includes("/")) {
+                return Response.json(
+                    {
+                        status: "error",
+                        error: "invalid_item_id"
+                    },
+                    { status: 400 }
+                );
+            }
+
+            return handleApprovePrice(request, env, itemId);
         }
 
         if (
