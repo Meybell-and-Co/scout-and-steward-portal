@@ -1,6 +1,7 @@
 import { BUSINESS_RULES } from "../../config/business-rules.js";
 import { calculateMarketBaseline } from "./baseline.js";
 import { assessMarketCompetition } from "./competition.js";
+import { resolvePricingFactors } from "./factors.js";
 
 /**
  * Builds a market recommendation from available comparable evidence.
@@ -41,6 +42,11 @@ export function buildMarketRecommendation(
             tierCode
         );
 
+        const pricingFactors = resolvePricingFactors({
+            item: {},
+            competition
+        });
+
         return {
             tier_code: tierCode,
             evidence_quality: baseline.price_agreement,
@@ -64,6 +70,7 @@ export function buildMarketRecommendation(
                 competition.stale_active_count,
             active_to_sold_ratio:
                 competition.active_to_sold_ratio,
+            pricing_factors: pricingFactors,
         };
     }
 

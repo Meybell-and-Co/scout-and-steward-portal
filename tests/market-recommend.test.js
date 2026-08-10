@@ -138,3 +138,65 @@ test("includes market competition evidence in the recommendation", () => {
     assert.equal(result.sold_observed, 3);
     assert.equal(result.active_to_sold_ratio, 1 / 3);
 });
+test("includes pricing factor evidence in the recommendation", () => {
+    const comps = [
+        {
+            market_status: "sold",
+            comp_tier: "exact",
+            price_cents: 1200,
+            shipping_cents: 300,
+            total_buyer_cost_cents: 1500,
+            item_origin_date: "2026-08-01T12:00:00Z"
+        },
+        {
+            market_status: "sold",
+            comp_tier: "exact",
+            price_cents: 1300,
+            shipping_cents: 200,
+            total_buyer_cost_cents: 1500,
+            item_origin_date: "2026-07-25T12:00:00Z"
+        },
+        {
+            market_status: "sold",
+            comp_tier: "exact",
+            price_cents: 1400,
+            shipping_cents: 100,
+            total_buyer_cost_cents: 1500,
+            item_origin_date: "2026-07-20T12:00:00Z"
+        },
+        {
+            market_status: "active",
+            comp_tier: "exact",
+            price_cents: 1400,
+            shipping_cents: 300,
+            total_buyer_cost_cents: 1700,
+            item_origin_date: "2025-12-01T12:00:00Z"
+        }
+    ];
+
+    const result = buildMarketRecommendation(
+        comps,
+        TEST_NOW
+    );
+
+    assert.equal(result.pricing_factors.condition.score, 0);
+    assert.equal(result.pricing_factors.condition.direction, "neutral");
+
+    assert.equal(
+        result.pricing_factors.player_significance.score,
+        0
+    );
+    assert.equal(
+        result.pricing_factors.player_significance.direction,
+        "neutral"
+    );
+
+    assert.equal(result.pricing_factors.scarcity.score, 2);
+    assert.equal(result.pricing_factors.scarcity.direction, "up");
+
+    assert.equal(result.pricing_factors.market_activity.score, 1);
+    assert.equal(
+        result.pricing_factors.market_activity.direction,
+        "up"
+    );
+});
