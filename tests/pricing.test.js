@@ -17,10 +17,10 @@ test("calculates a normal recommendation", () => {
     assert.equal(result.total_modifier_cents, -600);
     assert.equal(result.adjusted_market_value_cents, 1400);
     assert.equal(result.shipping_allowance_cents, 1000);
-    assert.equal(result.recommended_price_cents, 2400);
+    assert.equal(result.recommended_price_cents, 400);
 });
 
-test("neutral factors return baseline plus shipping", () => {
+test("neutral factors subtract separately charged shipping from buyer-cost baseline", () => {
     const result = calculatePriceRecommendation({
         recentCompsCents: 2000,
         factorScores: {
@@ -33,7 +33,7 @@ test("neutral factors return baseline plus shipping", () => {
 
     assert.equal(result.total_modifier_cents, 0);
     assert.equal(result.adjusted_market_value_cents, 2000);
-    assert.equal(result.recommended_price_cents, 3000);
+    assert.equal(result.recommended_price_cents, 1000);
 });
 
 test("maximum negative pressure produces the expected result", () => {
@@ -49,7 +49,7 @@ test("maximum negative pressure produces the expected result", () => {
 
     assert.equal(result.total_modifier_cents, -1800);
     assert.equal(result.adjusted_market_value_cents, 200);
-    assert.equal(result.recommended_price_cents, 1200);
+    assert.equal(result.recommended_price_cents, 0);
 });
 
 test("maximum positive pressure produces the expected result", () => {
@@ -65,7 +65,23 @@ test("maximum positive pressure produces the expected result", () => {
 
     assert.equal(result.total_modifier_cents, 1800);
     assert.equal(result.adjusted_market_value_cents, 3800);
-    assert.equal(result.recommended_price_cents, 4800);
+    assert.equal(result.recommended_price_cents, 2800);
+});
+
+test("shipping subtraction never produces a negative listing price", () => {
+    const result = calculatePriceRecommendation({
+        recentCompsCents: 500,
+        factorScores: {
+            condition: 0,
+            player_significance: 0,
+            scarcity: 0,
+            market_activity: 0
+        }
+    });
+
+    assert.equal(result.adjusted_market_value_cents, 500);
+    assert.equal(result.shipping_allowance_cents, 1000);
+    assert.equal(result.recommended_price_cents, 0);
 });
 
 test("invalid factor scores are rejected", () => {

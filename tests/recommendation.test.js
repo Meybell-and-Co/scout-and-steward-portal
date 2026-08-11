@@ -52,10 +52,13 @@ test("builds a final price recommendation from market evidence", () => {
     );
 
     assert.equal(
-        result.recommended_price_cents,
-        result.pricing.adjusted_market_value_cents +
+    result.recommended_price_cents,
+    Math.max(
+        0,
+        result.pricing.adjusted_market_value_cents -
             result.pricing.shipping_allowance_cents
-    );
+    )
+);
 });
 
 test("does not calculate final pricing without sufficient market evidence", () => {

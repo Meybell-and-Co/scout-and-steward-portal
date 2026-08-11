@@ -69,8 +69,10 @@ export function calculatePriceRecommendation({
     const shippingAllowanceCents =
         BUSINESS_RULES.SHIPPING_ALLOWANCE_CENTS;
 
-    const recommendedPriceCents =
-        adjustedMarketValueCents + shippingAllowanceCents;
+    const recommendedPriceCents = Math.max(
+        0,
+        adjustedMarketValueCents - shippingAllowanceCents
+    );
 
     return {
         recent_comps_cents: recentCompsCents,
