@@ -243,6 +243,41 @@ export default {
             return handlePublish(request, env);
         }
 
+    /* -------------------------------------------------
+       eBay OAuth callback
+       ------------------------------------------------- */
+
+    if (
+        url.pathname === "/api/ebay/oauth/callback" &&
+        request.method === "GET"
+    ) {
+        const authorizationCode = url.searchParams.get("code");
+        const error = url.searchParams.get("error");
+
+        if (error) {
+            return Response.json(
+                {
+                    status: "error",
+                    error: "ebay_authorization_declined"
+                },
+                { status: 400 }
+            );
+        }
+
+        if (!authorizationCode) {
+            return Response.json({
+                status: "ok",
+                callback: "ready",
+                authorization_code_received: false
+            });
+        }
+
+        return Response.json({
+            status: "ok",
+            callback: "ready",
+            authorization_code_received: true
+        });
+    }
         /* -------------------------------------------------
            Static assets
            ------------------------------------------------- */
