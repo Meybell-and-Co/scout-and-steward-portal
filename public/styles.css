@@ -4555,3 +4555,87 @@ textarea {
 .item-detail__approve {
     color: var(--color-ivory);
 }
+
+/* =========================================================
+   PRICE BENTO — unify materials with Details
+   One chocolate. One paper.
+   ========================================================= */
+
+:root {
+    --ss-paper: #fcfaf6;
+    --ss-chocolate: #4d372f;
+}
+
+
+/* ---------------------------------------------------------
+   UPPER DECISION CHAMBER
+   Same chocolate as the Details binder.
+   --------------------------------------------------------- */
+
+.price-bento > .item-detail__section--pricing {
+    background-color: var(--ss-chocolate);
+    background-image: none;
+}
+
+
+/*
+ * Price/decision half inherits the same chocolate surface.
+ * Explicit override prevents an older Bento rule from
+ * supplying a neighboring brown.
+ */
+.price-bento > .price-decision {
+    background-color: var(--ss-chocolate);
+    background-image: none;
+}
+
+
+/* ---------------------------------------------------------
+   LOWER FACTORS CHAMBER
+   Same pale paper as the Details sheet.
+   --------------------------------------------------------- */
+
+.price-bento > .item-detail__section--factors {
+    background-color: var(--ss-paper);
+    background-image: none;
+}
+
+
+/* ---------------------------------------------------------
+   APPROVE remains the distinct oxblood action.
+   Do NOT turn the button chocolate.
+   --------------------------------------------------------- */
+
+.price-bento .item-detail__approve,
+.price-bento .item-detail__approve-button {
+    background-color: var(--color-oxblood);
+}
+
+/* =========================================================
+   PRICE BENTO — material rhyme correction
+   Actual production selectors. One chocolate. One paper.
+   ========================================================= */
+
+/*
+ * UPPER BENTO
+ * Recommendation + actions share the Details chocolate.
+ */
+.price-bento > .price-decision {
+    background: #4d372f;
+}
+
+
+/*
+ * LOWER BENTO
+ * Factors + confidence/evidence share the Details paper.
+ */
+.price-bento > .item-detail__section--pricing {
+    background: #fcfaf6;
+}
+
+
+/*
+ * APPROVE remains oxblood.
+ */
+.price-bento .price-decision__approve {
+    background: var(--color-oxblood);
+}

@@ -1,5 +1,11 @@
 import { handlePublish } from "./services/publish.js";
 import {
+    searchEbayActiveListings
+} from "./services/ebay-market.js";
+import {
+    handleEbayAccountDeletion
+} from "./services/ebay-compliance.js";
+import {
     handleCreatePriceRecommendation
 } from "./services/recommendations.js";
 import {
@@ -15,6 +21,63 @@ import {
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
+        /* -------------------------------------------------
+           eBay market probe
+           ------------------------------------------------- */
+
+        if (
+            url.pathname === "/api/ebay/search" &&
+            request.method === "GET"
+        ) {
+            const query = url.searchParams.get("q");
+
+            if (!query) {
+                return Response.json(
+                    {
+                        status: "error",
+                        error: "missing_query"
+                    },
+                    { status: 400 }
+                );
+            }
+
+            try {
+                const results =
+                    await searchEbayActiveListings(
+                        env,
+                        query,
+                        10
+                    );
+
+                return Response.json({
+                    status: "ok",
+                    ...results
+                });
+            } catch (error) {
+                console.error(
+                    "eBay market search failed:",
+                    error
+                );
+
+                return Response.json(
+                    {
+                        status: "error",
+                        error: "ebay_search_failed"
+                    },
+                    { status: 502 }
+                );
+            }
+        }
+        /* -------------------------------------------------
+           eBay compliance
+           ------------------------------------------------- */
+
+        if (
+            url.pathname === "/api/ebay/marketplace-account-deletion" &&
+            (request.method === "GET" || request.method === "POST")
+        ) {
+            return handleEbayAccountDeletion(request, env);
+        }
 
 
         /* -------------------------------------------------
