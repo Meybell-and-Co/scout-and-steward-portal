@@ -2291,146 +2291,474 @@ textarea {
 }
 
 /* =========================================================
-   TEMPORARY — Bento Font Pageant
-   Remove after selecting the winning price face.
+   ITEM REVIEW — production price bento
+   Consolidated 2026-08-11
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Cormorant+Garamond:wght@400&family=EB+Garamond:wght@400&display=swap');
-
-.price-decision-audition {
-    margin-top: clamp(0.9rem, 3.5vw, 1.15rem);
-}
-
-.price-decision-audition .price-decision {
-    position: relative;
-
-    margin:
-        0
-        0.35rem
-        0.7rem;
-
-    padding-top: clamp(1.35rem, 5vw, 1.65rem);
-}
-
-.price-decision__audition-label {
-    position: absolute;
-    top: 0.38rem;
-    left: 1rem;
-
-    color: rgb(248 239 222 / 48%);
-
-    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
-    font-size: 0.52rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    line-height: 1;
-}
-
-/* Only the PRICE changes face. Everything else stays controlled. */
-
-.price-decision--eb-garamond .price-decision__price {
-    font-family: "EB Garamond", Garamond, Georgia, serif;
-}
-
-.price-decision--cormorant .price-decision__price {
-    font-family: "Cormorant Garamond", Garamond, Georgia, serif;
-}
-
-.price-decision--bodoni .price-decision__price {
-    font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
-}
-
-/*
-   Stop Mickey Mouse:
-   satellites remain subordinate and sit INSIDE
-   the visual height established by the dollars.
-*/
-
-.price-decision-audition .price-decision__currency {
-    top: 0.48em;
-
-    margin-right: 0.1em;
-
-    font-size: 0.34em;
-    font-weight: 400;
-    opacity: 0.72;
-}
-
-.price-decision-audition .price-decision__cents {
-    top: 0.08em;
-
-    margin-left: 0.1em;
-
-    font-size: 0.34em;
-    font-weight: 400;
-}
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&display=swap');
 
 
-/* =========================================================
-   Flyout attachment + wider working area
-   ========================================================= */
+/* ---------------------------------------------------------
+   Shared Bento shell
+   --------------------------------------------------------- */
 
-.price-decision-audition + .item-detail__section--pricing,
-.item-detail__section--pricing {
-    position: relative;
+.price-bento {
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+
+    width: calc(100% + 0.75rem);
+    max-width: none;
 
     margin:
-        -0.72rem
-        0.35rem
+        1.15rem
+        -0.375rem
         var(--space-4);
 
-    padding:
-        1.05rem
-        clamp(0.65rem, 2.8vw, 0.9rem)
-        1.1rem;
+    overflow: hidden;
 
-    border-radius: 0 0 0.95rem 0.95rem;
+    background: #eee2d2;
+    border: 1px solid rgb(77 55 47 / 42%);
+    border-radius: 1.05rem;
+
+    /*
+     * Continuous Bento outline:
+     * the shell owns one uninterrupted stroke around both
+     * the chocolate decision chamber and cream flydown.
+     */
+    box-shadow:
+        inset 0 0 0 1px rgb(255 255 255 / 10%),
+        0 0.25rem 0.7rem rgb(50 32 26 / 7%);
 }
 
 
-/* =========================================================
-   Factor instruments — fixed symbol rail + label rail
-   ========================================================= */
+/* Both compartments obey the parent shell. */
 
-.item-detail__section--pricing .pricing-factor {
+.price-bento > .price-decision,
+.price-bento > .item-detail__section--pricing {
+    box-sizing: border-box;
+
+    grid-column: 1;
+
+    width: 100%;
+    max-width: none;
+    margin: 0;
+
+    border-radius: 0;
+}
+
+
+/* ---------------------------------------------------------
+   Brown decision compartment
+   --------------------------------------------------------- */
+
+.price-bento > .price-decision {
     display: grid;
-    grid-template-columns: 0.8rem minmax(0, 1fr);
-    align-items: center;
-    column-gap: 0.38rem;
+    grid-template-columns:
+        minmax(10.75rem, 0.95fr)
+        minmax(12rem, 1.05fr);
 
+    align-items: center;
+    column-gap: 1.15rem;
+
+    padding:
+        clamp(1.15rem, 4.5vw, 1.55rem)
+        clamp(1rem, 4vw, 1.3rem);
+
+    background: #4d372f;
+
+    border: 0;
+
+    /*
+     * A quiet internal stroke gives the chocolate chamber
+     * definition without creating a second outside width.
+     */
+    box-shadow:
+        inset 0 0 0 1px rgb(248 239 222 / 14%);
+}
+
+
+/* ---------------------------------------------------------
+   Recommendation chamber
+   --------------------------------------------------------- */
+
+.price-bento .price-decision__recommendation {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
     min-width: 0;
 
     padding:
-        0.4rem
-        0.48rem;
+        0
+        1.1rem
+        0
+        0.15rem;
 
-    text-align: left;
+    text-align: center;
+
+    border-right: 1px solid rgb(248 239 222 / 36%);
+}
+
+
+/*
+ * Retire the older pseudo-element divider.
+ * The chamber itself now owns the divider.
+ */
+.price-bento .price-decision__recommendation::after {
+    content: none;
+}
+
+
+.price-bento .price-decision__label {
+    display: block;
+
+    width: 100%;
+    margin: 0 0 0.3rem;
+
+    color: rgb(248 239 222 / 78%);
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    font-weight: 400;
+    letter-spacing: 0.015em;
+    line-height: 1;
+
+    text-align: center;
+}
+
+
+/* ---------------------------------------------------------
+   Price lockup
+   --------------------------------------------------------- */
+
+.price-bento .price-decision__price {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: auto;
+    margin: 0 auto;
+
+    color: var(--color-ivory);
+
+    font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+    font-weight: 400;
+    line-height: 0.8;
     white-space: nowrap;
 }
 
-/*
-   Existing HTML puts the indicator AFTER the text.
-   Grid lets us visually move that final span into column 1
-   without changing the markup.
-*/
 
-.item-detail__section--pricing .pricing-factor > span:last-child {
+.price-bento .price-decision__currency {
+    position: static;
+
+    margin:
+        0.12em
+        0.06em
+        0
+        0;
+
+    color: rgb(248 239 222 / 72%);
+
+    font-size: 0.4em;
+    font-weight: 400;
+    line-height: 1;
+
+    opacity: 1;
+}
+
+
+.price-bento .price-decision__dollars {
+    font-size: clamp(2.85rem, 11vw, 3.75rem);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+}
+
+
+.price-bento .price-decision__cents {
+    position: static;
+
+    margin:
+        0.08em
+        0
+        0
+        0.08em;
+
+    color: rgb(248 239 222 / 82%);
+
+    font-size: 0.31em;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1;
+
+    vertical-align: baseline;
+}
+
+
+/* ---------------------------------------------------------
+   Action chamber
+   --------------------------------------------------------- */
+
+.price-bento .price-decision__approve {
+    grid-column: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: none;
+    min-height: 3.35rem;
+    margin: 0;
+    padding: 0.45rem 0.8rem;
+
+    appearance: none;
+
+    background: var(--color-oxblood);
+    color: var(--color-ivory);
+
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 200px;
+
+    cursor: pointer;
+    text-align: center;
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 9%),
+        0 0.22rem 0.45rem rgb(25 10 10 / 18%);
+}
+
+
+.price-bento .price-decision__approve-action {
+    display: block;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1;
+}
+
+
+.price-bento .price-decision__approve-detail {
+    display: block;
+
+    margin-top: 0.25rem;
+
+    color: rgb(248 239 222 / 82%);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.78rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+
+/* Revise + Hold */
+
+.price-bento .price-decision__secondary-actions {
+    grid-column: 2;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+
+.price-bento .price-decision__secondary-action {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+
+    padding: 0.45rem 0.65rem;
+
+    color: rgb(248 239 222 / 88%);
+    background: rgb(248 239 222 / 6%);
+
+    border: 1px solid rgb(248 239 222 / 42%);
+    border-radius: 200px;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------
+   Cream evidence compartment
+   --------------------------------------------------------- */
+
+.price-bento > .item-detail__section--pricing {
+    position: relative;
+
+    padding:
+        1.2rem
+        clamp(0.7rem, 3vw, 0.95rem)
+        1.15rem;
+
+    background: #eee2d2;
+
+    border: 0;
+    border-top: 1px solid rgb(77 55 47 / 28%);
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 35%);
+}
+
+
+/*
+ * Accessible section heading remains in the document,
+ * but FACTORS / WHY THIS PRICE? is the visible heading.
+ */
+.price-bento > .item-detail__section--pricing > h2 {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+/* ---------------------------------------------------------
+   Factors
+   --------------------------------------------------------- */
+
+.price-bento .pricing-factors {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.72rem;
+
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+.price-bento .pricing-factors__heading {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.8rem;
+
+    min-width: 0;
+    margin: 0.18rem 0 0.38rem;
+
+    color: #4d372f;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    line-height: 1;
+}
+
+
+.price-bento .pricing-factors__heading strong {
+    flex: 0 0 auto;
+
+    font-size: clamp(0.88rem, 3.6vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+}
+
+
+.price-bento .pricing-factors__heading span {
+    margin: 0;
+
+    color: rgb(77 55 47 / 62%);
+
+    font-size: clamp(0.62rem, 2.6vw, 0.74rem);
+    font-weight: 400;
+    letter-spacing: 0.055em;
+}
+
+
+/*
+ * Count-specific placement is no longer needed.
+ * All factors flow through the same two-column grid.
+ */
+.price-bento .pricing-factors--count-4 .pricing-factor:nth-of-type(n),
+.price-bento .pricing-factors--count-5 .pricing-factor:nth-of-type(n) {
+    grid-column: auto;
+    grid-row: auto;
+}
+
+
+.price-bento .pricing-factor {
+    display: grid;
+    grid-template-columns: 0.9rem minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0.48rem;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 2.7rem;
+
+    padding: 0.52rem 0.72rem;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.66rem, 2.7vw, 0.78rem);
+    font-weight: 600;
+    letter-spacing: 0.035em;
+    line-height: 1;
+
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    overflow: hidden;
+    box-shadow: none;
+}
+
+
+/*
+ * JS places the semantic indicator after the label.
+ * Grid visually moves it into a fixed left-hand rail.
+ */
+.price-bento .pricing-factor > span:last-child {
     grid-column: 1;
     grid-row: 1;
 
-    width: 0.8rem;
-    min-width: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 0.9rem;
+    min-width: 0.9rem;
 
     font-size: 0;
 }
 
-.item-detail__section--pricing .pricing-factor {
-    grid-auto-flow: dense;
-}
 
-/* Remove the previous drawn chevrons/bars. */
-
-.item-detail__section--pricing .pricing-factor > span:last-child::before {
+.price-bento .pricing-factor > span:last-child::before {
     width: auto;
     height: auto;
 
@@ -2445,1163 +2773,1785 @@ textarea {
     line-height: 1;
 }
 
-/* + increase */
-.item-detail__section--pricing .pricing-factor--up > span:last-child::before {
+
+.price-bento .pricing-factor--up > span:last-child::before {
     content: "+";
 }
 
-/* = stable */
-.item-detail__section--pricing .pricing-factor--neutral > span:last-child::before {
+.price-bento .pricing-factor--neutral > span:last-child::before {
     content: "=";
 }
 
-/* − decrease */
-.item-detail__section--pricing .pricing-factor--down > span:last-child::before {
+.price-bento .pricing-factor--down > span:last-child::before {
     content: "−";
 }
 
 
-/*
-   Give the two lozenge columns more acreage.
-   MARKET ACTIVITY establishes our practical minimum.
-*/
-
-.pricing-factors--count-4 {
-    grid-template-columns:
-        minmax(6.6rem, 0.82fr)
-        repeat(2, minmax(8.25rem, 1fr));
-
-    column-gap: 0.55rem;
-}
-
-
-/* At genuinely narrow widths, preserve two lozenge columns
-   but squeeze the heading before allowing label wrapping. */
-
-@media (max-width: 390px) {
-    .pricing-factors--count-4 {
-        grid-template-columns:
-            minmax(5.8rem, 0.72fr)
-            repeat(2, minmax(7.35rem, 1fr));
-
-        column-gap: 0.4rem;
-    }
-
-    .item-detail__section--pricing .pricing-factor {
-        padding-inline: 0.38rem;
-
-        font-size: 0.6rem;
-        letter-spacing: 0.015em;
-    }
-}
-
-/* =========================================================
-   Final pre-commit audition — acreage + flyout attachment
-   ========================================================= */
-
-/* Bentos stretch their legs. */
-.price-decision-audition .price-decision {
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
-}
-
-
-/*
-   Flyout tucks physically beneath the final bento.
-   Negative margin deliberately overlaps the rounded bento edge.
-*/
-.price-decision-audition + .item-detail__section--pricing,
-.item-detail__section--pricing {
-    margin:
-        -0.82rem
-        0.2rem
-        var(--space-4);
-
-    padding:
-        1.25rem
-        clamp(0.7rem, 3vw, 0.95rem)
-        1.15rem;
-
-    border-radius: 0 0 0.95rem 0.95rem;
-}
-
-
-/* FACTORS becomes a full-width heading above the instruments. */
-.item-detail__section--pricing .pricing-factors {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.62rem 0.72rem;
-}
-
-.pricing-factors__heading,
-.pricing-factors--count-4 .pricing-factors__heading,
-.pricing-factors--count-5 .pricing-factors__heading {
-    grid-column: 1 / -1;
-    grid-row: auto;
-
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: flex-start;
-    gap: 0.55rem;
-
-    margin-bottom: 0.05rem;
-}
-
-.pricing-factors__heading span {
-    margin-top: 0;
-}
-
-
-/*
-   Undo the old count-specific coordinates.
-   Once the heading owns its own row, lozenges simply flow
-   into two generous equal columns.
-*/
-.pricing-factors--count-4 .pricing-factor:nth-of-type(n),
-.pricing-factors--count-5 .pricing-factor:nth-of-type(n) {
-    grid-column: auto;
-    grid-row: auto;
-}
-
-
-/*
-   Airy instrument treatment:
-   fixed symbol rail + consistent label origin.
-*/
-.item-detail__section--pricing .pricing-factor {
-    grid-template-columns: 0.9rem minmax(0, 1fr);
-    column-gap: 0.48rem;
-
-    min-height: 2.65rem;
-
-    padding:
-        0.5rem
-        0.72rem;
-
-    font-size: clamp(0.66rem, 2.7vw, 0.78rem);
-    letter-spacing: 0.035em;
-
-    overflow: hidden;
-}
-
-.item-detail__section--pricing .pricing-factor > span:last-child {
-    width: 0.9rem;
-    min-width: 0.9rem;
-}
-
-
-/* Keep the actual label comfortably clear of its boundary. */
-.item-detail__section--pricing .pricing-factor {
-    text-overflow: clip;
-}
-
-
-/*
-   Previous narrow-screen count rules are no longer needed;
-   preserve the same two-column composition down to 350px.
-*/
-@media (max-width: 390px) {
-    .pricing-factors--count-4,
-    .pricing-factors--count-5 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-gap: 0.5rem;
-    }
-
-    .item-detail__section--pricing .pricing-factor {
-        padding-inline: 0.55rem;
-        font-size: 0.61rem;
-        letter-spacing: 0.015em;
-    }
-}
-
-/* =========================================================
-   Item review — post-pageant production audition
-   Bodoni + compartment bento + factor spacing
-   ========================================================= */
-
-/* --- One decision object, two dark compartments --- */
-
-.price-decision {
-    position: relative;
-
-    margin:
-        clamp(0.95rem, 4vw, 1.2rem)
-        0.2rem
-        0;
-
-    padding:
-        clamp(1.15rem, 4.5vw, 1.55rem)
-        clamp(1rem, 4vw, 1.3rem);
-
-    background: #4d372f;
-
-    /* Lower corners deliberately square into evidence compartment. */
-    border-radius: 1.05rem 1.05rem 0 0;
-}
-
-
-/*
-   Hairline between PRICE and APPROVE.
-   The divider belongs to the chocolate bento, not the button.
-*/
-.price-decision__recommendation {
-    position: relative;
-
-    padding-right: clamp(0.8rem, 3vw, 1.1rem);
-}
-
-.price-decision__recommendation::after {
-    content: "";
-
-    position: absolute;
-    top: 0.15rem;
-    right: 0;
-    bottom: 0.15rem;
-
-    width: 1px;
-
-    background: rgb(248 239 222 / 16%);
-}
-
-
-/* Give APPROVE its own chamber rather than another floating card. */
-.price-decision__approve {
-    width: 100%;
-    max-width: none;
-    min-height: 5rem;
-
-    margin-left: 0;
-    padding-left: clamp(0.8rem, 3vw, 1.15rem);
-
-    border-radius: 0.7rem;
-
-    background: var(--color-oxblood);
-}
-
-
-/* --- Bodoni wins --- */
-
-.price-decision__price {
-    font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
-}
-
-
-/*
-   First production calibration:
-   keep Bodoni's drama but pull the pieces into one price mark.
-   We'll judge actual $29²⁵ before finer optical kerning.
-*/
-.price-decision__currency {
-    top: 0.48em;
-
-    margin-right: 0.04em;
-
-    font-size: 0.32em;
-    font-weight: 400;
-    opacity: 0.68;
-}
-
-.price-decision__dollars {
-    letter-spacing: -0.065em;
-}
-
-.price-decision__cents {
-    top: 0.1em;
-
-    margin-left: 0.08em;
-
-    font-size: 0.33em;
-    letter-spacing: -0.025em;
-}
-
-
-/* --- Evidence compartment --- */
-
-.item-detail__section--pricing {
-    position: relative;
-
-    margin:
-        0
-        0.2rem
-        var(--space-4);
-
-    padding:
-        1.2rem
-        clamp(0.7rem, 3vw, 0.95rem)
-        1.15rem;
-
-    background: #eee2d2;
-
-    /*
-       No overlap trickery:
-       this is visibly the lower compartment of the same object.
-    */
-    border: 1px solid rgb(77 55 47 / 20%);
-    border-top-color: rgb(77 55 47 / 26%);
-    border-radius: 0 0 0.95rem 0.95rem;
-
-    box-shadow:
-        inset 0 1px 0 rgb(255 255 255 / 35%);
-}
-
-
-/* --- FACTORS hierarchy and breathing room --- */
-
-.pricing-factors__heading,
-.pricing-factors--count-4 .pricing-factors__heading,
-.pricing-factors--count-5 .pricing-factors__heading {
-    gap: 0.8rem;
-
-    margin:
-        0.18rem
-        0
-        0.38rem;
-}
-
-.pricing-factors__heading strong {
-    flex: 0 0 auto;
-}
-
-.pricing-factors__heading span {
-    color: rgb(77 55 47 / 62%);
-}
-
-
-/*
-   A deliberate kiss of air between heading and instruments.
-   Keep the successful two-column lozenge architecture.
-*/
-.item-detail__section--pricing .pricing-factors {
-    row-gap: 0.72rem;
-}
-
-.item-detail__section--pricing .pricing-factor {
-    min-height: 2.7rem;
-
-    padding:
-        0.52rem
-        0.72rem;
-}
-
-/* =========================================================
-   Price lockup calibration — give Jesús Aguilar some room
-   ========================================================= */
-
-.price-decision__recommendation {
-    align-items: center;
-    text-align: center;
-}
-
-.price-decision__label {
-    width: 100%;
-    text-align: center;
-}
-
-.price-decision__price {
-    align-self: center;
-}
-
-
-/* Bodoni gets presence without returning to banner-ad scale. */
-.price-decision__dollars {
-    font-size: clamp(3rem, 12vw, 4rem);
-
-    /* Bodoni does not need to be strangled. */
-    letter-spacing: -0.01em;
-}
-
-
-/* Quiet satellites, but give everybody personal space. */
-.price-decision__currency {
-    top: 0.5em;
-
-    margin-right: 0.12em;
-
-    font-size: 0.31em;
-}
-
-.price-decision__cents {
-    top: 0.1em;
-
-    margin-left: 0.16em;
-
-    font-size: 0.32em;
-    letter-spacing: 0;
-}
-
-
-/* Longer, slightly more legible chamber divider. */
-.price-decision__recommendation::after {
-    top: -0.25rem;
-    bottom: -0.25rem;
-
-    background: rgb(248 239 222 / 30%);
-}
-
-/* =========================================================
-   Price decision — secondary action sisters
-   ========================================================= */
-
-.price-decision__secondary-actions {
+/* ---------------------------------------------------------
+   Confidence + evidence
+   --------------------------------------------------------- */
+
+.price-bento .pricing-evidence {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.55rem;
+    grid-template-columns:
+        minmax(9rem, 0.9fr)
+        minmax(0, 1.25fr);
 
-    margin-top: 0.6rem;
+    align-items: center;
+    gap: 1rem;
+
+    margin-top: 1rem;
 }
 
-.price-decision__secondary-action {
-    min-height: 2.35rem;
-    padding: 0.45rem 0.65rem;
 
-    color: rgb(248 239 222 / 88%);
-    background: rgb(248 239 222 / 6%);
+.price-bento .pricing-evidence .confidence-meter {
+    display: block;
 
-    border: 1px solid rgb(248 239 222 / 42%);
-    border-radius: 999px;
+    width: 100%;
+    max-width: 11rem;
+    margin: 0;
+}
+
+
+.price-bento .pricing-evidence .confidence-meter__heading {
+    display: block;
+    margin: 0;
+}
+
+
+.price-bento .pricing-evidence .confidence-meter__label {
+    color: var(--color-oxblood);
 
     font-family: "Gill Sans", "Gill Sans MT", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.11em;
-    line-height: 1;
-    text-transform: uppercase;
-
-    cursor: pointer;
-
-    transition:
-        background 140ms ease,
-        border-color 140ms ease,
-        transform 140ms ease;
-}
-
-.price-decision__secondary-action:hover,
-.price-decision__secondary-action:focus-visible {
-    background: rgb(248 239 222 / 12%);
-    border-color: rgb(248 239 222 / 66%);
-}
-
-.price-decision__secondary-action:active {
-    transform: translateY(1px);
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
 
-/* =========================================================
-   Price decision — stacked action chamber refinement
-   ========================================================= */
-
-.price-decision__approve {
-    border-radius: 200px;
+.price-bento .pricing-evidence .confidence-meter__rating,
+.price-bento .pricing-evidence .confidence-meter__blocks {
+    display: none;
 }
 
-.price-decision__secondary-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    width: 100%;
-    margin-top: 0.55rem;
-    gap: 0.55rem;
-}
+.price-bento .pricing-evidence .item-detail__price-evidence {
+    align-self: center;
 
-.price-decision__secondary-action {
-    width: 100%;
-    min-width: 0;
-
-    border-radius: 200px;
-}
-
-/*
- * The action chamber owns both the primary and secondary controls.
- * Keep the sisters directly beneath APPROVE rather than allowing
- * them to fall beneath the recommendation/price column.
- */
-.price-decision__secondary-actions {
-    grid-column: 2;
-}
-
-/* =========================================================
-   Bento geometry refinement — action + recommendation space
-   ========================================================= */
-
-/*
- * Let the Bento approach the viewport edges while retaining
- * a deliberate sliver of page background.
- */
-.price-decision,
-.price-recommendation {
-    width: calc(100% + 1.25rem);
-    max-width: none;
-    margin-inline: -0.625rem;
-}
-
-/*
- * Give the recommendation chamber more breathing room.
- * Left side owns the price; right side owns all decisions.
- */
-.price-decision {
-    grid-template-columns: minmax(9.5rem, 0.9fr) minmax(12rem, 1.1fr);
-    column-gap: 1rem;
-
-    padding-inline: 1.15rem;
-}
-
-/*
- * Keep the recommendation lockup comfortably away from
- * both the Bento wall and its divider.
- */
-.price-decision__recommendation {
-    min-width: 0;
-    padding-inline: 0.65rem 1.15rem;
-}
-
-/*
- * Divider belongs between domains, not against the price.
- */
-.price-decision__recommendation {
-    border-right: 1px solid rgb(248 239 222 / 36%);
-}
-
-/*
- * APPROVE remains primary, but loses the oversized vertical bulk.
- */
-.price-decision__approve {
-    min-height: 3.7rem;
-    padding-block: 0.55rem;
-    border-radius: 200px;
-}
-
-/*
- * Right-hand controls share one clean column.
- */
-.price-decision__approve,
-.price-decision__secondary-actions {
-    width: 100%;
-}
-
-/*
- * Sisters remain equal and directly beneath APPROVE.
- */
-.price-decision__secondary-actions {
-    grid-column: 2;
-    gap: 0.55rem;
-    margin-top: 0.5rem;
-}
-
-.price-decision__secondary-action {
-    min-height: 2.25rem;
-    border-radius: 200px;
-}
-
-/*
- * Let the Factors compartment inherit the wider Bento footprint.
- */
-.price-recommendation {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-/* =========================================================
-   Bento geometry — shared shell + price chamber breathing room
-   ========================================================= */
-
-/*
- * Chocolate and Factors are two compartments of one object.
- * They must share exactly the same horizontal footprint.
- */
-.price-decision,
-.price-recommendation {
-    box-sizing: border-box;
-
-    width: calc(100% + 1.25rem);
-    max-width: none;
-
-    margin-left: -0.625rem;
-    margin-right: -0.625rem;
-}
-
-/*
- * Give the price chamber a little more territory.
- * Decision controls still retain the larger share.
- */
-.price-decision {
-    grid-template-columns:
-        minmax(10.75rem, 0.95fr)
-        minmax(12rem, 1.05fr);
-
-    column-gap: 1.15rem;
-    padding-inline: 1.1rem;
-}
-
-/*
- * Treat recommendation as a composed lockup rather than
- * miscellaneous text living beside a divider.
- */
-.price-decision__recommendation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    min-width: 0;
-
-    padding-left: 0.4rem;
-    padding-right: 1.35rem;
-
-    text-align: center;
-
-    border-right: 1px solid rgb(248 239 222 / 40%);
-}
-
-/*
- * Keep label and number visually related without crowding.
- */
-.price-decision__label {
-    width: 100%;
-    margin-bottom: 0.15rem;
-
-    text-align: center;
-}
-
-/*
- * Price gets its own horizontal breathing room.
- */
-.price-decision__price {
-    display: inline-flex;
-    align-items: flex-start;
-    justify-content: center;
-
-    width: 100%;
     margin: 0;
 
-    line-height: 0.82;
-}
-
-/*
- * Let the main numerals breathe.
- */
-.price-decision__dollars {
-    letter-spacing: -0.035em;
-}
-
-/*
- * Dollar sign whispers from the left instead of becoming
- * Mickey's first ear.
- */
-.price-decision__currency {
-    margin-top: 0.42em;
-    margin-right: 0.12em;
-
-    font-size: 0.38em;
-    font-weight: 300;
-    opacity: 0.42;
-}
-
-/*
- * Cents remain subordinate but stay attached to the price.
- */
-.price-decision__cents {
-    margin-top: 0.08em;
-    margin-left: 0.08em;
-
-    font-size: 0.31em;
-    line-height: 1;
-}
-
-/*
- * APPROVE stays hero but now shares the sisters'
- * slimmer vertical proportions.
- */
-.price-decision__approve {
-    min-height: 3.35rem;
-    padding-block: 0.45rem;
-    border-radius: 200px;
-}
-
-/*
- * Keep both action rows aligned to exactly the same width.
- */
-.price-decision__approve,
-.price-decision__secondary-actions {
-    grid-column: 2;
-    width: 100%;
-}
-
-/*
- * Factors compartment follows the exact outer shell above.
- * Bottom corners stay square so this reads as one Bento,
- * not a mushroom cap sitting on a sticker.
- */
-.price-recommendation {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-/* =========================================================
-   PRICE BENTO — shared structural shell
-   One parent owns all horizontal geometry.
-   ========================================================= */
-
-.price-bento {
-    box-sizing: border-box;
-
-    width: calc(100% + 1.25rem);
-    max-width: none;
-    margin-inline: -0.625rem;
-
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-}
-
-/*
- * Both compartments fill the exact same grid track.
- * No independent width arithmetic. No mushroom.
- */
-.price-bento > .price-decision,
-.price-bento > .item-detail__section--pricing {
-    box-sizing: border-box;
-
-    grid-column: 1;
-    width: 100%;
-    max-width: none;
-
-    margin-left: 0;
-    margin-right: 0;
-}
-
-/*
- * Chocolate owns the upper compartment.
- */
-.price-bento > .price-decision {
-    margin-bottom: 0;
-}
-
-/*
- * Factors owns the lower compartment.
- * Remove generic detail-section geometry that previously
- * made it behave like an independent content section.
- */
-.price-bento > .item-detail__section--pricing {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
-
-    border: 0;
-}
-
-/*
- * The recommendation itself also fills its compartment.
- */
-.price-bento .price-recommendation,
-.price-bento .pricing-factors {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: none;
-
-    margin-left: 0;
-    margin-right: 0;
-}
-
-/*
- * Chocolate + cream meet as one continuous object.
- */
-.price-bento .price-decision {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.price-bento .price-recommendation,
-.price-bento .pricing-factors {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-/* =========================================================
-   PRICE BENTO — production geometry cleanup
-   Shared parent is now the sole width authority.
-   ========================================================= */
-
-/*
- * The parent follows its assigned item-detail grid track.
- * No viewport overhang / negative-margin arithmetic.
- */
-.price-bento {
-    width: 100%;
-    max-width: none;
-    margin: var(--space-3) 0 var(--space-4);
-
-    overflow: hidden;
-
-    background: #eee2d2;
-    border: 1px solid rgb(77 55 47 / 22%);
-    border-radius: 1.05rem;
-}
-
-
-/*
- * Compartments fill the shell exactly.
- * Their parent owns the outside stroke and corners.
- */
-.price-bento > .price-decision,
-.price-bento > .item-detail__section--pricing {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-
-    border-left: 0;
-    border-right: 0;
-}
-
-
-/*
- * Brown decision chamber.
- * Restore its internal breathing room without independent
- * outside geometry.
- */
-.price-bento > .price-decision {
-    padding:
-        clamp(1.15rem, 4.5vw, 1.55rem)
-        clamp(1rem, 4vw, 1.3rem);
-
-    border: 0;
-    border-radius: 0;
-}
-
-
-/*
- * Cream evidence chamber.
- * Restore the padding we accidentally zeroed when the
- * shared parent was introduced.
- */
-.price-bento > .item-detail__section--pricing {
-    padding:
-        1.2rem
-        clamp(0.7rem, 3vw, 0.95rem)
-        1.15rem;
-
-    background: #eee2d2;
-
-    border: 0;
-    border-top: 1px solid rgb(77 55 47 / 24%);
-    border-radius: 0;
-}
-
-
-/*
- * Internal content follows its compartment.
- * Kill legacy over-width rules now that a real parent exists.
- */
-.price-bento .price-recommendation,
-.price-bento .pricing-factors {
-    width: 100%;
-    max-width: none;
-    margin-inline: 0;
-}
-
-
-/*
- * Keep the decision architecture stable:
- * recommendation left, actions right.
- */
-.price-bento .price-decision {
-    grid-template-columns:
-        minmax(10.75rem, 0.95fr)
-        minmax(12rem, 1.05fr);
-
-    column-gap: 1.15rem;
-}
-
-
-/*
- * Recommendation stays firmly inside its chamber instead
- * of wandering toward the Bento wall.
- */
-.price-bento .price-decision__recommendation {
-    width: 100%;
-    min-width: 0;
-
-    padding-left: 0.4rem;
-    padding-right: 1.35rem;
-
-    align-items: center;
-    justify-content: center;
-}
-
-
-/*
- * Narrow phones need a less demanding internal grid.
- */
-@media (max-width: 420px) {
-    .price-bento > .price-decision {
-        grid-template-columns:
-            minmax(8rem, 0.9fr)
-            minmax(10rem, 1.1fr);
-
-        column-gap: 0.75rem;
-        padding-inline: 0.85rem;
-    }
-
-    .price-bento .price-decision__recommendation {
-        padding-left: 0;
-        padding-right: 0.75rem;
-    }
-}
-
-/* =========================================================
-   PRICE BENTO — production geometry cleanup
-   Shared parent is now the sole width authority.
-   ========================================================= */
-
-/*
- * The parent follows its assigned item-detail grid track.
- * No viewport overhang / negative-margin arithmetic.
- */
-.price-bento {
-    width: 100%;
-    max-width: none;
-    margin: var(--space-3) 0 var(--space-4);
-
-    overflow: hidden;
-
-    background: #eee2d2;
-    border: 1px solid rgb(77 55 47 / 22%);
-    border-radius: 1.05rem;
-}
-
-
-/*
- * Compartments fill the shell exactly.
- * Their parent owns the outside stroke and corners.
- */
-.price-bento > .price-decision,
-.price-bento > .item-detail__section--pricing {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-
-    border-left: 0;
-    border-right: 0;
-}
-
-
-/*
- * Brown decision chamber.
- * Restore its internal breathing room without independent
- * outside geometry.
- */
-.price-bento > .price-decision {
-    padding:
-        clamp(1.15rem, 4.5vw, 1.55rem)
-        clamp(1rem, 4vw, 1.3rem);
-
-    border: 0;
-    border-radius: 0;
-}
-
-
-/*
- * Cream evidence chamber.
- * Restore the padding we accidentally zeroed when the
- * shared parent was introduced.
- */
-.price-bento > .item-detail__section--pricing {
-    padding:
-        1.2rem
-        clamp(0.7rem, 3vw, 0.95rem)
-        1.15rem;
-
-    background: #eee2d2;
-
-    border: 0;
-    border-top: 1px solid rgb(77 55 47 / 24%);
-    border-radius: 0;
-}
-
-
-/*
- * Internal content follows its compartment.
- * Kill legacy over-width rules now that a real parent exists.
- */
-.price-bento .price-recommendation,
-.price-bento .pricing-factors {
-    width: 100%;
-    max-width: none;
-    margin-inline: 0;
-}
-
-
-/*
- * Keep the decision architecture stable:
- * recommendation left, actions right.
- */
-.price-bento .price-decision {
-    grid-template-columns:
-        minmax(10.75rem, 0.95fr)
-        minmax(12rem, 1.05fr);
-
-    column-gap: 1.15rem;
-}
-
-
-/*
- * Recommendation stays firmly inside its chamber instead
- * of wandering toward the Bento wall.
- */
-.price-bento .price-decision__recommendation {
-    width: 100%;
-    min-width: 0;
-
-    padding-left: 0.4rem;
-    padding-right: 1.35rem;
-
-    align-items: center;
-    justify-content: center;
-}
-
-
-/*
- * Narrow phones need a less demanding internal grid.
- */
-@media (max-width: 420px) {
-    .price-bento > .price-decision {
-        grid-template-columns:
-            minmax(8rem, 0.9fr)
-            minmax(10rem, 1.1fr);
-
-        column-gap: 0.75rem;
-        padding-inline: 0.85rem;
-    }
-
-    .price-bento .price-decision__recommendation {
-        padding-left: 0;
-        padding-right: 0.75rem;
-    }
-}
-/* =========================================================
-   PRICE BENTO — viewport fit + price lockup calibration
-   2026-08-11
-   ========================================================= */
-
-/*
- * Let the shared shell stretch slightly beyond the normal
- * content rail while keeping equal left/right gutters.
- * Top gets a touch more air beneath the leather hero.
- */
-.price-bento {
-    width: calc(100% + 0.75rem);
-    margin:
-        1.15rem
-        -0.375rem
-        var(--space-4);
-}
-
-
-/*
- * Give the chocolate compartment its own subtle edge.
- * The parent still owns the OUTER geometry; this is only
- * visual definition for the dark upper chamber.
- */
-.price-bento > .price-decision {
-    box-shadow:
-        inset 0 0 0 1px rgb(248 239 222 / 14%);
+    font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+    line-height: 1.35;
+    text-align: left;
 }
 
 
 /* ---------------------------------------------------------
-   Recommended price — one composed typographic mark
+   Narrow-phone safeguard
    --------------------------------------------------------- */
 
-.price-bento .price-decision__recommendation {
-    padding-left: 0.15rem;
-    padding-right: 1.1rem;
-}
-
-
-/*
- * Keep the label firmly connected to the number.
- */
-.price-bento .price-decision__label {
-    margin: 0 0 0.3rem;
-
-    font-size: clamp(0.9rem, 3.5vw, 1rem);
-    line-height: 1;
-}
-
-
-/*
- * Treat $29.25 as one centered lockup.
- */
-.price-bento .price-decision__price {
-    display: inline-flex;
-    align-items: flex-start;
-    justify-content: center;
-
-    width: auto;
-    margin-inline: auto;
-
-    line-height: 0.8;
-}
-
-
-/*
- * Dollar sign belongs to 29 — no more ghost dollar
- * floating down and left.
- */
-.price-bento .price-decision__currency {
-    position: static;
-
-    margin:
-        0.12em
-        0.06em
-        0
-        0;
-
-    font-size: 0.4em;
-    line-height: 1;
-    opacity: 0.72;
-}
-
-
-/*
- * Main price gets slightly less theatrical scale.
- */
-.price-bento .price-decision__dollars {
-    font-size: clamp(2.85rem, 11vw, 3.75rem);
-    letter-spacing: -0.025em;
-}
-
-
-/*
- * Cents tuck against the shoulder of the dollars.
- */
-.price-bento .price-decision__cents {
-    position: static;
-
-    margin:
-        0.08em
-        0
-        0
-        0.08em;
-
-    font-size: 0.31em;
-    line-height: 1;
-    letter-spacing: 0;
-}
-
-
-/*
- * Preserve the successful narrow-phone architecture.
- * Only reduce the shell expansion slightly when acreage
- * becomes genuinely scarce.
- */
 @media (max-width: 420px) {
     .price-bento {
         width: calc(100% + 0.5rem);
+
         margin-left: -0.25rem;
         margin-right: -0.25rem;
+    }
+
+    .price-bento > .price-decision {
+        grid-template-columns:
+            minmax(8rem, 0.9fr)
+            minmax(10rem, 1.1fr);
+
+        column-gap: 0.75rem;
+        padding-inline: 0.85rem;
     }
 
     .price-bento .price-decision__recommendation {
         padding-left: 0;
         padding-right: 0.65rem;
     }
+
+    .price-bento .pricing-factor {
+        padding-inline: 0.55rem;
+
+        font-size: 0.61rem;
+        letter-spacing: 0.015em;
+    }
+
+    .price-bento .pricing-evidence {
+        grid-template-columns:
+            minmax(8rem, 0.9fr)
+            minmax(0, 1.1fr);
+
+        gap: 0.65rem;
+    }
+}
+
+/* ---------------------------------------------------------
+   Price lockup — optical calibration
+   --------------------------------------------------------- */
+
+/*
+ * Keep label + price behaving as one centered composition.
+ */
+.price-bento .price-decision__label {
+    margin-bottom: 0.18rem;
+
+    font-size: clamp(0.82rem, 3vw, 0.94rem);
+    line-height: 1;
+}
+
+
+/*
+ * Bodoni stays, but the price becomes a compact lockup
+ * instead of three independently positioned characters.
+ */
+.price-bento .price-decision__price {
+    position: relative;
+
+    display: inline-block;
+
+    width: auto;
+    margin: 0 auto;
+
+    line-height: 0.78;
+}
+
+
+/*
+ * 29 establishes the size of the composition.
+ */
+.price-bento .price-decision__dollars {
+    display: block;
+
+    font-size: clamp(2.7rem, 10vw, 3.55rem);
+    line-height: 0.78;
+    letter-spacing: -0.035em;
+}
+
+
+/*
+ * Currency hangs from the upper-left shoulder of 29.
+ * Absolute positioning means it no longer pushes 29 sideways.
+ */
+.price-bento .price-decision__currency {
+    position: absolute;
+
+    top: 0.18em;
+    right: 100%;
+
+    margin: 0 0.08em 0 0;
+
+    font-size: 0.34em;
+    line-height: 1;
+
+    opacity: 0.72;
+}
+
+
+/*
+ * Cents hang from the upper-right shoulder.
+ * They likewise do not affect centering of the main numerals.
+ */
+.price-bento .price-decision__cents {
+    position: absolute;
+
+    top: 0.08em;
+    left: 100%;
+
+    margin: 0 0 0 0.08em;
+
+    font-size: 0.29em;
+    line-height: 1;
+}
+
+/* =========================================================
+   PRICE BENTO — explicit 2 × 2 decision table
+   ========================================================= */
+
+/*
+ * Mental model:
+ *
+ * ┌───────────────┬─────────────────┐
+ * │               │     APPROVE     │
+ * │ RECOMMENDATION├─────────────────┤
+ * │               │ REVISE | HOLD   │
+ * └───────────────┴─────────────────┘
+ *
+ * Recommendation spans both rows.
+ * Every occupant receives an explicit grid address.
+ */
+.price-bento > .price-decision {
+    display: grid;
+
+    grid-template-columns:
+        minmax(8.75rem, 0.82fr)
+        minmax(12rem, 1.18fr);
+
+    grid-template-rows:
+        auto
+        auto;
+
+    column-gap: 1.2rem;
+    row-gap: 0.65rem;
+
+    align-items: center;
+}
+
+
+/* LEFT: recommendation owns both floors. */
+
+.price-bento .price-decision__recommendation {
+    grid-column: 1;
+    grid-row: 1 / 3;
+
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        0
+        1rem
+        0
+        0.15rem;
+
+    border-right: 1px solid rgb(248 239 222 / 36%);
+}
+
+
+/* UPPER RIGHT: APPROVE */
+
+.price-bento .price-decision__approve {
+    grid-column: 2;
+    grid-row: 1;
+
+    align-self: end;
+
+    width: 100%;
+    margin: 0;
+}
+
+
+/* LOWER RIGHT: the sisters */
+
+.price-bento .price-decision__secondary-actions {
+    grid-column: 2;
+    grid-row: 2;
+
+    align-self: start;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+    margin: 0;
+
+    gap: 0.55rem;
+}
+
+
+/*
+ * Slightly shorten the right-hand controls so the two rows
+ * read as one deliberate action family.
+ */
+.price-bento .price-decision__approve {
+    min-height: 3.25rem;
+}
+
+.price-bento .price-decision__secondary-action {
+    min-height: 2.2rem;
+}
+
+
+/* Narrow-phone version keeps exactly the same topology. */
+
+@media (max-width: 420px) {
+    .price-bento > .price-decision {
+        grid-template-columns:
+            minmax(7.5rem, 0.82fr)
+            minmax(10rem, 1.18fr);
+
+        column-gap: 0.95rem;
+        row-gap: 0.55rem;
+    }
+
+    .price-bento .price-decision__recommendation {
+        padding-left: 0;
+        padding-right: 0.7rem;
+    }
+}
+
+/* =========================================================
+   ITEM DETAILS — paper bento
+   ========================================================= */
+
+/*
+ * A sibling object to the pricing Bento, not an extension
+ * of it. The spacing replaces the old horizontal divider.
+ */
+.item-detail__section--details {
+    box-sizing: border-box;
+
+    width: calc(100% + 0.75rem);
+    max-width: none;
+
+    margin:
+        1.65rem
+        -0.375rem
+        var(--space-4);
+
+    padding:
+        1.2rem
+        clamp(0.9rem, 3.5vw, 1.15rem)
+        1rem;
+
+    background: #f3e9da;
+
+    border: 1px solid rgb(77 55 47 / 32%);
+    border-radius: 1.05rem;
+
+    box-shadow:
+        0 0.2rem 0.55rem rgb(50 32 26 / 5%);
+}
+
+
+/*
+ * DETAILS mirrors the FACTORS heading.
+ */
+.item-detail__section--details > h2 {
+    margin:
+        0
+        0
+        0.8rem;
+
+    color: #4d372f;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.88rem, 3.6vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   Detail rows
+   --------------------------------------------------------- */
+
+.item-detail__metadata {
+    /*
+     * Shared label rail keeps every dynamic value beginning
+     * at the same invisible left edge.
+     */
+    --details-label-width: clamp(6.6rem, 27vw, 8rem);
+
+    display: grid;
+    grid-template-columns:
+        var(--details-label-width)
+        minmax(0, 1fr);
+
+    column-gap: clamp(1rem, 4vw, 1.5rem);
+
+    margin: 0;
+}
+
+
+/*
+ * Static labels:
+ * same family of voice as Revise / Hold / Condition.
+ */
+.item-detail__metadata dt {
+    grid-column: 1;
+
+    display: flex;
+    align-items: baseline;
+
+    min-width: 0;
+    margin: 0;
+    padding: 0.62rem 0;
+
+    color: #4d372f;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.66rem, 2.7vw, 0.76rem);
+    font-weight: 600;
+    letter-spacing: 0.055em;
+    line-height: 1.2;
+    text-transform: uppercase;
+
+    border: 0;
+}
+
+
+/*
+ * Dynamic values:
+ * serif, left aligned, all sharing the same starting rail.
+ */
+.item-detail__metadata dd {
+    grid-column: 2;
+
+    display: flex;
+    align-items: baseline;
+
+    min-width: 0;
+    margin: 0;
+    padding: 0.62rem 0;
+
+    color: var(--color-oxblood);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.88rem, 3.3vw, 1rem);
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+
+    border: 0;
+
+    overflow-wrap: anywhere;
+}
+
+
+/*
+ * Subtle horizontal rhythm only between rows.
+ * Deliberately faint: structure, not notebook paper.
+ */
+.item-detail__metadata dt:not(:first-of-type),
+.item-detail__metadata dd:not(:first-of-type) {
+    border-top: 1px solid rgb(77 55 47 / 10%);
+}
+
+
+/* Narrow phones keep the same two-column reading pattern. */
+@media (max-width: 420px) {
+    .item-detail__section--details {
+        width: calc(100% + 0.5rem);
+
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+
+        padding-inline: 0.85rem;
+    }
+
+    .item-detail__metadata {
+        --details-label-width: 6.25rem;
+
+        column-gap: 0.85rem;
+    }
+
+    .item-detail__metadata dt {
+        font-size: 0.64rem;
+        letter-spacing: 0.04em;
+    }
+
+    .item-detail__metadata dd {
+        font-size: 0.88rem;
+    }
+}
+
+/* =========================================================
+   DETAILS BENTO — deterministic metadata rows
+   ========================================================= */
+
+/*
+ * The DL is a two-column grid:
+ * quiet static label rail | flexible dynamic value rail.
+ *
+ * Each DT/DD pair advances naturally to the next row.
+ */
+.item-detail__section--details .item-detail__metadata {
+    --details-label-width: clamp(7.25rem, 29%, 8.75rem);
+
+    display: grid;
+    grid-template-columns:
+        var(--details-label-width)
+        minmax(0, 1fr);
+
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+
+    column-gap: clamp(1.25rem, 5vw, 2rem);
+    row-gap: 0;
+
+    width: 100%;
+    margin: 0;
+}
+
+
+/*
+ * Let normal source order establish the rows:
+ *
+ * DT DD
+ * DT DD
+ * DT DD
+ *
+ * Do NOT explicitly assign grid rows.
+ */
+.item-detail__section--details .item-detail__metadata dt,
+.item-detail__section--details .item-detail__metadata dd {
+    min-width: 0;
+    margin: 0;
+    padding: 0.58rem 0;
+
+    border: 0;
+}
+
+
+.item-detail__section--details .item-detail__metadata dt {
+    grid-column: 1;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.66rem, 2.7vw, 0.76rem);
+    font-weight: 600;
+    letter-spacing: 0.055em;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
+
+.item-detail__section--details .item-detail__metadata dd {
+    grid-column: 2;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.9rem, 3.3vw, 1rem);
+    font-weight: 400;
+    line-height: 1.25;
+
+    text-align: left;
+
+    /*
+     * Normal wrapping only.
+     * No more turning Topps into refrigerator poetry.
+     */
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+
+/*
+ * Remove the earlier experimental row rules.
+ * The paper Bento itself supplies the structure.
+ */
+.item-detail__section--details .item-detail__metadata dt,
+.item-detail__section--details .item-detail__metadata dd {
+    border-top: 0 !important;
+}
+
+
+/*
+ * On genuinely narrow phones, protect enough value acreage
+ * for long names while retaining the invisible left rail.
+ */
+@media (max-width: 420px) {
+    .item-detail__section--details .item-detail__metadata {
+        --details-label-width: 6.75rem;
+
+        column-gap: 1rem;
+    }
+}
+
+/* =========================================================
+   DETAILS BENTO — legal-pad stationery study
+   First-pass visual treatment only.
+   ========================================================= */
+
+/*
+ * Paper body:
+ * substantially lighter than the surrounding Bento,
+ * but still warm enough to belong to Scout & Steward.
+ */
+.item-detail__section--details {
+    --details-paper: #f3eee3;
+    --details-rule: var(--color-stroke, rgba(79, 58, 45, 0.34));
+    --details-rule-gap: 3px;
+    --details-line-height: 1.72rem;
+
+    position: relative;
+    overflow: hidden;
+
+    background-color: var(--details-paper);
+
+    /*
+     * Horizontal stationery rules.
+     * Intentionally visible for this first pass.
+     */
+    background-image:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent calc(var(--details-line-height) - 1px),
+            var(--details-rule) calc(var(--details-line-height) - 1px),
+            var(--details-rule) var(--details-line-height)
+        );
+
+    /*
+     * Rounded cap; quieter/squarer foot.
+     */
+    border-radius: 0.8rem 0.8rem 0.18rem 0.18rem;
+}
+
+
+/* ---------------------------------------------------------
+   DETAILS HEADER — cloudy chocolate binding strip
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__section-title {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+    padding:
+        clamp(0.72rem, 3vw, 0.9rem)
+        clamp(1rem, 4vw, 1.35rem)
+        clamp(0.68rem, 2.8vw, 0.82rem);
+
+    /*
+     * Start with the chocolate field.
+     * Existing texture can be layered here once we identify
+     * the exact overlay variable/asset already in the CSS.
+     */
+    background:
+        linear-gradient(
+            115deg,
+            rgba(255, 255, 255, 0.055),
+            transparent 34%,
+            rgba(255, 255, 255, 0.025) 61%,
+            transparent
+        ),
+        var(--color-chocolate, #584137);
+
+    color: var(--color-cream, #f2eadc);
+
+    border-radius: 0.72rem 0.72rem 0 0;
+}
+
+
+/* ---------------------------------------------------------
+   METADATA PAPER AREA
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata {
+    /*
+     * Keep the deterministic two-column grid from the
+     * previous turtle completely intact.
+     */
+    position: relative;
+    z-index: 1;
+
+    padding:
+        clamp(0.72rem, 3vw, 0.95rem)
+        clamp(1rem, 4vw, 1.35rem)
+        clamp(0.9rem, 4vw, 1.2rem);
+}
+
+
+/* ---------------------------------------------------------
+   DOUBLE VERTICAL RULE
+   Lives at the label/value boundary.
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata::before,
+.item-detail__section--details .item-detail__metadata::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+
+    top: 0;
+    bottom: 0;
+
+    width: 1px;
+
+    background: var(--details-rule);
+
+    pointer-events: none;
+}
+
+/*
+ * Boundary = left paper padding + label width.
+ * The second rule sits just to its right.
+ */
+.item-detail__section--details .item-detail__metadata::before {
+    left: calc(
+        clamp(1rem, 4vw, 1.35rem) +
+        var(--details-label-width)
+    );
+}
+
+.item-detail__section--details .item-detail__metadata::after {
+    left: calc(
+        clamp(1rem, 4vw, 1.35rem) +
+        var(--details-label-width) +
+        var(--details-rule-gap)
+    );
+}
+
+
+/*
+ * Keep the actual metadata above our stationery rules.
+ */
+.item-detail__section--details .item-detail__metadata dt,
+.item-detail__section--details .item-detail__metadata dd {
+    position: relative;
+    z-index: 1;
+}
+
+
+/*
+ * Give the vertical double rule a little breathing room
+ * without changing the underlying grid geometry.
+ */
+.item-detail__section--details .item-detail__metadata dt {
+    padding-right: 0.75rem;
+}
+
+.item-detail__section--details .item-detail__metadata dd {
+    padding-left: 0.35rem;
+}
+
+/* =========================================================
+   DETAILS BENTO — repair metadata row pairing
+   ========================================================= */
+
+/*
+ * The source order is:
+ *
+ * dt dd
+ * dt dd
+ * dt dd
+ *
+ * Force each DT to begin a new grid row.
+ * Its following DD then occupies column 2 of that same row.
+ */
+.item-detail__section--details .item-detail__metadata dt {
+    grid-column: 1;
+}
+
+.item-detail__section--details .item-detail__metadata dd {
+    grid-column: 2;
+}
+
+/*
+ * Critical bit:
+ * every label starts a fresh row instead of allowing
+ * CSS Grid to continue filling whichever cell is next.
+ */
+.item-detail__section--details .item-detail__metadata dt {
+    grid-column-start: 1;
+}
+
+.item-detail__section--details .item-detail__metadata dd {
+    grid-column-start: 2;
+}
+
+
+/* ---------------------------------------------------------
+   ROW GEOMETRY
+   Make each metadata pair occupy one clean ruled band.
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata {
+    grid-auto-flow: row;
+
+    /*
+     * The paper rules should follow the content rhythm,
+     * not fight against it.
+     */
+    align-items: stretch;
+}
+
+.item-detail__section--details .item-detail__metadata dt,
+.item-detail__section--details .item-detail__metadata dd {
+    display: flex;
+    align-items: center;
+
+    min-height: 3.15rem;
+
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+}
+
+
+/* ---------------------------------------------------------
+   LABEL / VALUE BREATHING ROOM
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata dt {
+    justify-content: flex-start;
+
+    padding-left: 0;
+    padding-right: 1rem;
+}
+
+.item-detail__section--details .item-detail__metadata dd {
+    justify-content: flex-start;
+
+    padding-left: 0.75rem;
+    padding-right: 0;
+}
+
+
+/* ---------------------------------------------------------
+   LET LONG VALUES WRAP INSIDE THEIR OWN CELL
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata dd {
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+
+/* ---------------------------------------------------------
+   TEMPORARILY REMOVE THE REPEATING BACKGROUND RULES
+   from the section itself.
+
+   We'll put horizontal rules onto the ACTUAL metadata rows
+   after their geometry is stable.
+   --------------------------------------------------------- */
+
+.item-detail__section--details {
+    background-image: none;
+}
+
+
+/*
+ * One horizontal rule per real metadata pair.
+ *
+ * Because DT and DD share the same grid row, their matching
+ * bottom borders visually join into one continuous rule.
+ */
+.item-detail__section--details .item-detail__metadata dt,
+.item-detail__section--details .item-detail__metadata dd {
+    border-bottom:
+        1px solid
+        var(--details-rule, rgba(79, 58, 45, 0.34)) !important;
+}
+
+
+/* ---------------------------------------------------------
+   DOUBLE VERTICAL RULE
+   Keep it, but stop it from sitting directly on the text.
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata::before {
+    left: calc(
+        clamp(1rem, 4vw, 1.35rem) +
+        var(--details-label-width) +
+        0.25rem
+    );
+}
+
+.item-detail__section--details .item-detail__metadata::after {
+    left: calc(
+        clamp(1rem, 4vw, 1.35rem) +
+        var(--details-label-width) +
+        0.48rem
+    );
+}
+
+
+/* ---------------------------------------------------------
+   NARROW PHONE
+   Give values more acreage without collapsing label rail.
+   --------------------------------------------------------- */
+
+@media (max-width: 420px) {
+    .item-detail__section--details .item-detail__metadata {
+        --details-label-width: 6.6rem;
+
+        column-gap: 0.85rem;
+    }
+
+    .item-detail__section--details .item-detail__metadata dt {
+        padding-right: 0.65rem;
+    }
+
+    .item-detail__section--details .item-detail__metadata dd {
+        padding-left: 0.55rem;
+    }
+}
+
+/* =========================================================
+   DETAILS BENTO — production stationery grid
+   Consolidated 2026-08-11
+   ========================================================= */
+
+/*
+ * Mental model:
+ *
+ * ┌──────────────────────────────────────────────┐
+ * │ DETAILS                                      │
+ * ├───────────────║──────────────────────────────┤
+ * │ MANUFACTURER  ║ Topps                        │
+ * ├───────────────║──────────────────────────────┤
+ * │ YEAR          ║ 1971                         │
+ * ├───────────────║──────────────────────────────┤
+ * │ SET           ║ 1971 Topps Football Pin-Ups │
+ * ├───────────────║──────────────────────────────┤
+ * │ CARD NUMBER   ║ 23                           │
+ * ├───────────────║──────────────────────────────┤
+ * │ CLASSIFICATION║ Game Card                    │
+ * ├───────────────║──────────────────────────────┤
+ * │ ITEM ID       ║ FBPU_0001                    │
+ * └───────────────║──────────────────────────────┘
+ *
+ * The JS already supplies one .item-detail__metadata-row
+ * wrapper per DT/DD pair. Each wrapper owns its own grid.
+ */
+
+
+/* ---------------------------------------------------------
+   Paper shell
+   --------------------------------------------------------- */
+
+.item-detail__section--details {
+    --details-label-width: clamp(7.25rem, 29%, 8.75rem);
+    --details-rule: rgb(77 55 47 / 30%);
+    --details-rule-soft: rgb(77 55 47 / 16%);
+    --details-paper: #f5efe5;
+
+    box-sizing: border-box;
+    position: relative;
+
+    width: calc(100% + 0.75rem);
+    max-width: none;
+
+    margin:
+        1.65rem
+        -0.375rem
+        var(--space-4);
+
+    /*
+     * Header and paper body now own their own padding.
+     */
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--details-paper);
+
+    border: 1px solid rgb(77 55 47 / 32%);
+
+    /*
+     * Rounded cap.
+     * Deliberately square foot.
+     */
+    border-radius: 0.8rem 0.8rem 0 0;
+
+    box-shadow:
+        0 0.2rem 0.55rem rgb(50 32 26 / 5%);
+}
+
+
+/* ---------------------------------------------------------
+   Cloudy chocolate header
+   --------------------------------------------------------- */
+
+.item-detail__section--details > h2 {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 3.35rem;
+
+    margin: 0;
+    padding:
+        0.75rem
+        clamp(1rem, 4vw, 1.35rem);
+
+    color: var(--color-ivory);
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.88rem, 3.6vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    /*
+     * Same material family as the price Bento,
+     * softened so it reads as a bound stationery cap.
+     */
+    background-color: #4d372f;
+
+    background-image:
+        radial-gradient(
+            ellipse at 28% 35%,
+            rgb(255 255 255 / 7%) 0%,
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 76% 68%,
+            rgb(0 0 0 / 8%) 0%,
+            transparent 48%
+        );
+
+    border-bottom: 1px solid rgb(77 55 47 / 34%);
+
+    border-radius: 0.72rem 0.72rem 0 0;
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 10%);
+}
+
+
+/* ---------------------------------------------------------
+   Metadata sheet
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata {
+    /*
+     * IMPORTANT:
+     * DL is NOT the two-column grid.
+     * Each metadata-row is.
+     */
+    display: block;
+
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    margin: 0;
+
+    padding:
+        0.45rem
+        clamp(1rem, 4vw, 1.35rem)
+        0.7rem;
+
+    background: transparent;
+}
+
+
+/* ---------------------------------------------------------
+   Explicit metadata rows
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata-row {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        var(--details-label-width)
+        minmax(0, 1fr);
+
+    column-gap: clamp(1.15rem, 4vw, 1.6rem);
+
+    align-items: stretch;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    /*
+     * Each wrapper owns its horizontal stationery rule.
+     * No more trying to synchronize two cell borders.
+     */
+    border-bottom:
+        1px solid
+        var(--details-rule-soft);
+}
+
+
+/*
+ * Give the first row a little air below the binding.
+ */
+.item-detail__section--details
+.item-detail__metadata-row:first-child {
+    margin-top: 0.15rem;
+}
+
+
+/*
+ * Last rule stays visible intentionally:
+ * it makes the sheet feel ruled all the way to the foot.
+ */
+.item-detail__section--details
+.item-detail__metadata-row:last-child {
+    border-bottom-color: var(--details-rule-soft);
+}
+
+
+/* ---------------------------------------------------------
+   Cells
+   --------------------------------------------------------- */
+
+.item-detail__section--details
+.item-detail__metadata-row > dt,
+.item-detail__section--details
+.item-detail__metadata-row > dd {
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+    min-height: 3.15rem;
+
+    margin: 0;
+    padding:
+        0.58rem
+        0;
+
+    border: 0 !important;
+}
+
+
+/* Labels */
+
+.item-detail__section--details
+.item-detail__metadata-row > dt {
+    grid-column: 1;
+
+    padding-right: 0.8rem;
+
+    color: #4d372f;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.66rem, 2.7vw, 0.76rem);
+    font-weight: 600;
+    letter-spacing: 0.055em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+
+/* Values */
+
+.item-detail__section--details
+.item-detail__metadata-row > dd {
+    grid-column: 2;
+
+    padding-left: 0.7rem;
+
+    color: var(--color-oxblood);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.9rem, 3.3vw, 1rem);
+    font-weight: 400;
+    line-height: 1.25;
+
+    text-align: left;
+
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+
+/* ---------------------------------------------------------
+   Double vertical stationery rule
+   --------------------------------------------------------- */
+
+/*
+ * The rule belongs to every explicit row.
+ * This guarantees that it follows the same geometry as
+ * the actual label/value boundary at every viewport width.
+ */
+
+.item-detail__section--details
+.item-detail__metadata-row::before,
+.item-detail__section--details
+.item-detail__metadata-row::after {
+    content: "";
+
+    position: absolute;
+    z-index: 0;
+
+    top: 0;
+    bottom: 0;
+
+    width: 1px;
+
+    background: var(--details-rule);
+
+    pointer-events: none;
+}
+
+
+/*
+ * First line sits just beyond the label column.
+ */
+.item-detail__section--details
+.item-detail__metadata-row::before {
+    left: calc(
+        var(--details-label-width) +
+        0.22rem
+    );
+}
+
+
+/*
+ * Second line gives us the legal-pad double rule.
+ */
+.item-detail__section--details
+.item-detail__metadata-row::after {
+    left: calc(
+        var(--details-label-width) +
+        0.46rem
+    );
+}
+
+
+/*
+ * Text remains above the printed rules.
+ */
+.item-detail__section--details
+.item-detail__metadata-row > dt,
+.item-detail__section--details
+.item-detail__metadata-row > dd {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ---------------------------------------------------------
+   Narrow-phone safeguard
+   --------------------------------------------------------- */
+
+@media (max-width: 420px) {
+    .item-detail__section--details {
+        width: calc(100% + 0.5rem);
+
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+
+        --details-label-width: 6.6rem;
+    }
+
+    .item-detail__section--details > h2 {
+        padding-inline: 0.85rem;
+    }
+
+    .item-detail__section--details .item-detail__metadata {
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+    }
+
+    .item-detail__section--details
+    .item-detail__metadata-row {
+        column-gap: 0.85rem;
+    }
+
+    .item-detail__section--details
+    .item-detail__metadata-row > dt {
+        padding-right: 0.6rem;
+
+        font-size: 0.64rem;
+        letter-spacing: 0.04em;
+    }
+
+    .item-detail__section--details
+    .item-detail__metadata-row > dd {
+        padding-left: 0.55rem;
+
+        font-size: 0.88rem;
+    }
+}
+
+/* =========================================================
+   DETAILS BENTO — stationery refinement
+   Geometry is good. Becky may now decorate responsibly.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1 + 2 + 3 — ONE double rule, uniform wrapper,
+   square legal-pad silhouette
+   --------------------------------------------------------- */
+
+.item-detail__section--details {
+    --details-paper: #faf7f1;
+    --details-rule: rgb(77 55 47 / 30%);
+    --details-rule-soft: rgb(77 55 47 / 16%);
+
+    /*
+     * One continuous outer stroke around the whole object.
+     */
+    border: 1px solid rgb(77 55 47 / 34%);
+
+    /*
+     * Full legal-pad departure:
+     * no Bento rounding anywhere.
+     */
+    border-radius: 0;
+
+    overflow: hidden;
+}
+
+
+/*
+ * Kill the OLD metadata-level double rule.
+ * The explicit row-level rule is the keeper.
+ */
+.item-detail__section--details
+.item-detail__metadata::before,
+.item-detail__section--details
+.item-detail__metadata::after {
+    content: none !important;
+    display: none !important;
+}
+
+
+/*
+ * Keep exactly ONE double rule system:
+ * the pair attached to each explicit metadata row.
+ */
+.item-detail__section--details
+.item-detail__metadata-row::before,
+.item-detail__section--details
+.item-detail__metadata-row::after {
+    display: block;
+}
+
+
+/* ---------------------------------------------------------
+   4 — cloudy chocolate binding
+   --------------------------------------------------------- */
+
+.item-detail__section--details > h2 {
+    border-radius: 0;
+
+    /*
+     * More visible cloudy/mottled paper texture.
+     * Previous version was simply too subtle to survive
+     * the dark chocolate field.
+     */
+    background-color: #4d372f;
+
+    background-image:
+        radial-gradient(
+            ellipse at 12% 20%,
+            rgb(255 255 255 / 12%) 0%,
+            rgb(255 255 255 / 5%) 22%,
+            transparent 48%
+        ),
+        radial-gradient(
+            ellipse at 52% 80%,
+            rgb(255 255 255 / 7%) 0%,
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 86% 24%,
+            rgb(0 0 0 / 14%) 0%,
+            transparent 48%
+        ),
+        radial-gradient(
+            ellipse at 67% 42%,
+            rgb(255 255 255 / 5%) 0%,
+            transparent 36%
+        ),
+        linear-gradient(
+            103deg,
+            rgb(255 255 255 / 4%) 0%,
+            transparent 31%,
+            rgb(0 0 0 / 5%) 67%,
+            transparent 100%
+        );
+
+    /*
+     * Outer wrapper owns the silhouette/stroke now.
+     */
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+
+/* ---------------------------------------------------------
+   5 — dynamic details go quiet grey
+   --------------------------------------------------------- */
+
+.item-detail__section--details
+.item-detail__metadata-row > dd {
+    color: #5f5d59;
+}
+
+
+/* ---------------------------------------------------------
+   6 — lighter paper
+   --------------------------------------------------------- */
+
+.item-detail__section--details,
+.item-detail__section--details .item-detail__metadata {
+    background-color: var(--details-paper);
+}
+
+
+/*
+ * Keep horizontal rules subtle against the lighter sheet.
+ */
+.item-detail__section--details
+.item-detail__metadata-row {
+    border-bottom-color: var(--details-rule-soft);
+}
+
+/* =========================================================
+   DETAILS BENTO — legal-pad finishing pass
+   Smoke binder + airy stationery
+   ========================================================= */
+
+.item-detail__section--details {
+    --details-paper: #fcfaf6;
+    --details-ink: #62615e;
+    --details-rule: rgb(77 55 47 / 30%);
+    --details-rule-soft: rgb(77 55 47 / 16%);
+    --details-stroke: rgb(77 55 47 / 34%);
+
+    /*
+     * Uniform stroke around the entire stationery object.
+     * Full square silhouette: we're leaning into the pad.
+     */
+    border: 1px solid var(--details-stroke);
+    border-radius: 0;
+
+    background-color: var(--details-paper);
+
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   CLOUDY CHOCOLATE BINDER
+   Real smoke/fog overlay from Scout & Steward R2.
+   --------------------------------------------------------- */
+
+.item-detail__section--details > h2 {
+    margin: 0;
+
+    border: 0;
+    border-radius: 0;
+
+    /*
+     * Deliberate rule between chocolate binder and paper.
+     */
+    border-bottom: 1px solid var(--details-stroke);
+
+    background-color: #4d372f;
+
+    background-image:
+        linear-gradient(
+            rgb(77 55 47 / 58%),
+            rgb(77 55 47 / 58%)
+        ),
+        url("https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/dark-smoke-and-fog-overlay.webp");
+
+    /*
+     * Let the smoke roam across the strip rather than
+     * shrinking the whole source image into view.
+     */
+    background-size:
+        auto,
+        cover;
+
+    background-position:
+        center,
+        center 48%;
+
+    background-repeat:
+        no-repeat,
+        no-repeat;
+
+    background-blend-mode:
+        normal,
+        soft-light;
+}
+
+
+/* ---------------------------------------------------------
+   PAPER BODY — pull everything away from the edges
+   --------------------------------------------------------- */
+
+.item-detail__section--details .item-detail__metadata {
+    display: block;
+
+    position: relative;
+
+    width: 100%;
+    margin: 0;
+
+    /*
+     * More generous inset all around.
+     * The ruled area now floats inside the paper instead
+     * of marching right up to the wrapper.
+     */
+    padding:
+        0.9rem
+        clamp(1.15rem, 5vw, 1.7rem)
+        1.2rem;
+
+    background: var(--details-paper);
+}
+
+
+/* ---------------------------------------------------------
+   HORIZONTAL RULES
+   --------------------------------------------------------- */
+
+.item-detail__section--details
+.item-detail__metadata-row {
+    border-bottom:
+        1px solid
+        var(--details-rule-soft);
+}
+
+
+/*
+ * No bottom rule after Item ID.
+ * Leave a clean paper foot.
+ */
+.item-detail__section--details
+.item-detail__metadata-row:last-child {
+    border-bottom: 0;
+}
+
+
+/* ---------------------------------------------------------
+   ROW AIR
+   --------------------------------------------------------- */
+
+.item-detail__section--details
+.item-detail__metadata-row > dt,
+.item-detail__section--details
+.item-detail__metadata-row > dd {
+    min-height: 3.35rem;
+
+    padding-top: 0.72rem;
+    padding-bottom: 0.72rem;
+}
+
+
+/* ---------------------------------------------------------
+   DOUBLE VERTICAL RULE — ONE pair, equal sisters
+   --------------------------------------------------------- */
+
+/*
+ * Permanently suppress the obsolete metadata-level pair.
+ */
+.item-detail__section--details
+.item-detail__metadata::before,
+.item-detail__section--details
+.item-detail__metadata::after {
+    content: none !important;
+    display: none !important;
+}
+
+
+/*
+ * The row-level pair is our one and only vertical rule.
+ * Same width. Same ink. Same opacity.
+ */
+.item-detail__section--details
+.item-detail__metadata-row::before,
+.item-detail__section--details
+.item-detail__metadata-row::after {
+    content: "";
+
+    position: absolute;
+    z-index: 0;
+
+    top: 0;
+    bottom: 0;
+
+    display: block;
+
+    width: 1px;
+
+    background: var(--details-rule);
+
+    pointer-events: none;
+}
+
+
+.item-detail__section--details
+.item-detail__metadata-row::before {
+    left: calc(
+        var(--details-label-width) +
+        0.18rem
+    );
+}
+
+
+.item-detail__section--details
+.item-detail__metadata-row::after {
+    left: calc(
+        var(--details-label-width) +
+        0.43rem
+    );
+}
+
+
+/* ---------------------------------------------------------
+   TYPOGRAPHY / SPACING
+   --------------------------------------------------------- */
+
+.item-detail__section--details
+.item-detail__metadata-row > dt {
+    /*
+     * Labels remain compact and quiet.
+     */
+    padding-right: 0.85rem;
+}
+
+
+.item-detail__section--details
+.item-detail__metadata-row > dd {
+    /*
+     * Graphite rather than oxblood:
+     * dynamic data should sit behind the labels visually.
+     */
+    color: var(--details-ink);
+
+    /*
+     * More breathing room after the double rule.
+     */
+    padding-left: 0.9rem;
+}
+
+
+/* ---------------------------------------------------------
+   NARROW PHONE
+   Preserve the elegance without starving the value rail.
+   --------------------------------------------------------- */
+
+@media (max-width: 420px) {
+    .item-detail__section--details
+    .item-detail__metadata {
+        padding:
+            0.8rem
+            0.95rem
+            1.05rem;
+    }
+
+    .item-detail__section--details
+    .item-detail__metadata-row > dt,
+    .item-detail__section--details
+    .item-detail__metadata-row > dd {
+        min-height: 3.2rem;
+
+        padding-top: 0.66rem;
+        padding-bottom: 0.66rem;
+    }
+
+    .item-detail__section--details
+    .item-detail__metadata-row > dt {
+        font-size: 0.63rem;
+
+        padding-right: 0.6rem;
+    }
+
+    .item-detail__section--details
+    .item-detail__metadata-row > dd {
+        font-size: 0.86rem;
+
+        padding-left: 0.75rem;
+    }
+}
+
+/* =========================================================
+   DETAILS BINDER — SVG smoke mask experiment
+   One tasteful attempt. No Normandy.
+   ========================================================= */
+
+.item-detail__section--details > h2 {
+    position: relative;
+    isolation: isolate;
+
+    background-color: #4d372f;
+
+    /*
+     * Remove the previous WebP/background texture attempt.
+     * Chocolate itself remains the base material.
+     */
+    background-image: none;
+}
+
+
+/*
+ * SVG supplies the SHAPE.
+ * CSS supplies the COLOR.
+ */
+.item-detail__section--details > h2::before {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    /*
+     * Warm cloudy highlight.
+     * We can tune this one value if the mask works.
+     */
+    background: rgb(255 244 225 / 16%);
+
+    mask-image:
+        url("https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/dark-smoke-and-fog-overlay.svg");
+
+    mask-size: cover;
+    mask-position: center;
+    mask-repeat: no-repeat;
+
+    -webkit-mask-image:
+        url("https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/dark-smoke-and-fog-overlay.svg");
+
+    -webkit-mask-size: cover;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   RECOMMENDATION BENTO — material rhyme
+   Details established the palette; siblings now harmonize.
+   ========================================================= */
+
+:root {
+    --details-paper-rhyme: #fcfaf6;
+    --details-chocolate-rhyme: #4d372f;
+}
+
+
+/* ---------------------------------------------------------
+   LOWER BENTO / "WEINERS"
+   Match the light stationery paper.
+   --------------------------------------------------------- */
+
+.item-detail__price-factors {
+    background-color: var(--details-paper-rhyme);
+}
+
+
+/* ---------------------------------------------------------
+   UPPER PRICE BENTO
+   Match the Details chocolate binder.
+   --------------------------------------------------------- */
+
+.item-detail__recommendation {
+    background-color: var(--details-chocolate-rhyme);
+}
+
+
+/* ---------------------------------------------------------
+   APPROVE
+   Same chocolate family as the recommendation + binder.
+   --------------------------------------------------------- */
+
+.item-detail__approve-button,
+.item-detail__approve {
+    background-color: var(--details-chocolate-rhyme);
+}
+
+
+/*
+ * Preserve readable light foreground wherever those
+ * existing components use the chocolate surface.
+ */
+.item-detail__recommendation,
+.item-detail__approve-button,
+.item-detail__approve {
+    color: var(--color-ivory);
 }

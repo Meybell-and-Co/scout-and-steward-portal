@@ -527,11 +527,11 @@ function renderItemDetail(item) {
 
 
 <section
-                class="item-detail__section"
+                class="item-detail__section item-detail__section--details"
                 aria-labelledby="card-details-heading"
             >
                 <h2 id="card-details-heading">
-                    Card details
+                    Details
                 </h2>
 
                 <dl class="item-detail__metadata">
