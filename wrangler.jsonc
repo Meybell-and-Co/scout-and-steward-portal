@@ -19,7 +19,9 @@
     },
     "secrets": {
         "required": [
-            "PUBLISH_TOKEN"
+            "PUBLISH_TOKEN",
+            "EBAY_CLIENT_ID",
+            "EBAY_CLIENT_SECRET"
         ]
     }
 }

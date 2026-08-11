@@ -38,8 +38,15 @@ export function calculateMarketBaseline(
     );
 
     const activeComps = comps.filter(
-        (comp) => comp.market_status === "active"
-    );
+    (comp) => comp.market_status === "active"
+);
+
+// V1: both sold and active market evidence may contribute
+// to the price baseline. Status remains available for
+// competition analysis and future evidence weighting.
+const evidenceComps = comps.filter(
+    (comp) => ["sold", "active"].includes(comp.market_status)
+);
 
     const defaultWindowDays =
         BUSINESS_RULES.MARKET_BASELINE.defaultWindowDays;
@@ -55,10 +62,10 @@ export function calculateMarketBaseline(
             ? BUSINESS_RULES.COMP_MINIMUM_REQUIREMENTS[tierCode]
             : null;
 
-    function soldCompsWithinWindow(windowDays) {
+    function evidenceCompsWithinWindow(windowDays) {
         const windowMs = windowDays * 24 * 60 * 60 * 1000;
 
-        return soldComps.filter((comp) => {
+        return evidenceComps.filter((comp) => {
             if (!comp.item_origin_date) {
                 return false;
             }
@@ -76,15 +83,15 @@ export function calculateMarketBaseline(
     }
 
     let observationWindowDays = defaultWindowDays;
-    let currentSoldComps =
-        soldCompsWithinWindow(observationWindowDays);
+    let currentEvidenceComps =
+        evidenceCompsWithinWindow(observationWindowDays);
 
     if (minimumRequired !== null) {
         for (const windowDays of observationWindows) {
-            const candidates = soldCompsWithinWindow(windowDays);
+            const candidates = evidenceCompsWithinWindow(windowDays);
 
             observationWindowDays = windowDays;
-            currentSoldComps = candidates;
+            currentEvidenceComps = candidates;
 
             if (candidates.length >= minimumRequired) {
                 break;
@@ -95,7 +102,7 @@ export function calculateMarketBaseline(
     const windowExpanded =
         observationWindowDays > defaultWindowDays;
 
-    const soldPrices = currentSoldComps
+    const evidencePrices = currentEvidenceComps
         .map((comp) =>
             Number.isInteger(comp.total_buyer_cost_cents)
                 ? comp.total_buyer_cost_cents
@@ -103,11 +110,11 @@ export function calculateMarketBaseline(
         )
         .filter((price) => Number.isInteger(price));
 
-    const baselineCents = calculateMedian(soldPrices);
+    const baselineCents = calculateMedian(evidencePrices);
 
     const evidenceSufficient =
         minimumRequired !== null &&
-        soldPrices.length >= minimumRequired;
+        evidencePrices.length >= minimumRequired;
 
     const recommendedPriceCents =
         evidenceSufficient
@@ -130,21 +137,21 @@ export function calculateMarketBaseline(
     const representativePrices =
         baselineCents === null
             ? []
-            : soldPrices.filter(
+            : evidencePrices.filter(
                 (price) =>
                     Math.abs(price - baselineCents) <= toleranceCents
             );
 
     const unusualCount =
-        soldPrices.length - representativePrices.length;
+        evidencePrices.length - representativePrices.length;
 
     const agreementRatio =
-        soldPrices.length === 0
+        evidencePrices.length === 0
             ? 0
-            : representativePrices.length / soldPrices.length;
+            : representativePrices.length / evidencePrices.length;
 
     const priceAgreement =
-        soldPrices.length === 0
+        evidencePrices.length === 0
             ? "insufficient"
             : agreementRatio >=
                 BUSINESS_RULES.MARKET_BASELINE.strongAgreementMinimum
@@ -155,8 +162,8 @@ export function calculateMarketBaseline(
         baseline_cents: baselineCents,
         confidence: "insufficient",
         sold_observed: soldComps.length,
-        eligible_sold_count: currentSoldComps.length,
-        sold_used: soldPrices.length,
+        eligible_sold_count: currentEvidenceComps.length,
+        sold_used: evidencePrices.length,
         active_observed: activeComps.length,
         observation_window_days: observationWindowDays,
         representative_count: representativePrices.length,

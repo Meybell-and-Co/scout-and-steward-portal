@@ -31,7 +31,10 @@ test("persists a sufficient final price recommendation", async () => {
     const recommendation = {
         market: {
             evidence_sufficient: true,
-            evidence_quality: "strong",
+            confidence: {
+            rating: 4,
+            label: "High"
+        },
             evidence_window_days: 90,
             market_baseline_cents: 1500,
             pricing_factors: {
@@ -78,7 +81,10 @@ test("persists a sufficient final price recommendation", async () => {
     assert.equal(capturedBindings[0], "REC_TEST_0001");
     assert.equal(capturedBindings[1], "FBPU_0001");
     assert.equal(capturedBindings[2], 2800);
-    assert.equal(capturedBindings[3], "strong");
+    assert.deepEqual(
+    JSON.parse(capturedBindings[3]),
+    recommendation.market.confidence
+);
     assert.equal(capturedBindings[4], 90);
 
     assert.deepEqual(

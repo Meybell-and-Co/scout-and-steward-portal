@@ -70,3 +70,96 @@ export async function persistPriceRecommendation(
         )
         .run();
 }
+
+export async function persistMarketObservation(
+    db,
+    {
+        observationId,
+        snapshotId,
+        itemId,
+        observedAt,
+    }
+) {
+    await db
+        .prepare(
+            `INSERT INTO market_observations (
+                observation_id,
+                snapshot_id,
+                item_id,
+                observed_at
+            ) VALUES (?, ?, ?, ?)`
+        )
+        .bind(
+            observationId,
+            snapshotId,
+            itemId,
+            observedAt
+        )
+        .run();
+
+    return {
+        observationId,
+        snapshotId,
+        itemId,
+        observedAt,
+    };
+}
+
+
+export async function persistMarketComps(
+    db,
+    observationId,
+    comps
+) {
+    if (!Array.isArray(comps) || comps.length === 0) {
+        throw new Error(
+            "Market comps must be a non-empty array."
+        );
+    }
+
+    for (const comp of comps) {
+        await db
+            .prepare(
+                `INSERT INTO market_comps (
+                    comp_record_id,
+                    observation_id,
+                    comp_id,
+                    source,
+                    title,
+                    price_cents,
+                    shipping_cents,
+                    total_buyer_cost_cents,
+                    market_status,
+                    condition,
+                    item_origin_date,
+                    comp_tier,
+                    evidence_score,
+                    evidence_reasons_json
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+            )
+            .bind(
+                crypto.randomUUID(),
+                observationId,
+                comp.comp_id,
+                comp.source,
+                comp.title,
+                comp.price_cents,
+                comp.shipping_cents,
+                comp.total_buyer_cost_cents,
+                comp.market_status,
+                comp.condition ?? null,
+                comp.item_origin_date ?? null,
+                comp.comp_tier,
+                comp.evidence_score ?? 0,
+                JSON.stringify(
+                    comp.evidence_reasons ?? []
+                )
+            )
+            .run();
+    }
+
+    return {
+        observationId,
+        count: comps.length,
+    };
+}

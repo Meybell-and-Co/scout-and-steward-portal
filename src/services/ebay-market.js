@@ -89,6 +89,8 @@ export async function searchEbayActiveListings(
 
     const payload = await response.json();
 
+
+
     return {
         query: query.trim(),
         total: payload.total ?? 0,
@@ -105,7 +107,16 @@ export async function searchEbayActiveListings(
                 }
                 : null,
 
-            condition: item.condition ?? null,
+            shipping: item.shippingOptions?.[0]?.shippingCost
+            ? {
+                value:
+                    item.shippingOptions[0].shippingCost.value ?? null,
+                currency:
+                    item.shippingOptions[0].shippingCost.currency ?? null
+            }
+            : null,
+
+        condition: item.condition ?? null,
             buying_options: item.buyingOptions ?? [],
 
             item_creation_date:

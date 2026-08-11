@@ -106,8 +106,9 @@ async function loadInventory() {
 
         renderItems(allItems, inventoryGrid);
 
-        inventoryCount.textContent =
-            `${allItems.length} item${allItems.length === 1 ? "" : "s"} in inventory`;
+        inventoryCount.innerHTML =
+            `<span class="inventory-count__value">${allItems.length}</span> ` +
+            `<span class="inventory-count__label">item${allItems.length === 1 ? "" : "s"} in inventory</span>`;
 
         inventoryStatus.textContent =
             allItems.length > 0
@@ -261,7 +262,7 @@ function renderItems(items, inventoryGrid) {
             approvedItemIds.has(item.item_id);
 
         const canBulkApprove =
-            Number.isInteger(item.recommended_price_cents) &&
+            Number.isInteger(getRecommendedPriceCents(item)) &&
             !isApproved;
 
         const isSelected =
@@ -502,6 +503,12 @@ function wireBulkControls() {
             bulkMode ? "Done" : "Bulk edit";
 
         bar.hidden = !bulkMode;
+
+        const readySection = document.querySelector(".inventory-ready");
+
+        if (readySection) {
+            readySection.hidden = bulkMode;
+        }
 
         updateBulkBar();
         renderCurrentInventory();

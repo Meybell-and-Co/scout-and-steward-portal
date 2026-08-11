@@ -78,16 +78,25 @@ test("does not calculate final pricing without sufficient market evidence", () =
 
 
 test("builds and persists the final recommendation", async () => {
-    let capturedBindings = null;
+    const capturedBindings = [];
 
     const db = {
-        prepare() {
+        prepare(sql) {
             return {
                 bind(...bindings) {
-                    capturedBindings = bindings;
+                    capturedBindings.push({
+                        sql,
+                        bindings
+                    });
 
                     return {
-                        async run() {}
+                        async run() {},
+                        async first() {
+                            return {
+                                snapshot_id:
+                                    "SNAPSHOT_PIPELINE_0001"
+                            };
+                        }
                     };
                 }
             };
@@ -96,22 +105,34 @@ test("builds and persists the final recommendation", async () => {
 
     const comps = [
         {
-            market_status: "sold",
-            comp_tier: "exact",
-            total_buyer_cost_cents: 1500,
-            item_origin_date: "2026-08-01T12:00:00Z"
+            compId: "COMP_PIPELINE_0001",
+            source: "ebay",
+            title: "Gene Washington 1971 Topps Football Pin-Ups #23",
+            priceCents: 1500,
+            shippingCents: 0,
+            marketStatus: "sold",
+            itemOriginDate: "2026-08-01T12:00:00Z",
+            compTier: "exact"
         },
         {
-            market_status: "sold",
-            comp_tier: "exact",
-            total_buyer_cost_cents: 1500,
-            item_origin_date: "2026-07-25T12:00:00Z"
+            compId: "COMP_PIPELINE_0002",
+            source: "ebay",
+            title: "Gene Washington 1971 Topps Football Pin-Ups #23",
+            priceCents: 1500,
+            shippingCents: 0,
+            marketStatus: "sold",
+            itemOriginDate: "2026-07-25T12:00:00Z",
+            compTier: "exact"
         },
         {
-            market_status: "sold",
-            comp_tier: "exact",
-            total_buyer_cost_cents: 1500,
-            item_origin_date: "2026-07-20T12:00:00Z"
+            compId: "COMP_PIPELINE_0003",
+            source: "ebay",
+            title: "Gene Washington 1971 Topps Football Pin-Ups #23",
+            priceCents: 1500,
+            shippingCents: 0,
+            marketStatus: "sold",
+            itemOriginDate: "2026-07-20T12:00:00Z",
+            compTier: "exact"
         }
     ];
 
@@ -126,16 +147,48 @@ test("builds and persists the final recommendation", async () => {
     );
 
     assert.ok(result.recommended_price_cents);
-    assert.ok(capturedBindings);
+    assert.ok(capturedBindings.length >= 3);
+
+    const recommendationInsert =
+        capturedBindings.find((entry) =>
+            entry.sql.includes("INSERT INTO price_recommendations")
+        );
+
+    assert.ok(recommendationInsert);
 
     assert.equal(
-        capturedBindings[0],
+        recommendationInsert.bindings[0],
         "REC_PIPELINE_0001"
     );
-    assert.equal(capturedBindings[1], "FBPU_0001");
     assert.equal(
-        capturedBindings[2],
+        recommendationInsert.bindings[1],
+        "FBPU_0001"
+    );
+    assert.equal(
+        recommendationInsert.bindings[2],
         result.recommended_price_cents
+    );
+
+    const observationInsert =
+        capturedBindings.find((entry) =>
+            entry.sql.includes("INSERT INTO market_observations")
+        );
+
+    assert.ok(observationInsert);
+    assert.equal(
+        observationInsert.bindings[1],
+        "SNAPSHOT_PIPELINE_0001"
+    );
+
+    const compsInsert =
+        capturedBindings.find((entry) =>
+            entry.sql.includes("INSERT INTO market_comps")
+        );
+
+    assert.ok(compsInsert);
+    assert.equal(
+        compsInsert.bindings[2],
+        "COMP_PIPELINE_0001"
     );
 });
 
@@ -156,10 +209,14 @@ test("does not persist when market evidence is insufficient", async () => {
             itemId: "FBPU_0001",
             comps: [
                 {
-                    market_status: "sold",
-                    comp_tier: "same_issue",
-                    total_buyer_cost_cents: 1500,
-                    item_origin_date: "2026-08-01T12:00:00Z"
+                    compId: "COMP_PIPELINE_0004",
+                    source: "ebay",
+                    title: "Gene Washington comparable",
+                    priceCents: 1500,
+                    shippingCents: 0,
+                    marketStatus: "sold",
+                    itemOriginDate: "2026-08-01T12:00:00Z",
+                    compTier: "same_issue"
                 }
             ],
             now: TEST_NOW

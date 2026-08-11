@@ -512,3 +512,32 @@ test("reports eligible sold evidence within the selected observation window", ()
     assert.equal(result.eligible_sold_count, 3);
     assert.equal(result.sold_used, 3);
 });
+test("V1 accepts active comps as price evidence when sold comps are unavailable", () => {
+    const comps = [
+        {
+            market_status: "active",
+            comp_tier: "same_issue",
+            price_cents: 1200,
+            item_origin_date: "2026-08-01T12:00:00Z"
+        },
+        {
+            market_status: "active",
+            comp_tier: "same_issue",
+            price_cents: 1400,
+            item_origin_date: "2026-07-15T12:00:00Z"
+        }
+    ];
+
+    const result = calculateMarketBaseline(
+        comps,
+        TEST_NOW,
+        "same_issue"
+    );
+
+    assert.equal(result.sold_observed, 0);
+    assert.equal(result.active_observed, 2);
+    assert.equal(result.baseline_cents, 1300);
+    assert.equal(result.sold_used, 2);
+    assert.equal(result.evidence_sufficient, true);
+    assert.equal(result.recommended_price_cents, 1300);
+});

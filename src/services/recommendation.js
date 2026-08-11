@@ -7,8 +7,18 @@ import {
 } from "./pricing.js";
 
 import {
-    persistPriceRecommendation
+    persistPriceRecommendation,
+    persistMarketObservation,
+    persistMarketComps
 } from "./market/persistence.js";
+
+import {
+    normalizeMarketComp
+} from "./market/normalize.js";
+
+import {
+    scoreMarketComp
+} from "./market/score.js";
 
 const FACTOR_CODES = [
     "condition",
@@ -65,14 +75,70 @@ export async function buildAndPersistPriceRecommendation(
         now = new Date()
     }
 ) {
+    const scoredComps = comps.map((comp) =>
+        scoreMarketComp(
+            normalizeMarketComp(comp),
+            now
+        )
+    );
+
     const recommendation = buildPriceRecommendation(
-        comps,
+        scoredComps,
         now
     );
 
     if (recommendation.recommended_price_cents === null) {
         return recommendation;
     }
+
+    const currentSnapshot = await db
+        .prepare(`
+            SELECT s.snapshot_id
+            FROM inventory_snapshots AS s
+            INNER JOIN publications AS p
+                ON p.publication_id = s.publication_id
+            WHERE s.item_id = ?
+              AND p.status = 'completed'
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM inventory_snapshots AS newer_s
+                  INNER JOIN publications AS newer_p
+                      ON newer_p.publication_id = newer_s.publication_id
+                  WHERE newer_s.item_id = s.item_id
+                    AND newer_p.status = 'completed'
+                    AND (
+                        newer_p.published_at > p.published_at
+                        OR (
+                            newer_p.published_at = p.published_at
+                            AND newer_s.snapshot_id > s.snapshot_id
+                        )
+                    )
+              )
+            LIMIT 1
+        `)
+        .bind(itemId)
+        .first();
+
+    if (!currentSnapshot?.snapshot_id) {
+        throw new Error(
+            "current inventory snapshot not found"
+        );
+    }
+
+    const observationId = crypto.randomUUID();
+
+    await persistMarketObservation(db, {
+        observationId,
+        snapshotId: currentSnapshot.snapshot_id,
+        itemId,
+        observedAt: now.toISOString()
+    });
+
+    await persistMarketComps(
+        db,
+        observationId,
+        scoredComps
+    );
 
     await persistPriceRecommendation(db, {
         recommendationId,
