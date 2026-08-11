@@ -49,6 +49,10 @@ function setDocumentTitle(title) {
 
 let allItems = [];
 
+let approvedItemIds = new Set();
+let bulkMode = false;
+let bulkSelectedIds = new Set();
+
 
 async function loadInventory() {
     setDocumentTitle("Inventory");
@@ -84,11 +88,19 @@ async function loadInventory() {
 
         const approvedPayload = await approvedResponse.json();
 
+        approvedItemIds = new Set(
+            (approvedPayload.items ?? []).map(
+                (item) => item.item_id
+            )
+        );
+
         renderApprovedQueue(
             approvedPayload.items ?? [],
             inventoryReadyList,
             inventoryReadyCount
         );
+
+        wireBulkControls();
 
         console.log("Scout & Steward inventory:", payload);
 
@@ -162,7 +174,36 @@ function renderInventoryShell() {
                     autocomplete="off"
                 >
             </label>
+
+            <button
+                class="inventory-bulk-toggle"
+                id="inventory-bulk-toggle"
+                type="button"
+            >
+                Bulk edit
+            </button>
         </section>
+
+        <section
+            class="inventory-bulk-bar"
+            id="inventory-bulk-bar"
+            aria-live="polite"
+            hidden
+        >
+            <span id="inventory-bulk-count">
+                0 selected
+            </span>
+
+            <button
+                class="inventory-bulk-approve"
+                id="inventory-bulk-approve"
+                type="button"
+                disabled
+            >
+                Approve selected
+            </button>
+        </section>
+
 <section
     class="inventory-ready"
     aria-labelledby="inventory-ready-heading"
@@ -216,6 +257,32 @@ function renderItems(items, inventoryGrid) {
         const article = document.createElement("article");
         article.className = "inventory-card";
 
+        const isApproved =
+            approvedItemIds.has(item.item_id);
+
+        const canBulkApprove =
+            Number.isInteger(item.recommended_price_cents) &&
+            !isApproved;
+
+        const isSelected =
+            bulkSelectedIds.has(item.item_id);
+
+        if (bulkMode) {
+            article.classList.add("inventory-card--bulk");
+
+            if (!canBulkApprove) {
+                article.classList.add(
+                    "inventory-card--bulk-disabled"
+                );
+            }
+
+            if (isSelected) {
+                article.classList.add(
+                    "inventory-card--selected"
+                );
+            }
+        }
+
         const content = document.createElement("div");
         content.className = "inventory-card__content";
 
@@ -264,15 +331,45 @@ function renderItems(items, inventoryGrid) {
         if (item.item_id) {
             article.classList.add("inventory-card--interactive");
             article.tabIndex = 0;
-            article.setAttribute(
-                "aria-label",
-                `View ${getItemTitle(item)}`
-            );
 
-            article.addEventListener("click", () => {
+            const activateCard = () => {
+                if (bulkMode) {
+                    if (!canBulkApprove) {
+                        return;
+                    }
+
+                    if (bulkSelectedIds.has(item.item_id)) {
+                        bulkSelectedIds.delete(item.item_id);
+                    } else {
+                        bulkSelectedIds.add(item.item_id);
+                    }
+
+                    renderCurrentInventory();
+                    updateBulkBar();
+                    return;
+                }
+
                 window.location.href =
                     `/item/${encodeURIComponent(item.item_id)}`;
-            });
+            };
+
+            article.setAttribute(
+                "aria-label",
+                bulkMode
+                    ? canBulkApprove
+                        ? `${isSelected ? "Deselect" : "Select"} ${getItemTitle(item)}`
+                        : `${getItemTitle(item)} unavailable for bulk approval`
+                    : `View ${getItemTitle(item)}`
+            );
+
+            if (bulkMode && canBulkApprove) {
+                article.setAttribute(
+                    "aria-pressed",
+                    String(isSelected)
+                );
+            }
+
+            article.addEventListener("click", activateCard);
 
             article.addEventListener("keydown", (event) => {
                 if (
@@ -280,9 +377,7 @@ function renderItems(items, inventoryGrid) {
                     event.key === " "
                 ) {
                     event.preventDefault();
-
-                    window.location.href =
-                        `/item/${encodeURIComponent(item.item_id)}`;
+                    activateCard();
                 }
             });
         }
@@ -346,6 +441,128 @@ function renderApprovedQueue(items, container, countElement) {
 
         container.appendChild(card);
     }
+}
+
+function renderCurrentInventory() {
+    const inventoryGrid = document.querySelector(
+        "#inventory-grid"
+    );
+
+    if (!inventoryGrid) {
+        return;
+    }
+
+    renderItems(allItems, inventoryGrid);
+}
+
+
+function updateBulkBar() {
+    const count = document.querySelector(
+        "#inventory-bulk-count"
+    );
+    const approveButton = document.querySelector(
+        "#inventory-bulk-approve"
+    );
+
+    if (!count || !approveButton) {
+        return;
+    }
+
+    const selectedCount = bulkSelectedIds.size;
+
+    count.textContent =
+        `${selectedCount} selected`;
+
+    approveButton.disabled =
+        selectedCount === 0;
+
+    approveButton.textContent =
+        selectedCount === 0
+            ? "Approve selected"
+            : `Approve ${selectedCount} selected`;
+}
+
+function wireBulkControls() {
+    const toggle = document.querySelector(
+        "#inventory-bulk-toggle"
+    );
+    const bar = document.querySelector(
+        "#inventory-bulk-bar"
+    );
+    const approveButton = document.querySelector(
+        "#inventory-bulk-approve"
+    );
+
+    if (!toggle || !bar || !approveButton) {
+        return;
+    }
+
+    const syncBulkUi = () => {
+        toggle.textContent =
+            bulkMode ? "Done" : "Bulk edit";
+
+        bar.hidden = !bulkMode;
+
+        updateBulkBar();
+        renderCurrentInventory();
+    };
+
+    toggle.addEventListener("click", () => {
+        bulkMode = !bulkMode;
+
+        if (!bulkMode) {
+            bulkSelectedIds.clear();
+        }
+
+        syncBulkUi();
+    });
+
+    approveButton.addEventListener("click", async () => {
+        const itemIds = Array.from(bulkSelectedIds);
+
+        if (itemIds.length === 0) {
+            return;
+        }
+
+        approveButton.disabled = true;
+        approveButton.textContent = "Approving…";
+
+        try {
+            for (const itemId of itemIds) {
+                const response = await fetch(
+                    `/api/items/${encodeURIComponent(itemId)}/approve-price`,
+                    {
+                        method: "POST"
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Unable to approve ${itemId}: HTTP ${response.status}`
+                    );
+                }
+
+                approvedItemIds.add(itemId);
+            }
+
+            bulkSelectedIds.clear();
+            bulkMode = false;
+
+            await loadInventory();
+        } catch (error) {
+            console.error(
+                "Unable to bulk approve prices:",
+                error
+            );
+
+            approveButton.textContent =
+                "Approve selected";
+
+            updateBulkBar();
+        }
+    });
+
+    syncBulkUi();
 }
 
 function filterInventory(
