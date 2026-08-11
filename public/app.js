@@ -633,19 +633,11 @@ function renderPrimaryPriceDecision(item) {
     const dollars = Math.floor(priceCents / 100);
     const cents = String(priceCents % 100).padStart(2, "0");
 
-    const renderAuditionPrice = (variant, label, auditionCents) => {
-        const auditionDollars = Math.floor(auditionCents / 100);
-        const auditionRemainder = String(auditionCents % 100).padStart(2, "0");
-
-        return `
+    return `
         <section
-            class="price-decision price-decision--${variant}"
+            class="price-decision"
             aria-label="Price recommendation"
         >
-            <span class="price-decision__audition-label" aria-hidden="true">
-                ${label}
-            </span>
-
             <div class="price-decision__recommendation">
                 <span class="price-decision__label">
                     Recommended at
@@ -653,11 +645,11 @@ function renderPrimaryPriceDecision(item) {
 
                 <span
                     class="price-decision__price"
-                    aria-label="${formatPrice(auditionCents)}"
+                    aria-label="${formatPrice(priceCents)}"
                 >
                     <span class="price-decision__currency" aria-hidden="true">$</span>
-                    <span class="price-decision__dollars" aria-hidden="true">${auditionDollars}</span>
-                    <sup class="price-decision__cents" aria-hidden="true">${auditionRemainder}</sup>
+                    <span class="price-decision__dollars" aria-hidden="true">${dollars}</span>
+                    <sup class="price-decision__cents" aria-hidden="true">${cents}</sup>
                 </span>
             </div>
 
@@ -676,6 +668,27 @@ function renderPrimaryPriceDecision(item) {
                             This will list at ${formatPrice(priceCents)}
                         </span>
                     </button>
+
+                    <div
+                        class="price-decision__secondary-actions"
+                        aria-label="Other price actions"
+                    >
+                        <button
+                            type="button"
+                            class="price-decision__secondary-action"
+                            data-action="revise-price"
+                        >
+                            REVISE
+                        </button>
+
+                        <button
+                            type="button"
+                            class="price-decision__secondary-action price-decision__secondary-action--hold"
+                            data-action="hold-price"
+                        >
+                            HOLD
+                        </button>
+                    </div>
                 `
                 : `
                     <div class="price-decision__approved">
@@ -684,15 +697,6 @@ function renderPrimaryPriceDecision(item) {
                 `
             }
         </section>
-        `;
-    };
-
-    return `
-        <div class="price-decision-audition">
-            ${renderAuditionPrice("eb-garamond", "A · EB GARAMOND", 12345)}
-            ${renderAuditionPrice("cormorant", "B · CORMORANT GARAMOND", 6789)}
-            ${renderAuditionPrice("bodoni", "C · BODONI MODA", 10922)}
-        </div>
     `;
 }
 function renderPriceRecommendation(item) {

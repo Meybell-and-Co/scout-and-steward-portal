@@ -1,0 +1,1348 @@
+----- line 753 -----
+    .item-detail {
+        display: grid;
+        grid-template-columns: minmax(20rem, 0.9fr) minmax(22rem, 1.1fr);
+        column-gap: var(--space-7);
+        align-items: start;
+    }
+
+    .item-detail__back {
+        grid-column: 1 / -1;
+    }
+
+    .item-detail__media {
+        grid-column: 1;
+        grid-row: 2 / span 3;
+
+        position: sticky;
+        top: var(--space-6);
+
+        margin-bottom: 0;
+
+----- line 650 -----
+.item-detail__section {
+    padding-block: var(--space-5);
+
+    border-top: 1px solid var(--color-border);
+}
+
+.item-detail__section h2 {
+    margin: 0 0 var(--space-4);
+
+    color: var(--color-oxblood);
+
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+
+
+----- line 656 -----
+.item-detail__section h2 {
+    margin: 0 0 var(--space-4);
+
+    color: var(--color-oxblood);
+
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   Metadata
+   --------------------------------------------------------- */
+
+.item-detail__metadata {
+    margin: 0;
+
+----- line 779 -----
+    .item-detail__section {
+        grid-column: 2;
+    }
+
+    .item-detail__header {
+        margin-bottom: var(--space-2);
+    }
+
+    .item-detail__header h1 {
+        font-size: clamp(3rem, 5vw, 4.25rem);
+    }
+}
+/* ---------------------------------------------------------
+   Item approval status
+   --------------------------------------------------------- */
+
+.item-detail__approval-status {
+    display: inline-flex;
+    align-items: center;
+
+----- line 1592 -----
+.item-detail__section--pricing {
+    position: relative;
+    z-index: 1;
+
+    margin:
+        -0.65rem
+        var(--space-4)
+        0;
+
+    padding:
+        1.45rem
+        var(--space-3)
+        var(--space-3);
+
+    background: rgb(105 78 58 / 7%);
+    border: 1px solid rgb(105 78 58 / 13%);
+    border-top: 0;
+    border-radius: 0 0 1rem 1rem;
+
+
+----- line 1615 -----
+.item-detail__section--pricing h2 {
+    margin: 0 0 var(--space-2);
+
+    font-size: 0.75rem;
+}
+
+
+/* Factors sit in a shallow recessed shelf. */
+.item-detail__section--pricing .pricing-factors {
+    gap: 0.4rem;
+
+    margin: 0;
+    padding: 0.5rem;
+
+    background: rgb(74 55 41 / 5%);
+    border-radius: 0.75rem;
+
+    box-shadow:
+        inset 0 2px 5px rgb(74 55 41 / 7%);
+
+----- line 1623 -----
+.item-detail__section--pricing .pricing-factors {
+    gap: 0.4rem;
+
+    margin: 0;
+    padding: 0.5rem;
+
+    background: rgb(74 55 41 / 5%);
+    border-radius: 0.75rem;
+
+    box-shadow:
+        inset 0 2px 5px rgb(74 55 41 / 7%);
+}
+
+.item-detail__section--pricing .pricing-factor {
+    font-size: 0.78rem;
+    padding: 0.32rem 0.58rem;
+
+    box-shadow:
+        0 1px 2px rgb(74 55 41 / 5%);
+
+----- line 1636 -----
+.item-detail__section--pricing .pricing-factor {
+    font-size: 0.78rem;
+    padding: 0.32rem 0.58rem;
+
+    box-shadow:
+        0 1px 2px rgb(74 55 41 / 5%);
+}
+
+
+/* Confidence + evidence share one subordinate footer line. */
+.pricing-evidence {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+
+    margin-top: var(--space-2);
+}
+
+
+----- line 1680 -----
+.item-detail__section--pricing + .item-detail__section {
+    margin-top: var(--space-4);
+}
+
+/* =========================================================
+   Item review — visual reference pass 2026-08-11
+   ========================================================= */
+
+/* --- Recommendation tray --- */
+
+.price-decision {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+    gap: clamp(0.8rem, 3vw, 1.2rem);
+
+    margin: var(--space-2) var(--space-2) 0;
+    padding: clamp(1.2rem, 5vw, 1.8rem) clamp(1rem, 4vw, 1.4rem);
+
+    background: rgb(132 97 72 / 92%);
+
+----- line 1731 -----
+.item-detail__section--pricing {
+    margin: 0 var(--space-2) var(--space-4);
+    padding: 1rem clamp(0.85rem, 4vw, 1.25rem) 1.15rem;
+
+    background: #eee2d2;
+    border: 0;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: none;
+}
+
+/* The JS now supplies the visible FACTORS / WHY THIS PRICE label. */
+.item-detail__section--pricing > h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+----- line 1742 -----
+.item-detail__section--pricing > h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* --- Count-aware factor layout --- */
+
+.item-detail__section--pricing .pricing-factors {
+    display: grid;
+    align-items: center;
+    gap: 0.6rem 0.7rem;
+
+----- line 1757 -----
+.item-detail__section--pricing .pricing-factors {
+    display: grid;
+    align-items: center;
+    gap: 0.6rem 0.7rem;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.pricing-factors__heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+----- line 1794 -----
+.item-detail__section--pricing .pricing-factor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 2.55rem;
+    padding: 0.38rem 0.55rem;
+
+    font-size: clamp(0.72rem, 2.8vw, 0.84rem);
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+
+    box-shadow: none;
+}
+
+
+
+----- line 2109 -----
+.item-detail__section--pricing {
+    margin:
+        0
+        0.5rem
+        var(--space-4);
+
+    padding:
+        1rem
+        clamp(0.75rem, 3.4vw, 1.1rem)
+        1.1rem;
+
+    background: #eee2d2;
+    border-radius: 0 0 0.95rem 0.95rem;
+}
+
+
+/* --- Factor hierarchy --- */
+
+.pricing-factors__heading {
+
+----- line 2158 -----
+.item-detail__section--pricing .pricing-factor {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1rem;
+    align-items: center;
+    column-gap: 0.3rem;
+
+    min-height: 2.45rem;
+    padding:
+        0.4rem
+        0.6rem
+        0.4rem
+        0.72rem;
+
+    color: #4d372f;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.64rem, 2.65vw, 0.78rem);
+    font-weight: 600;
+    letter-spacing: 0.035em;
+
+----- line 2190 -----
+.item-detail__section--pricing .pricing-factor--up {
+    color: #3f4c3b;
+}
+
+.item-detail__section--pricing .pricing-factor--neutral {
+    color: #4d372f;
+}
+
+.item-detail__section--pricing .pricing-factor--down {
+    color: #653f39;
+}
+
+
+/*
+   The existing final span is our indicator rail.
+   Turn the font arrow into a restrained elevator-style signal.
+*/
+
+.item-detail__section--pricing .pricing-factor > span:last-child {
+
+----- line 2194 -----
+.item-detail__section--pricing .pricing-factor--neutral {
+    color: #4d372f;
+}
+
+.item-detail__section--pricing .pricing-factor--down {
+    color: #653f39;
+}
+
+
+/*
+   The existing final span is our indicator rail.
+   Turn the font arrow into a restrained elevator-style signal.
+*/
+
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+----- line 2198 -----
+.item-detail__section--pricing .pricing-factor--down {
+    color: #653f39;
+}
+
+
+/*
+   The existing final span is our indicator rail.
+   Turn the font arrow into a restrained elevator-style signal.
+*/
+
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1rem;
+    min-width: 1rem;
+
+    font-family: Arial, sans-serif;
+
+----- line 2208 -----
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1rem;
+    min-width: 1rem;
+
+    font-family: Arial, sans-serif;
+    font-size: 0;
+    line-height: 1;
+}
+
+
+/* UP chevron */
+.item-detail__section--pricing .pricing-factor--up > span:last-child::before {
+    content: "";
+
+    width: 0.42rem;
+
+----- line 2223 -----
+.item-detail__section--pricing .pricing-factor--up > span:last-child::before {
+    content: "";
+
+    width: 0.42rem;
+    height: 0.42rem;
+
+    border-top: 1.5px solid currentColor;
+    border-left: 1.5px solid currentColor;
+
+    transform: translateY(0.1rem) rotate(45deg);
+}
+
+
+/* STEADY bar */
+.item-detail__section--pricing .pricing-factor--neutral > span:last-child::before {
+    content: "";
+
+    width: 0.48rem;
+    height: 1.5px;
+
+----- line 2237 -----
+.item-detail__section--pricing .pricing-factor--neutral > span:last-child::before {
+    content: "";
+
+    width: 0.48rem;
+    height: 1.5px;
+
+    background: currentColor;
+}
+
+
+/* DOWN chevron */
+.item-detail__section--pricing .pricing-factor--down > span:last-child::before {
+    content: "";
+
+    width: 0.42rem;
+    height: 0.42rem;
+
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+
+----- line 2248 -----
+.item-detail__section--pricing .pricing-factor--down > span:last-child::before {
+    content: "";
+
+    width: 0.42rem;
+    height: 0.42rem;
+
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+
+    transform: translateY(-0.1rem) rotate(45deg);
+}
+
+
+/* Confidence visualization intentionally remains parked. */
+
+.pricing-evidence .confidence-meter__blocks {
+    display: none;
+}
+
+
+----- line 2279 -----
+    .item-detail__section--pricing .pricing-factor {
+        padding-inline: 0.55rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.02em;
+    }
+
+    .pricing-factors--count-4 {
+        grid-template-columns:
+            minmax(6.25rem, 0.9fr)
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================================
+   TEMPORARY — Bento Font Pageant
+   Remove after selecting the winning price face.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Cormorant+Garamond:wght@400&family=EB+Garamond:wght@400&display=swap');
+
+----- line 2373 -----
+.item-detail__section--pricing {
+    position: relative;
+
+    margin:
+        -0.72rem
+        0.35rem
+        var(--space-4);
+
+    padding:
+        1.05rem
+        clamp(0.65rem, 2.8vw, 0.9rem)
+        1.1rem;
+
+    border-radius: 0 0 0.95rem 0.95rem;
+}
+
+
+/* =========================================================
+   Factor instruments — fixed symbol rail + label rail
+
+----- line 2394 -----
+.item-detail__section--pricing .pricing-factor {
+    display: grid;
+    grid-template-columns: 0.8rem minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0.38rem;
+
+    min-width: 0;
+
+    padding:
+        0.4rem
+        0.48rem;
+
+    text-align: left;
+    white-space: nowrap;
+}
+
+/*
+   Existing HTML puts the indicator AFTER the text.
+   Grid lets us visually move that final span into column 1
+
+----- line 2416 -----
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    grid-column: 1;
+    grid-row: 1;
+
+    width: 0.8rem;
+    min-width: 0.8rem;
+
+    font-size: 0;
+}
+
+.item-detail__section--pricing .pricing-factor {
+    grid-auto-flow: dense;
+}
+
+/* Remove the previous drawn chevrons/bars. */
+
+.item-detail__section--pricing .pricing-factor > span:last-child::before {
+    width: auto;
+    height: auto;
+
+----- line 2426 -----
+.item-detail__section--pricing .pricing-factor {
+    grid-auto-flow: dense;
+}
+
+/* Remove the previous drawn chevrons/bars. */
+
+.item-detail__section--pricing .pricing-factor > span:last-child::before {
+    width: auto;
+    height: auto;
+
+    background: none;
+    border: 0;
+
+    transform: none;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+
+----- line 2432 -----
+.item-detail__section--pricing .pricing-factor > span:last-child::before {
+    width: auto;
+    height: auto;
+
+    background: none;
+    border: 0;
+
+    transform: none;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* + increase */
+.item-detail__section--pricing .pricing-factor--up > span:last-child::before {
+    content: "+";
+}
+
+----- line 2448 -----
+.item-detail__section--pricing .pricing-factor--up > span:last-child::before {
+    content: "+";
+}
+
+/* = stable */
+.item-detail__section--pricing .pricing-factor--neutral > span:last-child::before {
+    content: "=";
+}
+
+/* − decrease */
+.item-detail__section--pricing .pricing-factor--down > span:last-child::before {
+    content: "−";
+}
+
+
+/*
+   Give the two lozenge columns more acreage.
+   MARKET ACTIVITY establishes our practical minimum.
+*/
+
+----- line 2453 -----
+.item-detail__section--pricing .pricing-factor--neutral > span:last-child::before {
+    content: "=";
+}
+
+/* − decrease */
+.item-detail__section--pricing .pricing-factor--down > span:last-child::before {
+    content: "−";
+}
+
+
+/*
+   Give the two lozenge columns more acreage.
+   MARKET ACTIVITY establishes our practical minimum.
+*/
+
+.pricing-factors--count-4 {
+    grid-template-columns:
+        minmax(6.6rem, 0.82fr)
+        repeat(2, minmax(8.25rem, 1fr));
+
+----- line 2458 -----
+.item-detail__section--pricing .pricing-factor--down > span:last-child::before {
+    content: "−";
+}
+
+
+/*
+   Give the two lozenge columns more acreage.
+   MARKET ACTIVITY establishes our practical minimum.
+*/
+
+.pricing-factors--count-4 {
+    grid-template-columns:
+        minmax(6.6rem, 0.82fr)
+        repeat(2, minmax(8.25rem, 1fr));
+
+    column-gap: 0.55rem;
+}
+
+
+
+----- line 2489 -----
+    .item-detail__section--pricing .pricing-factor {
+        padding-inline: 0.38rem;
+
+        font-size: 0.6rem;
+        letter-spacing: 0.015em;
+    }
+}
+
+/* =========================================================
+   Final pre-commit audition — acreage + flyout attachment
+   ========================================================= */
+
+/* Bentos stretch their legs. */
+.price-decision-audition .price-decision {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+}
+
+
+
+----- line 2513 -----
+.item-detail__section--pricing {
+    margin:
+        -0.82rem
+        0.2rem
+        var(--space-4);
+
+    padding:
+        1.25rem
+        clamp(0.7rem, 3vw, 0.95rem)
+        1.15rem;
+
+    border-radius: 0 0 0.95rem 0.95rem;
+}
+
+
+/* FACTORS becomes a full-width heading above the instruments. */
+.item-detail__section--pricing .pricing-factors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.62rem 0.72rem;
+
+----- line 2529 -----
+.item-detail__section--pricing .pricing-factors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.62rem 0.72rem;
+}
+
+.pricing-factors__heading,
+.pricing-factors--count-4 .pricing-factors__heading,
+.pricing-factors--count-5 .pricing-factors__heading {
+    grid-column: 1 / -1;
+    grid-row: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.55rem;
+
+    margin-bottom: 0.05rem;
+}
+
+----- line 2570 -----
+.item-detail__section--pricing .pricing-factor {
+    grid-template-columns: 0.9rem minmax(0, 1fr);
+    column-gap: 0.48rem;
+
+    min-height: 2.65rem;
+
+    padding:
+        0.5rem
+        0.72rem;
+
+    font-size: clamp(0.66rem, 2.7vw, 0.78rem);
+    letter-spacing: 0.035em;
+
+    overflow: hidden;
+}
+
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    width: 0.9rem;
+    min-width: 0.9rem;
+
+----- line 2586 -----
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    width: 0.9rem;
+    min-width: 0.9rem;
+}
+
+
+/* Keep the actual label comfortably clear of its boundary. */
+.item-detail__section--pricing .pricing-factor {
+    text-overflow: clip;
+}
+
+
+/*
+   Previous narrow-screen count rules are no longer needed;
+   preserve the same two-column composition down to 350px.
+*/
+@media (max-width: 390px) {
+    .pricing-factors--count-4,
+    .pricing-factors--count-5 {
+
+----- line 2593 -----
+.item-detail__section--pricing .pricing-factor {
+    text-overflow: clip;
+}
+
+
+/*
+   Previous narrow-screen count rules are no longer needed;
+   preserve the same two-column composition down to 350px.
+*/
+@media (max-width: 390px) {
+    .pricing-factors--count-4,
+    .pricing-factors--count-5 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 0.5rem;
+    }
+
+    .item-detail__section--pricing .pricing-factor {
+        padding-inline: 0.55rem;
+        font-size: 0.61rem;
+
+----- line 2609 -----
+    .item-detail__section--pricing .pricing-factor {
+        padding-inline: 0.55rem;
+        font-size: 0.61rem;
+        letter-spacing: 0.015em;
+    }
+}
+
+/* =========================================================
+   Item review — post-pageant production audition
+   Bodoni + compartment bento + factor spacing
+   ========================================================= */
+
+/* --- One decision object, two dark compartments --- */
+
+.price-decision {
+    position: relative;
+
+    margin:
+        clamp(0.95rem, 4vw, 1.2rem)
+
+----- line 2719 -----
+.item-detail__section--pricing {
+    position: relative;
+
+    margin:
+        0
+        0.2rem
+        var(--space-4);
+
+    padding:
+        1.2rem
+        clamp(0.7rem, 3vw, 0.95rem)
+        1.15rem;
+
+    background: #eee2d2;
+
+    /*
+       No overlap trickery:
+       this is visibly the lower compartment of the same object.
+    */
+
+----- line 2773 -----
+.item-detail__section--pricing .pricing-factors {
+    row-gap: 0.72rem;
+}
+
+.item-detail__section--pricing .pricing-factor {
+    min-height: 2.7rem;
+
+    padding:
+        0.52rem
+        0.72rem;
+}
+
+/* =========================================================
+   Price lockup calibration — give Jesús Aguilar some room
+   ========================================================= */
+
+.price-decision__recommendation {
+    align-items: center;
+    text-align: center;
+
+----- line 2777 -----
+.item-detail__section--pricing .pricing-factor {
+    min-height: 2.7rem;
+
+    padding:
+        0.52rem
+        0.72rem;
+}
+
+/* =========================================================
+   Price lockup calibration — give Jesús Aguilar some room
+   ========================================================= */
+
+.price-decision__recommendation {
+    align-items: center;
+    text-align: center;
+}
+
+.price-decision__label {
+    width: 100%;
+
+----- line 3143 -----
+.price-bento {
+    box-sizing: border-box;
+
+    width: calc(100% + 1.25rem);
+    max-width: none;
+    margin-inline: -0.625rem;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+/*
+ * Both compartments fill the exact same grid track.
+ * No independent width arithmetic. No mushroom.
+ */
+.price-bento > .price-decision,
+.price-bento > .item-detail__section--pricing {
+    box-sizing: border-box;
+
+
+----- line 3158 -----
+.price-bento > .price-decision,
+.price-bento > .item-detail__section--pricing {
+    box-sizing: border-box;
+
+    grid-column: 1;
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*
+ * Chocolate owns the upper compartment.
+ */
+.price-bento > .price-decision {
+    margin-bottom: 0;
+}
+
+
+----- line 3159 -----
+.price-bento > .item-detail__section--pricing {
+    box-sizing: border-box;
+
+    grid-column: 1;
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*
+ * Chocolate owns the upper compartment.
+ */
+.price-bento > .price-decision {
+    margin-bottom: 0;
+}
+
+/*
+
+----- line 3173 -----
+.price-bento > .price-decision {
+    margin-bottom: 0;
+}
+
+/*
+ * Factors owns the lower compartment.
+ * Remove generic detail-section geometry that previously
+ * made it behave like an independent content section.
+ */
+.price-bento > .item-detail__section--pricing {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+
+    border: 0;
+}
+
+/*
+ * The recommendation itself also fills its compartment.
+
+----- line 3182 -----
+.price-bento > .item-detail__section--pricing {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+
+    border: 0;
+}
+
+/*
+ * The recommendation itself also fills its compartment.
+ */
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0;
+    margin-right: 0;
+
+----- line 3193 -----
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*
+ * Chocolate + cream meet as one continuous object.
+ */
+.price-bento .price-decision {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.price-bento .price-recommendation,
+
+----- line 3194 -----
+.price-bento .pricing-factors {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*
+ * Chocolate + cream meet as one continuous object.
+ */
+.price-bento .price-decision {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+
+----- line 3206 -----
+.price-bento .price-decision {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+----- line 3211 -----
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+----- line 3212 -----
+.price-bento .pricing-factors {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+----- line 1180 -----
+.price-decision {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: stretch;
+    gap: var(--space-3);
+
+    margin-bottom: var(--space-5);
+}
+
+.price-decision__recommendation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.price-decision__label {
+    display: block;
+    margin-bottom: 0.15rem;
+
+
+----- line 1366 -----
+    .price-decision {
+        gap: var(--space-2);
+    }
+
+    .price-decision__approve {
+        min-height: 4.75rem;
+        padding-inline: var(--space-3);
+    }
+}
+
+/* --- Oxblood material surface audition --- */
+
+.item-detail__hero {
+    background-color: var(--color-oxblood);
+
+    background-image:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgb(255 255 255 / 4%) 0%,
+
+----- line 1545 -----
+.price-decision {
+    position: relative;
+    z-index: 2;
+
+    gap: var(--space-3);
+    align-items: center;
+
+    margin: var(--space-3) var(--space-2) 0;
+    padding: var(--space-4);
+
+    background: rgb(132 97 72 / 13%);
+    border: 1px solid rgb(105 78 58 / 16%);
+    border-radius: 1.15rem;
+
+    box-shadow:
+        0 0.35rem 1rem rgb(74 55 41 / 7%),
+        inset 0 1px 0 rgb(255 255 255 / 55%);
+}
+
+
+----- line 1690 -----
+.price-decision {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+    gap: clamp(0.8rem, 3vw, 1.2rem);
+
+    margin: var(--space-2) var(--space-2) 0;
+    padding: clamp(1.2rem, 5vw, 1.8rem) clamp(1rem, 4vw, 1.4rem);
+
+    background: rgb(132 97 72 / 92%);
+    border: 0;
+    border-radius: 1.1rem;
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 16%),
+        0 0.25rem 0.75rem rgb(74 55 41 / 7%);
+}
+
+.price-decision__recommendation {
+    padding-left: 0;
+
+----- line 1970 -----
+    .price-decision {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        padding-inline: 0.85rem;
+    }
+
+    .pricing-factors--count-3 {
+        grid-template-columns: minmax(5.75rem, 0.85fr) repeat(3, minmax(0, 1fr));
+        column-gap: 0.45rem;
+    }
+
+    .pricing-evidence {
+        grid-template-columns: minmax(8rem, 0.9fr) minmax(0, 1.1fr);
+        gap: 0.65rem;
+    }
+}
+
+/* =========================================================
+   Item review — luxury typography + decision hierarchy
+   ========================================================= */
+
+----- line 1991 -----
+.price-decision {
+    margin:
+        clamp(0.85rem, 3.5vw, 1.1rem)
+        0.5rem
+        0;
+
+    padding:
+        clamp(1.15rem, 4.5vw, 1.6rem)
+        clamp(1rem, 4vw, 1.35rem);
+
+    background: #4d372f;
+    border-radius: 1.05rem;
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 9%),
+        0 0.25rem 0.7rem rgb(50 32 26 / 10%);
+}
+
+
+
+----- line 2623 -----
+.price-decision {
+    position: relative;
+
+    margin:
+        clamp(0.95rem, 4vw, 1.2rem)
+        0.2rem
+        0;
+
+    padding:
+        clamp(1.15rem, 4.5vw, 1.55rem)
+        clamp(1rem, 4vw, 1.3rem);
+
+    background: #4d372f;
+
+    /* Lower corners deliberately square into evidence compartment. */
+    border-radius: 1.05rem 1.05rem 0 0;
+}
+
+
+
+----- line 2929 -----
+.price-decision,
+.price-recommendation {
+    width: calc(100% + 1.25rem);
+    max-width: none;
+    margin-inline: -0.625rem;
+}
+
+/*
+ * Give the recommendation chamber more breathing room.
+ * Left side owns the price; right side owns all decisions.
+ */
+.price-decision {
+    grid-template-columns: minmax(9.5rem, 0.9fr) minmax(12rem, 1.1fr);
+    column-gap: 1rem;
+
+    padding-inline: 1.15rem;
+}
+
+/*
+
+----- line 2940 -----
+.price-decision {
+    grid-template-columns: minmax(9.5rem, 0.9fr) minmax(12rem, 1.1fr);
+    column-gap: 1rem;
+
+    padding-inline: 1.15rem;
+}
+
+/*
+ * Keep the recommendation lockup comfortably away from
+ * both the Bento wall and its divider.
+ */
+.price-decision__recommendation {
+    min-width: 0;
+    padding-inline: 0.65rem 1.15rem;
+}
+
+/*
+ * Divider belongs between domains, not against the price.
+ */
+
+----- line 3010 -----
+.price-decision,
+.price-recommendation {
+    box-sizing: border-box;
+
+    width: calc(100% + 1.25rem);
+    max-width: none;
+
+    margin-left: -0.625rem;
+    margin-right: -0.625rem;
+}
+
+/*
+ * Give the price chamber a little more territory.
+ * Decision controls still retain the larger share.
+ */
+.price-decision {
+    grid-template-columns:
+        minmax(10.75rem, 0.95fr)
+        minmax(12rem, 1.05fr);
+
+----- line 3025 -----
+.price-decision {
+    grid-template-columns:
+        minmax(10.75rem, 0.95fr)
+        minmax(12rem, 1.05fr);
+
+    column-gap: 1.15rem;
+    padding-inline: 1.1rem;
+}
+
+/*
+ * Treat recommendation as a composed lockup rather than
+ * miscellaneous text living beside a divider.
+ */
+.price-decision__recommendation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+----- line 2930 -----
+.price-recommendation {
+    width: calc(100% + 1.25rem);
+    max-width: none;
+    margin-inline: -0.625rem;
+}
+
+/*
+ * Give the recommendation chamber more breathing room.
+ * Left side owns the price; right side owns all decisions.
+ */
+.price-decision {
+    grid-template-columns: minmax(9.5rem, 0.9fr) minmax(12rem, 1.1fr);
+    column-gap: 1rem;
+
+    padding-inline: 1.15rem;
+}
+
+/*
+ * Keep the recommendation lockup comfortably away from
+
+----- line 2997 -----
+.price-recommendation {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* =========================================================
+   Bento geometry — shared shell + price chamber breathing room
+   ========================================================= */
+
+/*
+ * Chocolate and Factors are two compartments of one object.
+ * They must share exactly the same horizontal footprint.
+ */
+.price-decision,
+.price-recommendation {
+    box-sizing: border-box;
+
+    width: calc(100% + 1.25rem);
+    max-width: none;
+
+----- line 3011 -----
+.price-recommendation {
+    box-sizing: border-box;
+
+    width: calc(100% + 1.25rem);
+    max-width: none;
+
+    margin-left: -0.625rem;
+    margin-right: -0.625rem;
+}
+
+/*
+ * Give the price chamber a little more territory.
+ * Decision controls still retain the larger share.
+ */
+.price-decision {
+    grid-template-columns:
+        minmax(10.75rem, 0.95fr)
+        minmax(12rem, 1.05fr);
+
+
+----- line 3133 -----
+.price-recommendation {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* =========================================================
+   PRICE BENTO — shared structural shell
+   One parent owns all horizontal geometry.
+   ========================================================= */
+
+.price-bento {
+    box-sizing: border-box;
+
+    width: calc(100% + 1.25rem);
+    max-width: none;
+    margin-inline: -0.625rem;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+

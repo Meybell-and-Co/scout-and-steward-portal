@@ -382,3 +382,12 @@ We do not design for appearance.
 We design for understanding.
 
 Every visual decision is a communication decision.
+## Typography semantics
+
+Scout & Steward uses typeface category as an information signal, not decoration.
+
+- **Sans serif = system language.** Use sans serif for static interface language: navigation, headings, field labels, controls, actions, status vocabulary, instructions, and explanatory UI copy.
+- **Serif = object language.** Use serif for dynamic or unique content: player names, prices, teams, manufacturers, years, sets, card numbers, classifications, and other values drawn from the collection record.
+- When a label/value pair appears together, the contrast should help distinguish **what the system calls the field** from **what the collection record says**.
+- Exceptions should be deliberate. Avoid mixing serif and sans merely for visual variety.
+

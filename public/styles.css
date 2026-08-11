@@ -776,7 +776,8 @@ textarea {
     }
 
     .item-detail__header,
-    .item-detail__section {
+    .item-detail__section,
+    .price-bento {
         grid-column: 2;
     }
 
@@ -2611,4 +2612,605 @@ textarea {
         font-size: 0.61rem;
         letter-spacing: 0.015em;
     }
+}
+
+/* =========================================================
+   Item review — post-pageant production audition
+   Bodoni + compartment bento + factor spacing
+   ========================================================= */
+
+/* --- One decision object, two dark compartments --- */
+
+.price-decision {
+    position: relative;
+
+    margin:
+        clamp(0.95rem, 4vw, 1.2rem)
+        0.2rem
+        0;
+
+    padding:
+        clamp(1.15rem, 4.5vw, 1.55rem)
+        clamp(1rem, 4vw, 1.3rem);
+
+    background: #4d372f;
+
+    /* Lower corners deliberately square into evidence compartment. */
+    border-radius: 1.05rem 1.05rem 0 0;
+}
+
+
+/*
+   Hairline between PRICE and APPROVE.
+   The divider belongs to the chocolate bento, not the button.
+*/
+.price-decision__recommendation {
+    position: relative;
+
+    padding-right: clamp(0.8rem, 3vw, 1.1rem);
+}
+
+.price-decision__recommendation::after {
+    content: "";
+
+    position: absolute;
+    top: 0.15rem;
+    right: 0;
+    bottom: 0.15rem;
+
+    width: 1px;
+
+    background: rgb(248 239 222 / 16%);
+}
+
+
+/* Give APPROVE its own chamber rather than another floating card. */
+.price-decision__approve {
+    width: 100%;
+    max-width: none;
+    min-height: 5rem;
+
+    margin-left: 0;
+    padding-left: clamp(0.8rem, 3vw, 1.15rem);
+
+    border-radius: 0.7rem;
+
+    background: var(--color-oxblood);
+}
+
+
+/* --- Bodoni wins --- */
+
+.price-decision__price {
+    font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+}
+
+
+/*
+   First production calibration:
+   keep Bodoni's drama but pull the pieces into one price mark.
+   We'll judge actual $29²⁵ before finer optical kerning.
+*/
+.price-decision__currency {
+    top: 0.48em;
+
+    margin-right: 0.04em;
+
+    font-size: 0.32em;
+    font-weight: 400;
+    opacity: 0.68;
+}
+
+.price-decision__dollars {
+    letter-spacing: -0.065em;
+}
+
+.price-decision__cents {
+    top: 0.1em;
+
+    margin-left: 0.08em;
+
+    font-size: 0.33em;
+    letter-spacing: -0.025em;
+}
+
+
+/* --- Evidence compartment --- */
+
+.item-detail__section--pricing {
+    position: relative;
+
+    margin:
+        0
+        0.2rem
+        var(--space-4);
+
+    padding:
+        1.2rem
+        clamp(0.7rem, 3vw, 0.95rem)
+        1.15rem;
+
+    background: #eee2d2;
+
+    /*
+       No overlap trickery:
+       this is visibly the lower compartment of the same object.
+    */
+    border: 1px solid rgb(77 55 47 / 20%);
+    border-top-color: rgb(77 55 47 / 26%);
+    border-radius: 0 0 0.95rem 0.95rem;
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 35%);
+}
+
+
+/* --- FACTORS hierarchy and breathing room --- */
+
+.pricing-factors__heading,
+.pricing-factors--count-4 .pricing-factors__heading,
+.pricing-factors--count-5 .pricing-factors__heading {
+    gap: 0.8rem;
+
+    margin:
+        0.18rem
+        0
+        0.38rem;
+}
+
+.pricing-factors__heading strong {
+    flex: 0 0 auto;
+}
+
+.pricing-factors__heading span {
+    color: rgb(77 55 47 / 62%);
+}
+
+
+/*
+   A deliberate kiss of air between heading and instruments.
+   Keep the successful two-column lozenge architecture.
+*/
+.item-detail__section--pricing .pricing-factors {
+    row-gap: 0.72rem;
+}
+
+.item-detail__section--pricing .pricing-factor {
+    min-height: 2.7rem;
+
+    padding:
+        0.52rem
+        0.72rem;
+}
+
+/* =========================================================
+   Price lockup calibration — give Jesús Aguilar some room
+   ========================================================= */
+
+.price-decision__recommendation {
+    align-items: center;
+    text-align: center;
+}
+
+.price-decision__label {
+    width: 100%;
+    text-align: center;
+}
+
+.price-decision__price {
+    align-self: center;
+}
+
+
+/* Bodoni gets presence without returning to banner-ad scale. */
+.price-decision__dollars {
+    font-size: clamp(3rem, 12vw, 4rem);
+
+    /* Bodoni does not need to be strangled. */
+    letter-spacing: -0.01em;
+}
+
+
+/* Quiet satellites, but give everybody personal space. */
+.price-decision__currency {
+    top: 0.5em;
+
+    margin-right: 0.12em;
+
+    font-size: 0.31em;
+}
+
+.price-decision__cents {
+    top: 0.1em;
+
+    margin-left: 0.16em;
+
+    font-size: 0.32em;
+    letter-spacing: 0;
+}
+
+
+/* Longer, slightly more legible chamber divider. */
+.price-decision__recommendation::after {
+    top: -0.25rem;
+    bottom: -0.25rem;
+
+    background: rgb(248 239 222 / 30%);
+}
+
+/* =========================================================
+   Price decision — secondary action sisters
+   ========================================================= */
+
+.price-decision__secondary-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+
+    margin-top: 0.6rem;
+}
+
+.price-decision__secondary-action {
+    min-height: 2.35rem;
+    padding: 0.45rem 0.65rem;
+
+    color: rgb(248 239 222 / 88%);
+    background: rgb(248 239 222 / 6%);
+
+    border: 1px solid rgb(248 239 222 / 42%);
+    border-radius: 999px;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 140ms ease,
+        border-color 140ms ease,
+        transform 140ms ease;
+}
+
+.price-decision__secondary-action:hover,
+.price-decision__secondary-action:focus-visible {
+    background: rgb(248 239 222 / 12%);
+    border-color: rgb(248 239 222 / 66%);
+}
+
+.price-decision__secondary-action:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================================================
+   Price decision — stacked action chamber refinement
+   ========================================================= */
+
+.price-decision__approve {
+    border-radius: 200px;
+}
+
+.price-decision__secondary-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+    margin-top: 0.55rem;
+    gap: 0.55rem;
+}
+
+.price-decision__secondary-action {
+    width: 100%;
+    min-width: 0;
+
+    border-radius: 200px;
+}
+
+/*
+ * The action chamber owns both the primary and secondary controls.
+ * Keep the sisters directly beneath APPROVE rather than allowing
+ * them to fall beneath the recommendation/price column.
+ */
+.price-decision__secondary-actions {
+    grid-column: 2;
+}
+
+/* =========================================================
+   Bento geometry refinement — action + recommendation space
+   ========================================================= */
+
+/*
+ * Let the Bento approach the viewport edges while retaining
+ * a deliberate sliver of page background.
+ */
+.price-decision,
+.price-recommendation {
+    width: calc(100% + 1.25rem);
+    max-width: none;
+    margin-inline: -0.625rem;
+}
+
+/*
+ * Give the recommendation chamber more breathing room.
+ * Left side owns the price; right side owns all decisions.
+ */
+.price-decision {
+    grid-template-columns: minmax(9.5rem, 0.9fr) minmax(12rem, 1.1fr);
+    column-gap: 1rem;
+
+    padding-inline: 1.15rem;
+}
+
+/*
+ * Keep the recommendation lockup comfortably away from
+ * both the Bento wall and its divider.
+ */
+.price-decision__recommendation {
+    min-width: 0;
+    padding-inline: 0.65rem 1.15rem;
+}
+
+/*
+ * Divider belongs between domains, not against the price.
+ */
+.price-decision__recommendation {
+    border-right: 1px solid rgb(248 239 222 / 36%);
+}
+
+/*
+ * APPROVE remains primary, but loses the oversized vertical bulk.
+ */
+.price-decision__approve {
+    min-height: 3.7rem;
+    padding-block: 0.55rem;
+    border-radius: 200px;
+}
+
+/*
+ * Right-hand controls share one clean column.
+ */
+.price-decision__approve,
+.price-decision__secondary-actions {
+    width: 100%;
+}
+
+/*
+ * Sisters remain equal and directly beneath APPROVE.
+ */
+.price-decision__secondary-actions {
+    grid-column: 2;
+    gap: 0.55rem;
+    margin-top: 0.5rem;
+}
+
+.price-decision__secondary-action {
+    min-height: 2.25rem;
+    border-radius: 200px;
+}
+
+/*
+ * Let the Factors compartment inherit the wider Bento footprint.
+ */
+.price-recommendation {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* =========================================================
+   Bento geometry — shared shell + price chamber breathing room
+   ========================================================= */
+
+/*
+ * Chocolate and Factors are two compartments of one object.
+ * They must share exactly the same horizontal footprint.
+ */
+.price-decision,
+.price-recommendation {
+    box-sizing: border-box;
+
+    width: calc(100% + 1.25rem);
+    max-width: none;
+
+    margin-left: -0.625rem;
+    margin-right: -0.625rem;
+}
+
+/*
+ * Give the price chamber a little more territory.
+ * Decision controls still retain the larger share.
+ */
+.price-decision {
+    grid-template-columns:
+        minmax(10.75rem, 0.95fr)
+        minmax(12rem, 1.05fr);
+
+    column-gap: 1.15rem;
+    padding-inline: 1.1rem;
+}
+
+/*
+ * Treat recommendation as a composed lockup rather than
+ * miscellaneous text living beside a divider.
+ */
+.price-decision__recommendation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding-left: 0.4rem;
+    padding-right: 1.35rem;
+
+    text-align: center;
+
+    border-right: 1px solid rgb(248 239 222 / 40%);
+}
+
+/*
+ * Keep label and number visually related without crowding.
+ */
+.price-decision__label {
+    width: 100%;
+    margin-bottom: 0.15rem;
+
+    text-align: center;
+}
+
+/*
+ * Price gets its own horizontal breathing room.
+ */
+.price-decision__price {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: 100%;
+    margin: 0;
+
+    line-height: 0.82;
+}
+
+/*
+ * Let the main numerals breathe.
+ */
+.price-decision__dollars {
+    letter-spacing: -0.035em;
+}
+
+/*
+ * Dollar sign whispers from the left instead of becoming
+ * Mickey's first ear.
+ */
+.price-decision__currency {
+    margin-top: 0.42em;
+    margin-right: 0.12em;
+
+    font-size: 0.38em;
+    font-weight: 300;
+    opacity: 0.42;
+}
+
+/*
+ * Cents remain subordinate but stay attached to the price.
+ */
+.price-decision__cents {
+    margin-top: 0.08em;
+    margin-left: 0.08em;
+
+    font-size: 0.31em;
+    line-height: 1;
+}
+
+/*
+ * APPROVE stays hero but now shares the sisters'
+ * slimmer vertical proportions.
+ */
+.price-decision__approve {
+    min-height: 3.35rem;
+    padding-block: 0.45rem;
+    border-radius: 200px;
+}
+
+/*
+ * Keep both action rows aligned to exactly the same width.
+ */
+.price-decision__approve,
+.price-decision__secondary-actions {
+    grid-column: 2;
+    width: 100%;
+}
+
+/*
+ * Factors compartment follows the exact outer shell above.
+ * Bottom corners stay square so this reads as one Bento,
+ * not a mushroom cap sitting on a sticker.
+ */
+.price-recommendation {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* =========================================================
+   PRICE BENTO — shared structural shell
+   One parent owns all horizontal geometry.
+   ========================================================= */
+
+.price-bento {
+    box-sizing: border-box;
+
+    width: calc(100% + 1.25rem);
+    max-width: none;
+    margin-inline: -0.625rem;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+/*
+ * Both compartments fill the exact same grid track.
+ * No independent width arithmetic. No mushroom.
+ */
+.price-bento > .price-decision,
+.price-bento > .item-detail__section--pricing {
+    box-sizing: border-box;
+
+    grid-column: 1;
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*
+ * Chocolate owns the upper compartment.
+ */
+.price-bento > .price-decision {
+    margin-bottom: 0;
+}
+
+/*
+ * Factors owns the lower compartment.
+ * Remove generic detail-section geometry that previously
+ * made it behave like an independent content section.
+ */
+.price-bento > .item-detail__section--pricing {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+
+    border: 0;
+}
+
+/*
+ * The recommendation itself also fills its compartment.
+ */
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*
+ * Chocolate + cream meet as one continuous object.
+ */
+.price-bento .price-decision {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
