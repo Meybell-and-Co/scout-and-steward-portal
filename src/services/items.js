@@ -173,6 +173,15 @@ export async function handleGetItem(env, itemId) {
                 .first()
             : null;
 
+        if (priceRecommendation?.confidence) {
+            try {
+                priceRecommendation.confidence =
+                    JSON.parse(priceRecommendation.confidence);
+            } catch {
+                // Legacy recommendations stored confidence as plain text.
+                // Leave those values intact until refreshed.
+            }
+        }
         return Response.json({
             status: "ok",
             item: {

@@ -525,7 +525,7 @@ textarea {
     display: inline-flex;
     align-items: center;
 
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-2);
 
     color: var(--color-oxblood);
 
@@ -781,7 +781,7 @@ textarea {
     }
 
     .item-detail__header {
-        margin-bottom: var(--space-5);
+        margin-bottom: var(--space-2);
     }
 
     .item-detail__header h1 {
@@ -965,4 +965,1650 @@ textarea {
     font-size: 1rem;
     font-weight: 700;
     line-height: 1;
+}
+
+/* ---------------------------------------------------------
+   Recommendation confidence
+   --------------------------------------------------------- */
+
+:root {
+    --confidence-1: #9b3f3f;
+    --confidence-2: #b86532;
+    --confidence-3: #b58a2c;
+    --confidence-4: #668456;
+    --confidence-5: #315f43;
+}
+
+.confidence-meter {
+    width: min(100%, 22rem);
+    margin-top: var(--space-3);
+}
+
+.confidence-meter__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+}
+
+.confidence-meter__label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+.confidence-meter__rating {
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.confidence-meter__blocks {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.3rem;
+}
+
+.confidence-meter__block {
+    height: 0.55rem;
+    background: rgb(74 55 41 / 10%);
+    border: 1px solid rgb(74 55 41 / 16%);
+    border-radius: 0.15rem;
+}
+
+.confidence-meter--level-1 {
+    --confidence-color: var(--confidence-1);
+}
+
+.confidence-meter--level-2 {
+    --confidence-color: var(--confidence-2);
+}
+
+.confidence-meter--level-3 {
+    --confidence-color: var(--confidence-3);
+}
+
+.confidence-meter--level-4 {
+    --confidence-color: var(--confidence-4);
+}
+
+.confidence-meter--level-5 {
+    --confidence-color: var(--confidence-5);
+}
+
+.confidence-meter__block--filled {
+    background: var(--confidence-color);
+    border-color: var(--confidence-color);
+}
+
+.confidence-meter__guidance {
+    margin: var(--space-2) 0 0;
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+}
+
+.confidence-meter--legacy {
+    margin-block: var(--space-3);
+    padding-left: var(--space-3);
+    border-left: 3px solid var(--color-tobacco-4);
+    color: var(--color-muted);
+}
+
+
+/* ---------------------------------------------------------
+   Recommendation hierarchy
+   --------------------------------------------------------- */
+
+.item-detail__price {
+    margin: 0;
+    font-size: clamp(2.75rem, 8vw, 3.75rem);
+    line-height: 0.95;
+}
+
+.item-detail__price-evidence {
+    margin: var(--space-3) 0 0;
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+    font-weight: 300;
+}
+
+
+/* ---------------------------------------------------------
+   Pricing decision
+   --------------------------------------------------------- */
+
+.item-detail__decision {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+}
+
+.item-detail__decision > .item-detail__price-evidence {
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+}
+
+.item-detail__approve-button {
+    display: block;
+    width: 100%;
+    min-height: 3rem;
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+
+    appearance: none;
+    background: var(--color-oxblood);
+    color: var(--color-surface);
+
+    border: 1px solid var(--color-oxblood);
+    border-radius: var(--radius-md);
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.item-detail__approve-button--secondary {
+    background: transparent;
+    color: var(--color-oxblood);
+}
+
+.item-detail__approve-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+
+.item-detail__approve-button {
+    text-align: left;
+}
+
+.item-detail__approve-action,
+.item-detail__approve-detail {
+    display: block;
+}
+
+.item-detail__approve-action {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+}
+
+.item-detail__approve-detail {
+    margin-top: 0.2rem;
+    font-size: 0.8125rem;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    opacity: 0.82;
+}
+
+/* =========================================================
+   Item review — decision-first visual experiment
+   ========================================================= */
+
+/* --- Identity hero --- */
+
+.item-detail__hero {
+    margin-inline: calc(var(--space-4) * -1);
+    margin-bottom: var(--space-4);
+    padding: var(--space-5) var(--space-4);
+
+    background: var(--color-oxblood);
+    color: var(--color-surface);
+}
+
+.item-detail__hero h1 {
+    margin: 0;
+    color: inherit;
+}
+
+.item-detail__hero .item-detail__subtitle {
+    margin-top: var(--space-2);
+    color: rgb(255 255 255 / 78%);
+}
+
+.item-detail__hero .item-detail__team {
+    margin-top: var(--space-2);
+    color: rgb(255 255 255 / 92%);
+}
+
+
+/* --- Recommendation + primary action --- */
+
+.price-decision {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: stretch;
+    gap: var(--space-3);
+
+    margin-bottom: var(--space-5);
+}
+
+.price-decision__recommendation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.price-decision__label {
+    display: block;
+    margin-bottom: 0.15rem;
+
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+}
+
+.price-decision__price {
+    display: block;
+
+    color: var(--color-ink);
+    font-family: "Libre Caslon Display", Georgia, serif;
+    font-size: clamp(2.25rem, 10vw, 3.25rem);
+    line-height: 0.95;
+}
+
+.price-decision__approve {
+    display: flex;
+    width: 75%;
+    min-height: 5rem;
+    margin-top: 0.75rem;
+    margin-inline: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--space-3) var(--space-4);
+
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+
+    background: var(--color-oxblood);
+    color: var(--color-surface);
+    cursor: pointer;
+    text-align: center;
+
+    box-shadow:
+        0 0.2rem 0.5rem rgb(74 31 31 / 14%),
+        inset 0 1px 0 rgb(255 255 255 / 10%);
+}
+
+.price-decision__approve-action {
+    display: block;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1;
+}
+
+.price-decision__approve-detail {
+    display: block;
+    margin-top: 0.35rem;
+
+    font-family: "Libre Caslon Text", Georgia, serif;
+    font-size: 0.78rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.2;
+    opacity: 0.82;
+}
+
+.price-decision__approve:active {
+    transform: translateY(1px);
+}
+
+.price-decision__approve:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.price-decision__approved {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 5rem;
+    padding: var(--space-3) var(--space-4);
+
+    border: 1px solid var(--color-success);
+    border-radius: 999px;
+
+    color: var(--color-success);
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/* --- Collectible display case --- */
+
+.item-detail__media {
+    position: relative;
+
+    margin-bottom: var(--space-5);
+    padding: clamp(0.65rem, 3vw, 1rem);
+
+    border: 1px solid rgb(74 55 41 / 16%);
+    border-radius: calc(var(--radius-lg) + 0.2rem);
+
+    background: rgb(255 255 255 / 34%);
+
+    box-shadow:
+        0 0.7rem 1.8rem rgb(74 55 41 / 8%),
+        inset 0 0 0 1px rgb(255 255 255 / 55%);
+}
+
+.item-detail__image {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 62vh;
+    margin-inline: auto;
+
+    border-radius: calc(var(--radius-md) * 0.6);
+
+    box-shadow:
+        0 0.25rem 0.7rem rgb(44 31 22 / 13%);
+}
+
+
+/* --- Front / Back segmented control --- */
+
+.item-detail__image-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+
+    width: min(100%, 20rem);
+    min-height: 2.9rem;
+    margin: var(--space-3) auto 0;
+    padding: 0.22rem;
+
+    border-radius: 999px;
+    background: rgb(74 55 41 / 8%);
+
+    box-shadow: inset 0 1px 2px rgb(74 55 41 / 8%);
+}
+
+.item-detail__image-button {
+    min-height: 2.45rem;
+    padding: 0.4rem 1rem;
+
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+
+    color: var(--color-muted);
+    cursor: pointer;
+    font: inherit;
+}
+
+.item-detail__image-button.is-active {
+    background: var(--color-surface);
+    color: var(--color-oxblood);
+
+    box-shadow:
+        0 1px 3px rgb(74 55 41 / 12%),
+        0 0.15rem 0.4rem rgb(74 55 41 / 8%);
+}
+
+
+/* Keep the first decision comfortably compact on narrow phones. */
+
+@media (max-width: 420px) {
+    .item-detail__hero {
+        padding-block: var(--space-4);
+    }
+
+    .price-decision {
+        gap: var(--space-2);
+    }
+
+    .price-decision__approve {
+        min-height: 4.75rem;
+        padding-inline: var(--space-3);
+    }
+}
+
+/* --- Oxblood material surface audition --- */
+
+.item-detail__hero {
+    background-color: var(--color-oxblood);
+
+    background-image:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgb(255 255 255 / 4%) 0%,
+            transparent 55%,
+            rgb(0 0 0 / 12%) 100%
+        ),
+        url("https://pub-d20e9b83446841a986f4f36061db36b4.r2.dev/pebble-grain-leather-overlay.webp");
+
+    background-size:
+        100% 100%,
+        420px auto;
+
+    background-repeat:
+        no-repeat,
+        repeat;
+
+    background-blend-mode:
+        soft-light,
+        soft-light;
+}
+
+/* =========================================================
+   Item review — editorial desk hero
+   ========================================================= */
+
+.item-detail__hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    display: flex;
+    align-items: flex-end;
+
+    min-height: clamp(15.5rem, 62vw, 20rem);
+    margin-inline: calc(var(--space-4) * -1);
+    margin-bottom: 0;
+    padding:
+        clamp(1.4rem, 6vw, 2rem)
+        var(--space-4)
+        clamp(1.55rem, 6vw, 2rem);
+
+    background-color: var(--color-oxblood);
+}
+
+.item-detail__hero-copy {
+    position: relative;
+    z-index: 2;
+    width: 56%;
+    min-width: 0;
+}
+
+.item-detail__hero h1 {
+    margin: 0;
+
+    color: var(--color-ivory);
+
+    font-family: var(--font-display);
+    font-size: clamp(2.55rem, 11vw, 4rem);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 0.92;
+}
+
+.item-detail__hero-rule {
+    width: min(100%, 11rem);
+    height: 1px;
+    margin: 1rem 0 0.85rem;
+
+    background: rgb(242 233 220 / 52%);
+}
+
+.item-detail__hero .item-detail__identity,
+.item-detail__hero .item-detail__team {
+    margin: 0;
+
+    color: rgb(242 233 220 / 88%);
+
+    font-family: var(--font-ui);
+    font-size: clamp(0.62rem, 2.3vw, 0.75rem);
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.item-detail__hero .item-detail__team {
+    margin-top: 0.55rem;
+    color: var(--color-ivory);
+}
+
+.item-detail__hero-card {
+    position: absolute;
+    z-index: 2;
+
+    right: clamp(0.9rem, 4vw, 1.75rem);
+    bottom: clamp(1.75rem, 6vw, 2.25rem);
+
+    width: clamp(7.25rem, 31vw, 10.5rem);
+    padding: 0.28rem;
+
+    background: rgb(255 255 255 / 10%);
+    border: 1px solid rgb(255 255 255 / 34%);
+    border-radius: 0.12rem;
+
+    box-shadow:
+        inset 1px 1px 0 rgb(255 255 255 / 28%),
+        inset -1px -1px 0 rgb(255 255 255 / 8%),
+        0 4px 12px rgb(30 18 14 / 14%);
+
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+.item-detail__hero-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 3px auto 1px;
+    border-radius: 0.12rem;
+}
+
+@media (max-width: 420px) {
+    .item-detail__hero-copy {
+        width: 54%;
+    }
+
+    .item-detail__hero h1 {
+        font-size: clamp(2.25rem, 10.5vw, 3rem);
+    }
+
+
+}
+
+.item-detail__hero-card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    top: -5px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background: rgb(255 255 255 / 9%);
+    border: 1px solid rgb(255 255 255 / 32%);
+    border-radius: 0.12rem;
+
+    box-shadow:
+        inset 1px 1px 0 rgb(255 255 255 / 26%),
+        inset -1px -1px 0 rgb(255 255 255 / 7%),
+        0 3px 8px rgb(30 18 14 / 12%);
+}
+/* Detail-page compact audition: suppress large duplicate image viewer. */
+.item-detail__media {
+    display: none;
+}
+
+
+/* =========================================================
+   Item review — decision bento + evidence drawer
+   ========================================================= */
+
+/* Primary decision tray */
+.price-decision {
+    position: relative;
+    z-index: 2;
+
+    gap: var(--space-3);
+    align-items: center;
+
+    margin: var(--space-3) var(--space-2) 0;
+    padding: var(--space-4);
+
+    background: rgb(132 97 72 / 13%);
+    border: 1px solid rgb(105 78 58 / 16%);
+    border-radius: 1.15rem;
+
+    box-shadow:
+        0 0.35rem 1rem rgb(74 55 41 / 7%),
+        inset 0 1px 0 rgb(255 255 255 / 55%);
+}
+
+.price-decision__recommendation {
+    padding-left: var(--space-1);
+}
+
+.price-decision__label {
+    margin-bottom: 0.15rem;
+    font-size: 0.8125rem;
+}
+
+.price-decision__price {
+    font-size: clamp(2.5rem, 10vw, 3.35rem);
+}
+
+/* Return APPROVE to a strong but conversational scale. */
+.price-decision__approve {
+    width: 78%;
+    min-height: 4.75rem;
+    margin: 0 auto;
+}
+
+.price-decision__approve-action {
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    line-height: 1;
+}
+
+
+/* Attached evidence drawer / flyout */
+.item-detail__section--pricing {
+    position: relative;
+    z-index: 1;
+
+    margin:
+        -0.65rem
+        var(--space-4)
+        0;
+
+    padding:
+        1.45rem
+        var(--space-3)
+        var(--space-3);
+
+    background: rgb(105 78 58 / 7%);
+    border: 1px solid rgb(105 78 58 / 13%);
+    border-top: 0;
+    border-radius: 0 0 1rem 1rem;
+
+    box-shadow:
+        inset 0 0.4rem 0.8rem rgb(74 55 41 / 5%);
+}
+
+.item-detail__section--pricing h2 {
+    margin: 0 0 var(--space-2);
+
+    font-size: 0.75rem;
+}
+
+
+/* Factors sit in a shallow recessed shelf. */
+.item-detail__section--pricing .pricing-factors {
+    gap: 0.4rem;
+
+    margin: 0;
+    padding: 0.5rem;
+
+    background: rgb(74 55 41 / 5%);
+    border-radius: 0.75rem;
+
+    box-shadow:
+        inset 0 2px 5px rgb(74 55 41 / 7%);
+}
+
+.item-detail__section--pricing .pricing-factor {
+    font-size: 0.78rem;
+    padding: 0.32rem 0.58rem;
+
+    box-shadow:
+        0 1px 2px rgb(74 55 41 / 5%);
+}
+
+
+/* Confidence + evidence share one subordinate footer line. */
+.pricing-evidence {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+
+    margin-top: var(--space-2);
+}
+
+.pricing-evidence .confidence-meter {
+    width: auto;
+    margin: 0;
+}
+
+.pricing-evidence .confidence-meter__heading {
+    margin: 0;
+}
+
+.pricing-evidence .confidence-meter__blocks {
+    display: none;
+}
+
+.pricing-evidence .confidence-meter__label,
+.pricing-evidence .item-detail__price-evidence {
+    font-size: 0.75rem;
+}
+
+.pricing-evidence .item-detail__price-evidence {
+    margin: 0;
+    text-align: right;
+}
+
+
+/* Card details resumes the normal page rhythm. */
+.item-detail__section--pricing + .item-detail__section {
+    margin-top: var(--space-4);
+}
+
+/* =========================================================
+   Item review — visual reference pass 2026-08-11
+   ========================================================= */
+
+/* --- Recommendation tray --- */
+
+.price-decision {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+    gap: clamp(0.8rem, 3vw, 1.2rem);
+
+    margin: var(--space-2) var(--space-2) 0;
+    padding: clamp(1.2rem, 5vw, 1.8rem) clamp(1rem, 4vw, 1.4rem);
+
+    background: rgb(132 97 72 / 92%);
+    border: 0;
+    border-radius: 1.1rem;
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 16%),
+        0 0.25rem 0.75rem rgb(74 55 41 / 7%);
+}
+
+.price-decision__recommendation {
+    padding-left: 0;
+}
+
+.price-decision__label {
+    color: rgb(255 250 241 / 80%);
+}
+
+.price-decision__price {
+    color: var(--color-ivory);
+    font-size: clamp(2.7rem, 11vw, 3.8rem);
+}
+
+.price-decision__approve {
+    width: 100%;
+    max-width: 16rem;
+    min-height: 5.1rem;
+    margin: 0;
+    justify-self: end;
+}
+
+
+/* --- Attached factor panel --- */
+
+.item-detail__section--pricing {
+    margin: 0 var(--space-2) var(--space-4);
+    padding: 1rem clamp(0.85rem, 4vw, 1.25rem) 1.15rem;
+
+    background: #eee2d2;
+    border: 0;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: none;
+}
+
+/* The JS now supplies the visible FACTORS / WHY THIS PRICE label. */
+.item-detail__section--pricing > h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* --- Count-aware factor layout --- */
+
+.item-detail__section--pricing .pricing-factors {
+    display: grid;
+    align-items: center;
+    gap: 0.6rem 0.7rem;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.pricing-factors__heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+
+    color: var(--color-oxblood);
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    line-height: 1;
+}
+
+.pricing-factors__heading strong {
+    font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+    font-weight: 700;
+}
+
+.pricing-factors__heading span {
+    margin-top: 0.12rem;
+    font-size: clamp(0.68rem, 2.8vw, 0.8rem);
+    font-weight: 400;
+}
+
+.item-detail__section--pricing .pricing-factor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 2.55rem;
+    padding: 0.38rem 0.55rem;
+
+    font-size: clamp(0.72rem, 2.8vw, 0.84rem);
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+
+    box-shadow: none;
+}
+
+
+/* 1 factor:
+   FACTORS | 1
+*/
+.pricing-factors--count-1 {
+    grid-template-columns: minmax(6.75rem, 0.9fr) minmax(0, 2fr);
+}
+
+
+/* 2 factors:
+   FACTORS | 1 | 2
+*/
+.pricing-factors--count-2 {
+    grid-template-columns: minmax(6.75rem, 0.9fr) repeat(2, minmax(0, 1fr));
+}
+
+
+/* 3 factors:
+   FACTORS | 1 | 2 | 3
+*/
+.pricing-factors--count-3 {
+    grid-template-columns: minmax(6.75rem, 0.9fr) repeat(3, minmax(0, 1fr));
+}
+
+
+/* 4 factors:
+   FACTORS | 1 | 2
+           | 3 | 4
+*/
+.pricing-factors--count-4 {
+    grid-template-columns: minmax(6.75rem, 0.9fr) repeat(2, minmax(0, 1fr));
+}
+
+.pricing-factors--count-4 .pricing-factors__heading {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+.pricing-factors--count-4 .pricing-factor:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.pricing-factors--count-4 .pricing-factor:nth-of-type(3) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.pricing-factors--count-4 .pricing-factor:nth-of-type(4) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.pricing-factors--count-4 .pricing-factor:nth-of-type(5) {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+
+/* 5 factors:
+   FACTORS | 1 | 2
+       3   | 4 | 5
+*/
+.pricing-factors--count-5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pricing-factors--count-5 .pricing-factors__heading {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.pricing-factors--count-5 .pricing-factor:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.pricing-factors--count-5 .pricing-factor:nth-of-type(3) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.pricing-factors--count-5 .pricing-factor:nth-of-type(4) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.pricing-factors--count-5 .pricing-factor:nth-of-type(5) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.pricing-factors--count-5 .pricing-factor:nth-of-type(6) {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+
+/* --- Confidence + evidence footer --- */
+
+.pricing-evidence {
+    display: grid;
+    grid-template-columns: minmax(9rem, 0.9fr) minmax(0, 1.25fr);
+    align-items: end;
+    gap: 1rem;
+
+    margin-top: 1rem;
+}
+
+.pricing-evidence .confidence-meter {
+    display: block;
+    width: 100%;
+    max-width: 11rem;
+    margin: 0;
+}
+
+.pricing-evidence .confidence-meter__heading {
+    display: block;
+    margin: 0 0 0.5rem;
+}
+
+.pricing-evidence .confidence-meter__label {
+    color: var(--color-oxblood);
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.pricing-evidence .confidence-meter__rating {
+    display: none;
+}
+
+.pricing-evidence .confidence-meter__blocks {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.38rem;
+    width: min(100%, 9.5rem);
+}
+
+.pricing-evidence .confidence-meter__block {
+    aspect-ratio: 1;
+    height: auto;
+    border-radius: 0;
+}
+
+.pricing-evidence .item-detail__price-evidence {
+    align-self: end;
+    margin: 0 0 0.1rem;
+
+    font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+    line-height: 1.35;
+    text-align: left;
+}
+
+
+/* --- Very narrow phone safeguard --- */
+
+@media (max-width: 360px) {
+    .price-decision {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        padding-inline: 0.85rem;
+    }
+
+    .pricing-factors--count-3 {
+        grid-template-columns: minmax(5.75rem, 0.85fr) repeat(3, minmax(0, 1fr));
+        gap-inline: 0.45rem;
+    }
+
+    .pricing-evidence {
+        grid-template-columns: minmax(8rem, 0.9fr) minmax(0, 1.1fr);
+        gap: 0.65rem;
+    }
+}
+
+/* =========================================================
+   Item review — luxury typography + decision hierarchy
+   ========================================================= */
+
+/* Give the leather desktop and decision UI room to breathe. */
+.price-decision {
+    margin:
+        clamp(0.85rem, 3.5vw, 1.1rem)
+        0.5rem
+        0;
+
+    padding:
+        clamp(1.15rem, 4.5vw, 1.6rem)
+        clamp(1rem, 4vw, 1.35rem);
+
+    background: #4d372f;
+    border-radius: 1.05rem;
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 9%),
+        0 0.25rem 0.7rem rgb(50 32 26 / 10%);
+}
+
+
+/* --- Recommendation typography --- */
+
+.price-decision__recommendation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.price-decision__label {
+    margin-bottom: 0.22rem;
+
+    color: rgb(248 239 222 / 76%);
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.92rem, 3.7vw, 1.05rem);
+    font-weight: 400;
+    letter-spacing: 0.015em;
+    line-height: 1;
+}
+
+.price-decision__price {
+    display: inline-flex;
+    align-items: flex-start;
+
+    width: fit-content;
+
+    color: var(--color-ivory);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    line-height: 0.82;
+    white-space: nowrap;
+}
+
+.price-decision__currency {
+    position: relative;
+    top: 0.28em;
+
+    margin-right: 0.08em;
+
+    color: rgb(248 239 222 / 54%);
+
+    font-size: 0.42em;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.price-decision__dollars {
+    font-size: clamp(2.75rem, 11vw, 3.65rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+}
+
+.price-decision__cents {
+    position: relative;
+    top: -0.08em;
+
+    margin-left: 0.14em;
+
+    color: rgb(248 239 222 / 82%);
+
+    font-size: clamp(1rem, 4.1vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1;
+    vertical-align: baseline;
+}
+
+
+/* APPROVE remains the operational hero. */
+
+.price-decision__approve {
+    background: var(--color-oxblood);
+    border-color: rgb(255 255 255 / 13%);
+
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 9%),
+        0 0.22rem 0.45rem rgb(25 10 10 / 18%);
+}
+
+.price-decision__approve-action {
+    color: var(--color-ivory);
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+}
+
+.price-decision__approve-detail {
+    color: rgb(248 239 222 / 82%);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+/* --- Attached explanation surface --- */
+
+.item-detail__section--pricing {
+    margin:
+        0
+        0.5rem
+        var(--space-4);
+
+    padding:
+        1rem
+        clamp(0.75rem, 3.4vw, 1.1rem)
+        1.1rem;
+
+    background: #eee2d2;
+    border-radius: 0 0 0.95rem 0.95rem;
+}
+
+
+/* --- Factor hierarchy --- */
+
+.pricing-factors__heading {
+    color: #4d372f;
+}
+
+.pricing-factors__heading strong {
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.88rem, 3.6vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    line-height: 1;
+}
+
+.pricing-factors__heading span {
+    margin-top: 0.18rem;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.62rem, 2.6vw, 0.74rem);
+    font-weight: 400;
+    letter-spacing: 0.055em;
+    line-height: 1;
+}
+
+
+/*
+   Factor pills:
+   - uppercase
+   - label left
+   - indicator gets a fixed rail at right
+   - no wrapping
+*/
+
+.item-detail__section--pricing .pricing-factor {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1rem;
+    align-items: center;
+    column-gap: 0.3rem;
+
+    min-height: 2.45rem;
+    padding:
+        0.4rem
+        0.6rem
+        0.4rem
+        0.72rem;
+
+    color: #4d372f;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: clamp(0.64rem, 2.65vw, 0.78rem);
+    font-weight: 600;
+    letter-spacing: 0.035em;
+    line-height: 1;
+
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+
+/*
+   Keep semantic color primarily in the surface/border,
+   rather than coloring the typography itself.
+*/
+
+.item-detail__section--pricing .pricing-factor--up {
+    color: #3f4c3b;
+}
+
+.item-detail__section--pricing .pricing-factor--neutral {
+    color: #4d372f;
+}
+
+.item-detail__section--pricing .pricing-factor--down {
+    color: #653f39;
+}
+
+
+/*
+   The existing final span is our indicator rail.
+   Turn the font arrow into a restrained elevator-style signal.
+*/
+
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1rem;
+    min-width: 1rem;
+
+    font-family: Arial, sans-serif;
+    font-size: 0;
+    line-height: 1;
+}
+
+
+/* UP chevron */
+.item-detail__section--pricing .pricing-factor--up > span:last-child::before {
+    content: "";
+
+    width: 0.42rem;
+    height: 0.42rem;
+
+    border-top: 1.5px solid currentColor;
+    border-left: 1.5px solid currentColor;
+
+    transform: translateY(0.1rem) rotate(45deg);
+}
+
+
+/* STEADY bar */
+.item-detail__section--pricing .pricing-factor--neutral > span:last-child::before {
+    content: "";
+
+    width: 0.48rem;
+    height: 1.5px;
+
+    background: currentColor;
+}
+
+
+/* DOWN chevron */
+.item-detail__section--pricing .pricing-factor--down > span:last-child::before {
+    content: "";
+
+    width: 0.42rem;
+    height: 0.42rem;
+
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+
+    transform: translateY(-0.1rem) rotate(45deg);
+}
+
+
+/* Confidence visualization intentionally remains parked. */
+
+.pricing-evidence .confidence-meter__blocks {
+    display: none;
+}
+
+.pricing-evidence {
+    align-items: center;
+}
+
+.pricing-evidence .confidence-meter__heading {
+    margin-bottom: 0;
+}
+
+
+/* Protect MARKET ACTIVITY from wrapping on narrow phones. */
+
+@media (max-width: 380px) {
+    .item-detail__section--pricing .pricing-factor {
+        padding-inline: 0.55rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.02em;
+    }
+
+    .pricing-factors--count-4 {
+        grid-template-columns:
+            minmax(6.25rem, 0.9fr)
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================================
+   TEMPORARY — Bento Font Pageant
+   Remove after selecting the winning price face.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Cormorant+Garamond:wght@400&family=EB+Garamond:wght@400&display=swap');
+
+.price-decision-audition {
+    margin-top: clamp(0.9rem, 3.5vw, 1.15rem);
+}
+
+.price-decision-audition .price-decision {
+    position: relative;
+
+    margin:
+        0
+        0.35rem
+        0.7rem;
+
+    padding-top: clamp(1.35rem, 5vw, 1.65rem);
+}
+
+.price-decision__audition-label {
+    position: absolute;
+    top: 0.38rem;
+    left: 1rem;
+
+    color: rgb(248 239 222 / 48%);
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1;
+}
+
+/* Only the PRICE changes face. Everything else stays controlled. */
+
+.price-decision--eb-garamond .price-decision__price {
+    font-family: "EB Garamond", Garamond, Georgia, serif;
+}
+
+.price-decision--cormorant .price-decision__price {
+    font-family: "Cormorant Garamond", Garamond, Georgia, serif;
+}
+
+.price-decision--bodoni .price-decision__price {
+    font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+}
+
+/*
+   Stop Mickey Mouse:
+   satellites remain subordinate and sit INSIDE
+   the visual height established by the dollars.
+*/
+
+.price-decision-audition .price-decision__currency {
+    top: 0.48em;
+
+    margin-right: 0.1em;
+
+    font-size: 0.34em;
+    font-weight: 400;
+    opacity: 0.72;
+}
+
+.price-decision-audition .price-decision__cents {
+    top: 0.08em;
+
+    margin-left: 0.1em;
+
+    font-size: 0.34em;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   Flyout attachment + wider working area
+   ========================================================= */
+
+.price-decision-audition + .item-detail__section--pricing,
+.item-detail__section--pricing {
+    position: relative;
+
+    margin:
+        -0.72rem
+        0.35rem
+        var(--space-4);
+
+    padding:
+        1.05rem
+        clamp(0.65rem, 2.8vw, 0.9rem)
+        1.1rem;
+
+    border-radius: 0 0 0.95rem 0.95rem;
+}
+
+
+/* =========================================================
+   Factor instruments — fixed symbol rail + label rail
+   ========================================================= */
+
+.item-detail__section--pricing .pricing-factor {
+    display: grid;
+    grid-template-columns: 0.8rem minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0.38rem;
+
+    min-width: 0;
+
+    padding:
+        0.4rem
+        0.48rem;
+
+    text-align: left;
+    white-space: nowrap;
+}
+
+/*
+   Existing HTML puts the indicator AFTER the text.
+   Grid lets us visually move that final span into column 1
+   without changing the markup.
+*/
+
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    grid-column: 1;
+    grid-row: 1;
+
+    width: 0.8rem;
+    min-width: 0.8rem;
+
+    font-size: 0;
+}
+
+.item-detail__section--pricing .pricing-factor {
+    grid-auto-flow: dense;
+}
+
+/* Remove the previous drawn chevrons/bars. */
+
+.item-detail__section--pricing .pricing-factor > span:last-child::before {
+    width: auto;
+    height: auto;
+
+    background: none;
+    border: 0;
+
+    transform: none;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* + increase */
+.item-detail__section--pricing .pricing-factor--up > span:last-child::before {
+    content: "+";
+}
+
+/* = stable */
+.item-detail__section--pricing .pricing-factor--neutral > span:last-child::before {
+    content: "=";
+}
+
+/* − decrease */
+.item-detail__section--pricing .pricing-factor--down > span:last-child::before {
+    content: "−";
+}
+
+
+/*
+   Give the two lozenge columns more acreage.
+   MARKET ACTIVITY establishes our practical minimum.
+*/
+
+.pricing-factors--count-4 {
+    grid-template-columns:
+        minmax(6.6rem, 0.82fr)
+        repeat(2, minmax(8.25rem, 1fr));
+
+    column-gap: 0.55rem;
+}
+
+
+/* At genuinely narrow widths, preserve two lozenge columns
+   but squeeze the heading before allowing label wrapping. */
+
+@media (max-width: 390px) {
+    .pricing-factors--count-4 {
+        grid-template-columns:
+            minmax(5.8rem, 0.72fr)
+            repeat(2, minmax(7.35rem, 1fr));
+
+        column-gap: 0.4rem;
+    }
+
+    .item-detail__section--pricing .pricing-factor {
+        padding-inline: 0.38rem;
+
+        font-size: 0.6rem;
+        letter-spacing: 0.015em;
+    }
+}
+
+/* =========================================================
+   Final pre-commit audition — acreage + flyout attachment
+   ========================================================= */
+
+/* Bentos stretch their legs. */
+.price-decision-audition .price-decision {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+}
+
+
+/*
+   Flyout tucks physically beneath the final bento.
+   Negative margin deliberately overlaps the rounded bento edge.
+*/
+.price-decision-audition + .item-detail__section--pricing,
+.item-detail__section--pricing {
+    margin:
+        -0.82rem
+        0.2rem
+        var(--space-4);
+
+    padding:
+        1.25rem
+        clamp(0.7rem, 3vw, 0.95rem)
+        1.15rem;
+
+    border-radius: 0 0 0.95rem 0.95rem;
+}
+
+
+/* FACTORS becomes a full-width heading above the instruments. */
+.item-detail__section--pricing .pricing-factors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.62rem 0.72rem;
+}
+
+.pricing-factors__heading,
+.pricing-factors--count-4 .pricing-factors__heading,
+.pricing-factors--count-5 .pricing-factors__heading {
+    grid-column: 1 / -1;
+    grid-row: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.55rem;
+
+    margin-bottom: 0.05rem;
+}
+
+.pricing-factors__heading span {
+    margin-top: 0;
+}
+
+
+/*
+   Undo the old count-specific coordinates.
+   Once the heading owns its own row, lozenges simply flow
+   into two generous equal columns.
+*/
+.pricing-factors--count-4 .pricing-factor:nth-of-type(n),
+.pricing-factors--count-5 .pricing-factor:nth-of-type(n) {
+    grid-column: auto;
+    grid-row: auto;
+}
+
+
+/*
+   Airy instrument treatment:
+   fixed symbol rail + consistent label origin.
+*/
+.item-detail__section--pricing .pricing-factor {
+    grid-template-columns: 0.9rem minmax(0, 1fr);
+    column-gap: 0.48rem;
+
+    min-height: 2.65rem;
+
+    padding:
+        0.5rem
+        0.72rem;
+
+    font-size: clamp(0.66rem, 2.7vw, 0.78rem);
+    letter-spacing: 0.035em;
+
+    overflow: hidden;
+}
+
+.item-detail__section--pricing .pricing-factor > span:last-child {
+    width: 0.9rem;
+    min-width: 0.9rem;
+}
+
+
+/* Keep the actual label comfortably clear of its boundary. */
+.item-detail__section--pricing .pricing-factor {
+    text-overflow: clip;
+}
+
+
+/*
+   Previous narrow-screen count rules are no longer needed;
+   preserve the same two-column composition down to 350px.
+*/
+@media (max-width: 390px) {
+    .pricing-factors--count-4,
+    .pricing-factors--count-5 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 0.5rem;
+    }
+
+    .item-detail__section--pricing .pricing-factor {
+        padding-inline: 0.55rem;
+        font-size: 0.61rem;
+        letter-spacing: 0.015em;
+    }
 }

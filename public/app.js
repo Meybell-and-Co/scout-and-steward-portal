@@ -444,6 +444,43 @@ function renderItemDetail(item) {
                 ‹ Inventory
             </a>
 
+            <header class="item-detail__header item-detail__hero">
+    <div class="item-detail__hero-copy">
+        <h1>
+            ${escapeHtml(getItemTitle(item))}
+        </h1>
+
+        <div class="item-detail__hero-rule" aria-hidden="true"></div>
+
+        <p class="item-detail__identity">
+            ${escapeHtml(getItemIdentity(item))}
+        </p>
+
+        ${item.team
+            ? `
+                <p class="item-detail__team">
+                    ${escapeHtml(item.team)}
+                </p>
+            `
+            : ""
+        }
+    </div>
+
+    ${item.image_front_url
+        ? `
+            <div class="item-detail__hero-card" aria-hidden="true">
+                <img
+                    src="${escapeAttribute(item.image_front_url)}"
+                    alt=""
+                >
+            </div>
+        `
+        : ""
+    }
+</header>
+
+
+            ${renderPrimaryPriceDecision(item)}
             <div class="item-detail__media">
                 <img
                     class="item-detail__image"
@@ -474,30 +511,18 @@ function renderItemDetail(item) {
                 </div>
             </div>
 
-            <header class="item-detail__header">
-                <p class="page-heading__eyebrow">
-                    ${escapeHtml(item.classification ?? "Inventory item")}
-                </p>
-
-                <h1>
-                    ${escapeHtml(getItemTitle(item))}
-                </h1>
-
-                <p class="item-detail__identity">
-                    ${escapeHtml(getItemIdentity(item))}
-                </p>
-
-                ${item.team
-            ? `
-                            <p class="item-detail__team">
-                                ${escapeHtml(item.team)}
-                            </p>
-                        `
-            : ""
-        }
-            </header>
-
             <section
+            class="item-detail__section item-detail__section--pricing"
+            aria-labelledby="pricing-heading"
+        >
+            <h2 id="pricing-heading">
+                Why this price?
+            </h2>
+
+            ${renderPriceRecommendation(item)}
+        </section>
+
+<section
                 class="item-detail__section"
                 aria-labelledby="card-details-heading"
             >
@@ -513,50 +538,6 @@ function renderItemDetail(item) {
                     ${renderMetadataRow("Classification", item.classification)}
                     ${renderMetadataRow("Item ID", item.item_id)}
                 </dl>
-            </section>
-
-            <section
-                class="item-detail__section"
-                aria-labelledby="pricing-heading"
-            >
-                <h2 id="pricing-heading">
-                    Pricing
-                </h2>
-            ${renderPriceRecommendation(item)}
-
-                <p class="item-detail__label">
-    ${item.price_approval ? "Approved price" : "Recommended price"}
-
-<p class="item-detail__approval-status ${item.ebay_listing
-            ? "item-detail__approval-status--approved"
-            : item.price_approval
-                ? "item-detail__approval-status--approved"
-                : "item-detail__approval-status--pending"
-        }">
-    ${item.recommended_price_cents == null
-            ? "Pricing recommendation pending"
-            : item.ebay_listing
-                ? "Listed on eBay"
-                : item.price_approval
-                    ? "Price approved"
-                    : "Awaiting price approval"
-        }
-</p>
-
-${item.recommended_price_cents != null &&
-            item.price_approval &&
-            !item.ebay_listing
-            ? `
-    <button
-        type="button"
-        class="item-detail__approve-button"
-        data-action="mark-listed"
-    >
-        Mark as listed on eBay
-    </button>
-    `
-            : ""
-        }
             </section>
 
         </section>
@@ -642,6 +623,78 @@ async function wireMarkListedOnEbay(item) {
     });
 }
 
+function renderPrimaryPriceDecision(item) {
+    const priceCents = getRecommendedPriceCents(item);
+
+    if (priceCents === null) {
+        return "";
+    }
+
+    const dollars = Math.floor(priceCents / 100);
+    const cents = String(priceCents % 100).padStart(2, "0");
+
+    const renderAuditionPrice = (variant, label, auditionCents) => {
+        const auditionDollars = Math.floor(auditionCents / 100);
+        const auditionRemainder = String(auditionCents % 100).padStart(2, "0");
+
+        return `
+        <section
+            class="price-decision price-decision--${variant}"
+            aria-label="Price recommendation"
+        >
+            <span class="price-decision__audition-label" aria-hidden="true">
+                ${label}
+            </span>
+
+            <div class="price-decision__recommendation">
+                <span class="price-decision__label">
+                    Recommended at
+                </span>
+
+                <span
+                    class="price-decision__price"
+                    aria-label="${formatPrice(auditionCents)}"
+                >
+                    <span class="price-decision__currency" aria-hidden="true">$</span>
+                    <span class="price-decision__dollars" aria-hidden="true">${auditionDollars}</span>
+                    <sup class="price-decision__cents" aria-hidden="true">${auditionRemainder}</sup>
+                </span>
+            </div>
+
+            ${!item.price_approval
+                ? `
+                    <button
+                        type="button"
+                        class="price-decision__approve"
+                        data-action="approve-price"
+                    >
+                        <span class="price-decision__approve-action">
+                            APPROVE
+                        </span>
+
+                        <span class="price-decision__approve-detail">
+                            This will list at ${formatPrice(priceCents)}
+                        </span>
+                    </button>
+                `
+                : `
+                    <div class="price-decision__approved">
+                        Price approved
+                    </div>
+                `
+            }
+        </section>
+        `;
+    };
+
+    return `
+        <div class="price-decision-audition">
+            ${renderAuditionPrice("eb-garamond", "A · EB GARAMOND", 12345)}
+            ${renderAuditionPrice("cormorant", "B · CORMORANT GARAMOND", 6789)}
+            ${renderAuditionPrice("bodoni", "C · BODONI MODA", 10922)}
+        </div>
+    `;
+}
 function renderPriceRecommendation(item) {
     const recommendation = item.price_recommendation;
     const priceCents = getRecommendedPriceCents(item);
@@ -654,36 +707,94 @@ function renderPriceRecommendation(item) {
         `;
     }
 
-    const confidence = recommendation?.confidence
-        ? `${recommendation.confidence.charAt(0).toUpperCase()}${recommendation.confidence.slice(1)} confidence`
-        : "";
-
     const evidenceWindow = recommendation?.evidence_window_days
-        ? `${recommendation.evidence_window_days}-day evidence window`
+        ? `Based on ${recommendation.evidence_window_days} days of market evidence.`
         : "";
-
-    const details = [confidence, evidenceWindow]
-        .filter(Boolean)
-        .join(" · ");
 
     return `
-        <p class="item-detail__price">
-            ${formatPrice(priceCents)}
-        </p>
-
         ${renderPricingFactors(recommendation)}
 
-    ${details
-            ? `
-                <p class="item-detail__price-evidence">
-                    ${escapeHtml(details)}
-                </p>
-            `
-            : ""
-        }
+        <div class="pricing-evidence">
+            ${renderConfidenceMeter(recommendation?.confidence)}
+
+            ${evidenceWindow
+                ? `
+                    <p class="item-detail__price-evidence">
+                        ${escapeHtml(evidenceWindow)}
+                    </p>
+                `
+                : ""
+            }
+        </div>
     `;
 }
 
+function renderConfidenceMeter(confidence) {
+    if (typeof confidence === "string") {
+        const label =
+            confidence.charAt(0).toUpperCase() +
+            confidence.slice(1);
+
+        return `
+            <div class="confidence-meter confidence-meter--legacy">
+                <span class="confidence-meter__label">
+                    ${escapeHtml(label)} confidence
+                </span>
+            </div>
+        `;
+    }
+
+    const rating = Number(confidence?.rating);
+
+    if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+        return "";
+    }
+
+    const label = confidence?.label ?? "Confidence";
+
+    const blocks = Array.from(
+        { length: 5 },
+        (_, index) => `
+            <span
+                class="confidence-meter__block ${index < rating
+                ? "confidence-meter__block--filled"
+                : ""
+            }"
+                aria-hidden="true"
+            ></span>
+        `
+    ).join("");
+
+    return `
+        <div
+            class="confidence-meter confidence-meter--level-${rating}"
+            aria-label="${escapeAttribute(`${label} confidence, ${rating} of 5`)}"
+        >
+            <div class="confidence-meter__heading">
+                <span class="confidence-meter__label">
+                    ${escapeHtml(label)} confidence
+                </span>
+
+                <span class="confidence-meter__rating">
+                    ${rating}/5
+                </span>
+            </div>
+
+            <div class="confidence-meter__blocks">
+                ${blocks}
+            </div>
+
+            ${rating <= 2
+            ? `
+                    <p class="confidence-meter__guidance">
+                        Collector input recommended
+                    </p>
+                `
+            : ""
+        }
+        </div>
+    `;
+}
 
 function renderPricingFactors(recommendation) {
     if (!recommendation?.factors_json) {
@@ -730,23 +841,45 @@ function renderPricingFactors(recommendation) {
                 direction === "down" ? "↓" :
                 "→";
 
-            return `
-                <span class="pricing-factor pricing-factor--${direction}">
-                    ${escapeHtml(label)}
-                    <span aria-hidden="true">${arrow}</span>
-                </span>
-            `;
+            return {
+                direction,
+                html: `
+                    <span class="pricing-factor pricing-factor--${direction}">
+                        ${escapeHtml(label)}
+                        <span aria-hidden="true">${arrow}</span>
+                    </span>
+                `
+            };
         })
         .filter(Boolean)
-        .join("");
+        .sort((a, b) => {
+            const impactRank = {
+                up: 0,
+                neutral: 1,
+                down: 2
+            };
 
-    if (!lozenges) {
+            return impactRank[a.direction] - impactRank[b.direction];
+        });
+
+    if (lozenges.length === 0) {
         return "";
     }
 
+    const factorCount = Math.min(lozenges.length, 5);
+
     return `
-        <div class="pricing-factors" aria-label="Pricing factors">
-            ${lozenges}
+        <div
+            class="pricing-factors pricing-factors--count-${factorCount}"
+            data-factor-count="${factorCount}"
+            aria-label="Pricing factors"
+        >
+            <div class="pricing-factors__heading">
+                <strong>FACTORS</strong>
+                <span>WHY THIS PRICE?</span>
+            </div>
+
+            ${lozenges.map((lozenge) => lozenge.html).join("")}
         </div>
     `;
 }

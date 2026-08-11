@@ -2,6 +2,7 @@ import { BUSINESS_RULES } from "../../config/business-rules.js";
 import { calculateMarketBaseline } from "./baseline.js";
 import { assessMarketCompetition } from "./competition.js";
 import { resolvePricingFactors } from "./factors.js";
+import { calculateMarketConfidence } from "./confidence.js";
 
 /**
  * Builds a market recommendation from available comparable evidence.
@@ -47,9 +48,15 @@ export function buildMarketRecommendation(
             competition
         });
 
+        const confidence = calculateMarketConfidence({
+            ...baseline,
+            tier_code: tierCode
+        });
+
         return {
             tier_code: tierCode,
             evidence_quality: baseline.price_agreement,
+            confidence,
             evidence_sufficient: true,
         evidence_window_days: baseline.observation_window_days,
             market_baseline_cents: baseline.baseline_cents,
@@ -92,4 +99,3 @@ export function buildMarketRecommendation(
         active_to_sold_ratio: null,
     };
 }
-

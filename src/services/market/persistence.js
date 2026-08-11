@@ -63,7 +63,7 @@ export async function persistPriceRecommendation(
             recommendationId,
             itemId,
             recommendation.recommended_price_cents,
-            recommendation.market.evidence_quality,
+            JSON.stringify(recommendation.market.confidence),
             recommendation.market.evidence_window_days,
             JSON.stringify(persistedFactors),
             JSON.stringify(persistedEvidence)
