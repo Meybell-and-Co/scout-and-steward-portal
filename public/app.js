@@ -671,7 +671,9 @@ function renderPriceRecommendation(item) {
             ${formatPrice(priceCents)}
         </p>
 
-        ${details
+        ${renderPricingFactors(recommendation)}
+
+    ${details
             ? `
                 <p class="item-detail__price-evidence">
                     ${escapeHtml(details)}
@@ -683,6 +685,71 @@ function renderPriceRecommendation(item) {
 }
 
 
+function renderPricingFactors(recommendation) {
+    if (!recommendation?.factors_json) {
+        return "";
+    }
+
+    let factors;
+
+    try {
+        factors =
+            typeof recommendation.factors_json === "string"
+                ? JSON.parse(recommendation.factors_json)
+                : recommendation.factors_json;
+    } catch {
+        return "";
+    }
+
+    const factorLabels = {
+        condition: "Condition",
+        player_significance: "Player",
+        scarcity: "Age & Scarcity",
+        market_activity: "Market Activity"
+    };
+
+    const lozenges = Object.entries(factorLabels)
+        .map(([code, label]) => {
+            const rawFactor = factors?.market?.[code] ?? factors?.[code];
+            const score =
+                typeof rawFactor === "number"
+                    ? rawFactor
+                    : rawFactor?.score;
+
+            if (!Number.isFinite(score)) {
+                return "";
+            }
+
+            const direction =
+                score > 0 ? "up" :
+                score < 0 ? "down" :
+                "neutral";
+
+            const arrow =
+                direction === "up" ? "↑" :
+                direction === "down" ? "↓" :
+                "→";
+
+            return `
+                <span class="pricing-factor pricing-factor--${direction}">
+                    ${escapeHtml(label)}
+                    <span aria-hidden="true">${arrow}</span>
+                </span>
+            `;
+        })
+        .filter(Boolean)
+        .join("");
+
+    if (!lozenges) {
+        return "";
+    }
+
+    return `
+        <div class="pricing-factors" aria-label="Pricing factors">
+            ${lozenges}
+        </div>
+    `;
+}
 function renderMetadataRow(label, value) {
     if (
         value === null ||

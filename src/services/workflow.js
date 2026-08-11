@@ -163,7 +163,7 @@ export async function handleGetApprovedItems(env) {
             SELECT
                 s.item_id,
                 s.snapshot_id,
-                s.recommended_price_cents AS approved_price_cents,
+                pr.recommended_price_cents AS approved_price_cents,
                 e.event_id,
                 e.actor_id,
                 e.actor_role,
@@ -172,10 +172,25 @@ export async function handleGetApprovedItems(env) {
             FROM inventory_snapshots AS s
             INNER JOIN publications AS p
                 ON p.publication_id = s.publication_id
+            INNER JOIN price_recommendations AS pr
+                ON pr.item_id = s.item_id
+                AND pr.recommendation_id = (
+                    SELECT latest_pr.recommendation_id
+                    FROM price_recommendations AS latest_pr
+                    WHERE latest_pr.item_id = s.item_id
+                    ORDER BY
+                        latest_pr.created_at DESC,
+                        latest_pr.recommendation_id DESC
+                    LIMIT 1
+                )
             INNER JOIN workflow_events AS e
                 ON e.snapshot_id = s.snapshot_id
                 AND e.item_id = s.item_id
                 AND e.event_type = 'price_approved'
+                AND json_extract(
+                    e.payload_json,
+                    '$.recommendation_id'
+                ) = pr.recommendation_id
             WHERE p.status = 'completed'
               AND NOT EXISTS (
                   SELECT 1
@@ -191,13 +206,6 @@ export async function handleGetApprovedItems(env) {
                             AND newer_s.snapshot_id > s.snapshot_id
                         )
                     )
-              )
-              AND e.created_at = (
-                  SELECT MAX(newer_e.created_at)
-                  FROM workflow_events AS newer_e
-                  WHERE newer_e.snapshot_id = s.snapshot_id
-                    AND newer_e.item_id = s.item_id
-                    AND newer_e.event_type = 'price_approved'
               )
             ORDER BY e.created_at ASC
         `).all();
@@ -291,11 +299,11 @@ export async function handleMarkListedOnEbay(env, itemId) {
             ORDER BY created_at DESC
             LIMIT 1
         `)
-        .bind(
-            snapshot.snapshot_id,
-            snapshot.item_id,
-            recommendation.recommendation_id
-        )
+            .bind(
+                snapshot.snapshot_id,
+                snapshot.item_id,
+                recommendation.recommendation_id
+            )
             .first();
 
         if (!approval) {

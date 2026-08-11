@@ -155,6 +155,7 @@ export function calculateMarketBaseline(
         baseline_cents: baselineCents,
         confidence: "insufficient",
         sold_observed: soldComps.length,
+        eligible_sold_count: currentSoldComps.length,
         sold_used: soldPrices.length,
         active_observed: activeComps.length,
         observation_window_days: observationWindowDays,

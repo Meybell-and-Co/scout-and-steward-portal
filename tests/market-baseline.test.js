@@ -471,3 +471,44 @@ test("uses total buyer cost including shipping when calculating the market basel
     assert.equal(result.baseline_cents, 1500);
     assert.equal(result.recommended_price_cents, 1500);
 });
+
+test("reports eligible sold evidence within the selected observation window", () => {
+    const now = new Date("2026-08-10T12:00:00Z");
+
+    const comps = [
+        {
+            comp_tier: "same_issue",
+            market_status: "sold",
+            price_cents: 2000,
+            item_origin_date: "2026-08-01T12:00:00Z"
+        },
+        {
+            comp_tier: "same_issue",
+            market_status: "sold",
+            price_cents: 2100,
+            item_origin_date: "2026-07-15T12:00:00Z"
+        },
+        {
+            comp_tier: "same_issue",
+            market_status: "sold",
+            price_cents: 2200,
+            item_origin_date: "2026-06-15T12:00:00Z"
+        },
+        {
+            comp_tier: "same_issue",
+            market_status: "sold",
+            price_cents: 2300,
+            item_origin_date: "2026-03-01T12:00:00Z"
+        }
+    ];
+
+    const result = calculateMarketBaseline(
+        comps,
+        now,
+        "same_issue"
+    );
+
+    assert.equal(result.observation_window_days, 90);
+    assert.equal(result.eligible_sold_count, 3);
+    assert.equal(result.sold_used, 3);
+});

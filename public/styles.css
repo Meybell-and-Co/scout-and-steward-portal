@@ -916,3 +916,53 @@ textarea {
         justify-content: space-between;
     }
 }
+
+/* Pricing factor lozenges
+--------------------------------------------------------- */
+
+.pricing-factors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.85rem 0 0.65rem;
+}
+
+.pricing-factor {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* Factor is pushing the recommended price higher */
+.pricing-factor--up {
+    color: #285238;
+    background: #e3eee6;
+    border-color: #9bb7a3;
+}
+
+/* Factor is pushing the recommended price lower */
+.pricing-factor--down {
+    color: #742f32;
+    background: #f2dfdd;
+    border-color: #c89b98;
+}
+
+/* Factor has little or no effect on recommended price */
+.pricing-factor--neutral {
+    color: #4a3729;
+    background: #eee4d7;
+    border-color: #bba995;
+}
+
+.pricing-factor span[aria-hidden="true"] {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+}
