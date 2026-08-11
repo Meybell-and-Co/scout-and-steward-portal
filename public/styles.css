@@ -3214,3 +3214,394 @@ textarea {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+/* =========================================================
+   PRICE BENTO — production geometry cleanup
+   Shared parent is now the sole width authority.
+   ========================================================= */
+
+/*
+ * The parent follows its assigned item-detail grid track.
+ * No viewport overhang / negative-margin arithmetic.
+ */
+.price-bento {
+    width: 100%;
+    max-width: none;
+    margin: var(--space-3) 0 var(--space-4);
+
+    overflow: hidden;
+
+    background: #eee2d2;
+    border: 1px solid rgb(77 55 47 / 22%);
+    border-radius: 1.05rem;
+}
+
+
+/*
+ * Compartments fill the shell exactly.
+ * Their parent owns the outside stroke and corners.
+ */
+.price-bento > .price-decision,
+.price-bento > .item-detail__section--pricing {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+
+    border-left: 0;
+    border-right: 0;
+}
+
+
+/*
+ * Brown decision chamber.
+ * Restore its internal breathing room without independent
+ * outside geometry.
+ */
+.price-bento > .price-decision {
+    padding:
+        clamp(1.15rem, 4.5vw, 1.55rem)
+        clamp(1rem, 4vw, 1.3rem);
+
+    border: 0;
+    border-radius: 0;
+}
+
+
+/*
+ * Cream evidence chamber.
+ * Restore the padding we accidentally zeroed when the
+ * shared parent was introduced.
+ */
+.price-bento > .item-detail__section--pricing {
+    padding:
+        1.2rem
+        clamp(0.7rem, 3vw, 0.95rem)
+        1.15rem;
+
+    background: #eee2d2;
+
+    border: 0;
+    border-top: 1px solid rgb(77 55 47 / 24%);
+    border-radius: 0;
+}
+
+
+/*
+ * Internal content follows its compartment.
+ * Kill legacy over-width rules now that a real parent exists.
+ */
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+}
+
+
+/*
+ * Keep the decision architecture stable:
+ * recommendation left, actions right.
+ */
+.price-bento .price-decision {
+    grid-template-columns:
+        minmax(10.75rem, 0.95fr)
+        minmax(12rem, 1.05fr);
+
+    column-gap: 1.15rem;
+}
+
+
+/*
+ * Recommendation stays firmly inside its chamber instead
+ * of wandering toward the Bento wall.
+ */
+.price-bento .price-decision__recommendation {
+    width: 100%;
+    min-width: 0;
+
+    padding-left: 0.4rem;
+    padding-right: 1.35rem;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*
+ * Narrow phones need a less demanding internal grid.
+ */
+@media (max-width: 420px) {
+    .price-bento > .price-decision {
+        grid-template-columns:
+            minmax(8rem, 0.9fr)
+            minmax(10rem, 1.1fr);
+
+        column-gap: 0.75rem;
+        padding-inline: 0.85rem;
+    }
+
+    .price-bento .price-decision__recommendation {
+        padding-left: 0;
+        padding-right: 0.75rem;
+    }
+}
+
+/* =========================================================
+   PRICE BENTO — production geometry cleanup
+   Shared parent is now the sole width authority.
+   ========================================================= */
+
+/*
+ * The parent follows its assigned item-detail grid track.
+ * No viewport overhang / negative-margin arithmetic.
+ */
+.price-bento {
+    width: 100%;
+    max-width: none;
+    margin: var(--space-3) 0 var(--space-4);
+
+    overflow: hidden;
+
+    background: #eee2d2;
+    border: 1px solid rgb(77 55 47 / 22%);
+    border-radius: 1.05rem;
+}
+
+
+/*
+ * Compartments fill the shell exactly.
+ * Their parent owns the outside stroke and corners.
+ */
+.price-bento > .price-decision,
+.price-bento > .item-detail__section--pricing {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+
+    border-left: 0;
+    border-right: 0;
+}
+
+
+/*
+ * Brown decision chamber.
+ * Restore its internal breathing room without independent
+ * outside geometry.
+ */
+.price-bento > .price-decision {
+    padding:
+        clamp(1.15rem, 4.5vw, 1.55rem)
+        clamp(1rem, 4vw, 1.3rem);
+
+    border: 0;
+    border-radius: 0;
+}
+
+
+/*
+ * Cream evidence chamber.
+ * Restore the padding we accidentally zeroed when the
+ * shared parent was introduced.
+ */
+.price-bento > .item-detail__section--pricing {
+    padding:
+        1.2rem
+        clamp(0.7rem, 3vw, 0.95rem)
+        1.15rem;
+
+    background: #eee2d2;
+
+    border: 0;
+    border-top: 1px solid rgb(77 55 47 / 24%);
+    border-radius: 0;
+}
+
+
+/*
+ * Internal content follows its compartment.
+ * Kill legacy over-width rules now that a real parent exists.
+ */
+.price-bento .price-recommendation,
+.price-bento .pricing-factors {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+}
+
+
+/*
+ * Keep the decision architecture stable:
+ * recommendation left, actions right.
+ */
+.price-bento .price-decision {
+    grid-template-columns:
+        minmax(10.75rem, 0.95fr)
+        minmax(12rem, 1.05fr);
+
+    column-gap: 1.15rem;
+}
+
+
+/*
+ * Recommendation stays firmly inside its chamber instead
+ * of wandering toward the Bento wall.
+ */
+.price-bento .price-decision__recommendation {
+    width: 100%;
+    min-width: 0;
+
+    padding-left: 0.4rem;
+    padding-right: 1.35rem;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*
+ * Narrow phones need a less demanding internal grid.
+ */
+@media (max-width: 420px) {
+    .price-bento > .price-decision {
+        grid-template-columns:
+            minmax(8rem, 0.9fr)
+            minmax(10rem, 1.1fr);
+
+        column-gap: 0.75rem;
+        padding-inline: 0.85rem;
+    }
+
+    .price-bento .price-decision__recommendation {
+        padding-left: 0;
+        padding-right: 0.75rem;
+    }
+}
+/* =========================================================
+   PRICE BENTO — viewport fit + price lockup calibration
+   2026-08-11
+   ========================================================= */
+
+/*
+ * Let the shared shell stretch slightly beyond the normal
+ * content rail while keeping equal left/right gutters.
+ * Top gets a touch more air beneath the leather hero.
+ */
+.price-bento {
+    width: calc(100% + 0.75rem);
+    margin:
+        1.15rem
+        -0.375rem
+        var(--space-4);
+}
+
+
+/*
+ * Give the chocolate compartment its own subtle edge.
+ * The parent still owns the OUTER geometry; this is only
+ * visual definition for the dark upper chamber.
+ */
+.price-bento > .price-decision {
+    box-shadow:
+        inset 0 0 0 1px rgb(248 239 222 / 14%);
+}
+
+
+/* ---------------------------------------------------------
+   Recommended price — one composed typographic mark
+   --------------------------------------------------------- */
+
+.price-bento .price-decision__recommendation {
+    padding-left: 0.15rem;
+    padding-right: 1.1rem;
+}
+
+
+/*
+ * Keep the label firmly connected to the number.
+ */
+.price-bento .price-decision__label {
+    margin: 0 0 0.3rem;
+
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    line-height: 1;
+}
+
+
+/*
+ * Treat $29.25 as one centered lockup.
+ */
+.price-bento .price-decision__price {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: auto;
+    margin-inline: auto;
+
+    line-height: 0.8;
+}
+
+
+/*
+ * Dollar sign belongs to 29 — no more ghost dollar
+ * floating down and left.
+ */
+.price-bento .price-decision__currency {
+    position: static;
+
+    margin:
+        0.12em
+        0.06em
+        0
+        0;
+
+    font-size: 0.4em;
+    line-height: 1;
+    opacity: 0.72;
+}
+
+
+/*
+ * Main price gets slightly less theatrical scale.
+ */
+.price-bento .price-decision__dollars {
+    font-size: clamp(2.85rem, 11vw, 3.75rem);
+    letter-spacing: -0.025em;
+}
+
+
+/*
+ * Cents tuck against the shoulder of the dollars.
+ */
+.price-bento .price-decision__cents {
+    position: static;
+
+    margin:
+        0.08em
+        0
+        0
+        0.08em;
+
+    font-size: 0.31em;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+
+/*
+ * Preserve the successful narrow-phone architecture.
+ * Only reduce the shell expansion slightly when acreage
+ * becomes genuinely scarce.
+ */
+@media (max-width: 420px) {
+    .price-bento {
+        width: calc(100% + 0.5rem);
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+    }
+
+    .price-bento .price-decision__recommendation {
+        padding-left: 0;
+        padding-right: 0.65rem;
+    }
+}

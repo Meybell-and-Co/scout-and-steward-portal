@@ -480,7 +480,21 @@ function renderItemDetail(item) {
 </header>
 
 
-            ${renderPrimaryPriceDecision(item)}
+            <div class="price-bento">
+                ${renderPrimaryPriceDecision(item)}
+
+                <section
+                    class="item-detail__section item-detail__section--pricing"
+                    aria-labelledby="pricing-heading"
+                >
+                    <h2 id="pricing-heading">
+                        Why this price?
+                    </h2>
+
+                    ${renderPriceRecommendation(item)}
+                </section>
+            </div>
+
             <div class="item-detail__media">
                 <img
                     class="item-detail__image"
@@ -511,16 +525,6 @@ function renderItemDetail(item) {
                 </div>
             </div>
 
-            <section
-            class="item-detail__section item-detail__section--pricing"
-            aria-labelledby="pricing-heading"
-        >
-            <h2 id="pricing-heading">
-                Why this price?
-            </h2>
-
-            ${renderPriceRecommendation(item)}
-        </section>
 
 <section
                 class="item-detail__section"
