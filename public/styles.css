@@ -1974,7 +1974,7 @@ textarea {
 
     .pricing-factors--count-3 {
         grid-template-columns: minmax(5.75rem, 0.85fr) repeat(3, minmax(0, 1fr));
-        gap-inline: 0.45rem;
+        column-gap: 0.45rem;
     }
 
     .pricing-evidence {
