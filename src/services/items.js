@@ -25,6 +25,13 @@ const CURRENT_INVENTORY_SELECT = `
             ),
             s.recommended_price_cents
         ) AS recommended_price_cents,
+        (
+            SELECT pr.confidence
+            FROM price_recommendations AS pr
+            WHERE pr.item_id = s.item_id
+            ORDER BY pr.created_at DESC, pr.recommendation_id DESC
+            LIMIT 1
+        ) AS confidence,
         s.publication_id,
         p.source_version,
         p.published_at

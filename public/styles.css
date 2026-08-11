@@ -4639,3 +4639,195 @@ textarea {
 .price-bento .price-decision__approve {
     background: var(--color-oxblood);
 }
+
+/* =========================================================
+   Inventory — bulk approval
+   ========================================================= */
+
+.inventory-toolbar {
+    display: flex;
+    align-items: end;
+    gap: 0.75rem;
+}
+
+.inventory-toolbar .search {
+    flex: 1 1 auto;
+}
+
+.inventory-bulk-toggle,
+.inventory-bulk-approve {
+    appearance: none;
+    border: 1px solid currentColor;
+    font: inherit;
+    cursor: pointer;
+}
+
+.inventory-bulk-toggle {
+    flex: 0 0 auto;
+    padding: 0.7rem 0.9rem;
+    background: transparent;
+}
+
+.inventory-bulk-bar {
+    position: sticky;
+    top: 0.75rem;
+    z-index: 8;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    margin: 0 0 1rem;
+    padding: 0.75rem;
+
+    background: var(--color-paper, #f4efe4);
+    border: 1px solid currentColor;
+}
+
+.inventory-bulk-bar[hidden] {
+    display: none;
+}
+
+.inventory-bulk-approve {
+    padding: 0.75rem 1rem;
+}
+
+.inventory-bulk-approve:disabled {
+    cursor: default;
+    opacity: 0.45;
+}
+
+.inventory-card--bulk {
+    cursor: pointer;
+}
+
+.inventory-card--bulk-disabled {
+    cursor: default;
+    opacity: 0.45;
+}
+
+.inventory-card--selected {
+    outline: 3px solid currentColor;
+    outline-offset: -3px;
+}
+
+/* =========================================================
+   Bulk approval — compact ledger pass
+   ========================================================= */
+
+.inventory-grid:has(.inventory-card--bulk) {
+    display: block;
+    overflow: hidden;
+
+    background: #fcfaf6;
+
+    border: 1px solid rgb(77 55 47 / 28%);
+    border-radius: 0.35rem;
+}
+
+
+/* Each bulk card becomes a ledger row */
+
+.inventory-card--bulk {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.75rem;
+
+    min-height: 0;
+    margin: 0;
+    padding: 0.65rem 0.85rem;
+
+    background: #fcfaf6;
+
+    border: 0;
+    border-bottom: 1px solid rgb(77 55 47 / 16%);
+    border-radius: 0;
+
+    box-shadow: none;
+
+    cursor: pointer;
+
+    transition:
+        background 100ms ease,
+        opacity 100ms ease;
+}
+
+.inventory-card--bulk:last-child {
+    border-bottom: 0;
+}
+
+
+/* Identity */
+
+.inventory-card--bulk .inventory-card__content {
+    min-width: 0;
+}
+
+.inventory-card--bulk .inventory-card__title {
+    margin: 0 0 0.12rem;
+
+    color: #4d372f;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.inventory-card--bulk .inventory-card__identity {
+    margin: 0;
+
+    color: #62615e;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+
+.inventory-card--bulk .inventory-card__team {
+    display: none;
+}
+
+
+/* Quiet the browse-card furniture */
+
+.inventory-card--bulk .inventory-card__footer {
+    min-width: auto;
+}
+
+.inventory-card--bulk .inventory-card__id {
+    color: #77736d;
+
+    font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.inventory-card--bulk .inventory-card__affordance {
+    display: none;
+}
+
+
+/* Selection */
+
+.inventory-card--bulk.inventory-card--selected {
+    background: rgb(90 42 42 / 7%);
+    outline: 0;
+}
+
+.inventory-card--bulk-disabled {
+    opacity: 0.38;
+}
+
+
+/* Bulk toolbar gets out of the way */
+
+.inventory-bulk-bar {
+    margin-bottom: 0.75rem;
+    padding: 0.65rem 0.8rem;
+
+    border-radius: 0.55rem;
+}
