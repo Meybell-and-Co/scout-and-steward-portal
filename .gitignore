@@ -1,3 +1,14 @@
 .dev.vars
 .wrangler/
 node_modules/
+
+# Autocrop test imagery
+scratch/autocrop-test/input/
+scratch/autocrop-test/output/
+scratch/autocrop-test/*.jpg
+
+# Human-approved autocrop results
+scratch/autocrop-test/accepted/
+
+# Windows folder metadata
+desktop.ini
