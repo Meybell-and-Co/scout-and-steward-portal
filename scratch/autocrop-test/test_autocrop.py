@@ -213,17 +213,21 @@ def process(path):
         raw_candidates,
         start=1
     ):
-        box_int = np.int32(box)
+        box_int = np.asarray(
+            box,
+            dtype=np.int32
+        ).reshape((-1, 1, 2))
 
-        cv2.polylines(
+        cv2.polylines(  # pyright: ignore[reportCallIssue]
             debug,
-            [box_int],
+            box_int,  # pyright: ignore[reportArgumentType]
             True,
             (0, 0, 255),
             8
         )
 
-        x, y = box_int[0]
+        x = int(box_int[0, 0, 0])
+        y = int(box_int[0, 0, 1])
 
         cv2.putText(
             debug,
