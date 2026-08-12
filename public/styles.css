@@ -812,6 +812,7 @@ textarea {
 
 .item-detail__approval-status--approved {
     opacity: 1;
+    color: var(--color-ivory);
 }
 /* ---------------------------------------------------------
    Ready to List
@@ -5062,6 +5063,32 @@ textarea {
     text-transform: uppercase;
 
     cursor: pointer;
+}
+
+
+.inventory-actionable-toggle {
+    min-height: 3.25rem;
+    padding: 0.65rem 1rem;
+
+    background: transparent;
+    color: var(--color-oxblood);
+
+    border: 1px solid var(--color-oxblood);
+    border-radius: 999px;
+
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+
+.inventory-actionable-toggle[aria-pressed="true"] {
+    background: var(--color-oxblood);
+    color: var(--color-ivory);
 }
 
 

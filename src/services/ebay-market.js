@@ -130,3 +130,61 @@ export async function searchEbayActiveListings(
         }))
     };
 }
+
+export async function getEbayItemByLegacyId(
+    env,
+    legacyItemId
+) {
+    if (!legacyItemId || !legacyItemId.trim()) {
+        throw new Error("legacy item ID is required");
+    }
+
+    const token = await getApplicationToken(env);
+
+    const url = new URL(
+        "https://api.ebay.com/buy/browse/v1/item/get_item_by_legacy_id"
+    );
+
+    url.searchParams.set(
+        "legacy_item_id",
+        legacyItemId.trim()
+    );
+
+    const response = await fetch(url, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "X-EBAY-C-MARKETPLACE-ID": "EBAY_US"
+        }
+    });
+
+    if (!response.ok) {
+        const detail = await response.text();
+
+        console.error(
+            "eBay legacy item lookup failed:",
+            response.status,
+            detail
+        );
+
+        throw new Error(
+            `eBay legacy item lookup failed: ${response.status}`
+        );
+    }
+
+    const item = await response.json();
+
+    return {
+        legacy_item_id: item.legacyItemId ?? null,
+        item_id: item.itemId ?? null,
+        title: item.title ?? null,
+        price: item.price
+            ? {
+                value: item.price.value ?? null,
+                currency: item.price.currency ?? null
+            }
+            : null,
+        condition: item.condition ?? null,
+        item_end_date: item.itemEndDate ?? null,
+        item_web_url: item.itemWebUrl ?? null
+    };
+}

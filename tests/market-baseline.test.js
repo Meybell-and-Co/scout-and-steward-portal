@@ -512,7 +512,7 @@ test("reports eligible sold evidence within the selected observation window", ()
     assert.equal(result.eligible_sold_count, 3);
     assert.equal(result.sold_used, 3);
 });
-test("V1 accepts active comps as price evidence when sold comps are unavailable", () => {
+test("does not use active comps as price evidence when sold comps are unavailable", () => {
     const comps = [
         {
             market_status: "active",
@@ -536,8 +536,8 @@ test("V1 accepts active comps as price evidence when sold comps are unavailable"
 
     assert.equal(result.sold_observed, 0);
     assert.equal(result.active_observed, 2);
-    assert.equal(result.baseline_cents, 1300);
-    assert.equal(result.sold_used, 2);
-    assert.equal(result.evidence_sufficient, true);
-    assert.equal(result.recommended_price_cents, 1300);
+    assert.equal(result.baseline_cents, null);
+    assert.equal(result.sold_used, 0);
+    assert.equal(result.evidence_sufficient, false);
+    assert.equal(result.recommended_price_cents, null);
 });

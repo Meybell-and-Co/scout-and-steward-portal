@@ -412,3 +412,296 @@ export async function handleMarkListedOnEbay(env, itemId) {
         );
     }
 }
+
+export async function handleLinkEbayListing(
+    env,
+    itemId,
+    ebayItem
+) {
+    try {
+        const snapshot = await env.DB.prepare(`
+            SELECT
+                s.snapshot_id,
+                s.item_id
+            FROM inventory_snapshots AS s
+            INNER JOIN publications AS p
+                ON p.publication_id = s.publication_id
+            WHERE s.item_id = ?
+              AND p.status = 'completed'
+            ORDER BY
+                p.published_at DESC,
+                s.snapshot_id DESC
+            LIMIT 1
+        `)
+            .bind(itemId)
+            .first();
+
+        if (!snapshot) {
+            return Response.json(
+                {
+                    status: "error",
+                    error: "item_not_found"
+                },
+                { status: 404 }
+            );
+        }
+
+        const legacyItemId =
+            ebayItem?.legacy_item_id ?? null;
+
+        if (!legacyItemId) {
+            return Response.json(
+                {
+                    status: "error",
+                    error: "missing_ebay_item_id"
+                },
+                { status: 400 }
+            );
+        }
+
+        const existingLink = await env.DB.prepare(`
+            SELECT
+                event_id,
+                payload_json,
+                created_at
+            FROM workflow_events
+            WHERE snapshot_id = ?
+              AND item_id = ?
+              AND event_type = 'ebay_listing_linked'
+              AND json_extract(
+                    payload_json,
+                    '$.legacy_item_id'
+                  ) = ?
+            ORDER BY created_at DESC
+            LIMIT 1
+        `)
+            .bind(
+                snapshot.snapshot_id,
+                snapshot.item_id,
+                legacyItemId
+            )
+            .first();
+
+        if (existingLink) {
+            return Response.json({
+                status: "ok",
+                already_linked: true,
+                event: {
+                    event_id: existingLink.event_id,
+                    snapshot_id: snapshot.snapshot_id,
+                    item_id: snapshot.item_id,
+                    event_type: "ebay_listing_linked",
+                    ebay_listing:
+                        JSON.parse(existingLink.payload_json),
+                    created_at: existingLink.created_at
+                }
+            });
+        }
+
+        const eventId = crypto.randomUUID();
+        const createdAt = new Date().toISOString();
+
+        const payload = JSON.stringify({
+            legacy_item_id: legacyItemId,
+            item_id: ebayItem.item_id ?? null,
+            title: ebayItem.title ?? null,
+            price: ebayItem.price ?? null,
+            condition: ebayItem.condition ?? null,
+            item_web_url: ebayItem.item_web_url ?? null,
+            verified_at: createdAt
+        });
+
+        await env.DB.prepare(`
+            INSERT INTO workflow_events (
+                event_id,
+                snapshot_id,
+                item_id,
+                actor_id,
+                actor_role,
+                event_type,
+                payload_json,
+                supersedes_event_id,
+                created_at
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?)
+        `)
+            .bind(
+                eventId,
+                snapshot.snapshot_id,
+                snapshot.item_id,
+                "administrator",
+                "administrator",
+                "ebay_listing_linked",
+                payload,
+                createdAt
+            )
+            .run();
+
+        return Response.json(
+            {
+                status: "ok",
+                already_linked: false,
+                event: {
+                    event_id: eventId,
+                    snapshot_id: snapshot.snapshot_id,
+                    item_id: snapshot.item_id,
+                    event_type: "ebay_listing_linked",
+                    ebay_listing: JSON.parse(payload),
+                    created_at: createdAt
+                }
+            },
+            { status: 201 }
+        );
+    } catch (error) {
+        console.error(
+            "Link existing eBay listing failed:",
+            error
+        );
+
+        return Response.json(
+            {
+                status: "error",
+                error: "ebay_listing_link_failed"
+            },
+            { status: 500 }
+        );
+    }
+}
+export async function handleEnterManualPrice(
+    request,
+    env,
+    itemId
+) {
+    try {
+        const body = await request.json();
+        const enteredPriceCents = Number(
+            body?.entered_price_cents
+        );
+
+        if (
+            !Number.isInteger(enteredPriceCents) ||
+            enteredPriceCents <= 0
+        ) {
+            return Response.json(
+                {
+                    status: "error",
+                    error: "invalid_price"
+                },
+                { status: 400 }
+            );
+        }
+
+        const snapshot = await env.DB.prepare(`
+            SELECT
+                s.snapshot_id,
+                s.item_id
+            FROM inventory_snapshots AS s
+            INNER JOIN publications AS p
+                ON p.publication_id = s.publication_id
+            WHERE s.item_id = ?
+              AND p.status = 'completed'
+            ORDER BY
+                p.published_at DESC,
+                s.snapshot_id DESC
+            LIMIT 1
+        `)
+            .bind(itemId)
+            .first();
+
+        if (!snapshot) {
+            return Response.json(
+                {
+                    status: "error",
+                    error: "item_not_found"
+                },
+                { status: 404 }
+            );
+        }
+
+        const recommendation = await env.DB.prepare(`
+            SELECT
+                recommendation_id,
+                recommended_price_cents,
+                confidence,
+                created_at
+            FROM price_recommendations
+            WHERE item_id = ?
+            ORDER BY
+                created_at DESC,
+                recommendation_id DESC
+            LIMIT 1
+        `)
+            .bind(snapshot.item_id)
+            .first();
+
+        const eventId = crypto.randomUUID();
+        const createdAt = new Date().toISOString();
+
+        const payload = JSON.stringify({
+            entered_price_cents: enteredPriceCents,
+            recommendation_id:
+                recommendation?.recommendation_id ?? null,
+            previous_recommended_price_cents:
+                recommendation?.recommended_price_cents ?? null,
+            recommendation_confidence:
+                recommendation?.confidence ?? null,
+            source: "no_recommendation"
+        });
+
+        await env.DB.prepare(`
+            INSERT INTO workflow_events (
+                event_id,
+                snapshot_id,
+                item_id,
+                actor_id,
+                actor_role,
+                event_type,
+                payload_json,
+                supersedes_event_id,
+                created_at
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?)
+        `)
+            .bind(
+                eventId,
+                snapshot.snapshot_id,
+                snapshot.item_id,
+                "cy",
+                "client",
+                "manual_price_entered",
+                payload,
+                createdAt
+            )
+            .run();
+
+        return Response.json(
+            {
+                status: "ok",
+                event: {
+                    event_id: eventId,
+                    snapshot_id: snapshot.snapshot_id,
+                    item_id: snapshot.item_id,
+                    event_type: "manual_price_entered",
+                    entered_price_cents: enteredPriceCents,
+                    recommendation_id:
+                        recommendation?.recommendation_id ?? null,
+                    created_at: createdAt
+                }
+            },
+            { status: 201 }
+        );
+    } catch (error) {
+        console.error(
+            "Record manual price failed:",
+            error
+        );
+
+        return Response.json(
+            {
+                status: "error",
+                error: "manual_price_failed"
+            },
+            { status: 500 }
+        );
+    }
+}

@@ -50,6 +50,7 @@ function setDocumentTitle(title) {
 let allItems = [];
 
 let approvedItemIds = new Set();
+let actionableOnly = false;
 let bulkMode = false;
 let bulkSelectedIds = new Set();
 
@@ -100,6 +101,7 @@ async function loadInventory() {
             inventoryReadyCount
         );
 
+        wireActionableToggle();
         wireBulkControls();
 
         console.log("Scout & Steward inventory:", payload);
@@ -175,6 +177,15 @@ function renderInventoryShell() {
                     autocomplete="off"
                 >
             </label>
+
+            <button
+                class="inventory-actionable-toggle"
+                id="inventory-actionable-toggle"
+                type="button"
+                aria-pressed="false"
+            >
+                Needs action
+            </button>
 
             <button
                 class="inventory-bulk-toggle"
@@ -262,7 +273,7 @@ function renderItems(items, inventoryGrid) {
             approvedItemIds.has(item.item_id);
 
         const canBulkApprove =
-            Number.isInteger(getRecommendedPriceCents(item)) &&
+            Number.isInteger(getRecommendedPriceCents(item)) && getRecommendedPriceCents(item) > 0 &&
             !isApproved;
 
         const isSelected =
@@ -453,7 +464,15 @@ function renderCurrentInventory() {
         return;
     }
 
-    renderItems(allItems, inventoryGrid);
+    const visibleItems = actionableOnly
+        ? allItems.filter(
+            (item) =>
+                Number.isInteger(getRecommendedPriceCents(item)) && getRecommendedPriceCents(item) > 0 &&
+                !approvedItemIds.has(item.item_id)
+        )
+        : allItems;
+
+    renderItems(visibleItems, inventoryGrid);
 }
 
 
@@ -481,6 +500,42 @@ function updateBulkBar() {
         selectedCount === 0
             ? "Approve selected"
             : `Approve ${selectedCount} selected`;
+}
+
+function wireActionableToggle() {
+    const toggle = document.querySelector(
+        "#inventory-actionable-toggle"
+    );
+
+    if (!toggle) {
+        return;
+    }
+
+    const actionableCount = allItems.filter(
+        (item) =>
+            Number.isInteger(getRecommendedPriceCents(item)) &&
+            getRecommendedPriceCents(item) > 0 &&
+            !approvedItemIds.has(item.item_id)
+    ).length;
+
+    toggle.textContent =
+        `Needs action · ${actionableCount}`;
+
+    toggle.setAttribute(
+        "aria-pressed",
+        actionableOnly ? "true" : "false"
+    );
+
+    toggle.addEventListener("click", () => {
+        actionableOnly = !actionableOnly;
+
+        toggle.setAttribute(
+            "aria-pressed",
+            actionableOnly ? "true" : "false"
+        );
+
+        renderCurrentInventory();
+    });
 }
 
 function wireBulkControls() {
@@ -581,13 +636,21 @@ function filterInventory(
         .trim()
         .toLowerCase();
 
+    const sourceItems = actionableOnly
+        ? allItems.filter(
+            (item) =>
+                Number.isInteger(getRecommendedPriceCents(item)) && getRecommendedPriceCents(item) > 0 &&
+                !approvedItemIds.has(item.item_id)
+        )
+        : allItems;
+
     if (!query) {
-        renderItems(allItems, inventoryGrid);
+        renderItems(sourceItems, inventoryGrid);
         inventoryStatus.textContent = "";
         return;
     }
 
-    const filteredItems = allItems.filter((item) =>
+    const filteredItems = sourceItems.filter((item) =>
         Object.values(item).some((value) =>
             String(value ?? "")
                 .toLowerCase()
@@ -602,8 +665,6 @@ function filterInventory(
             ? "No matching inventory items."
             : `${filteredItems.length} match${filteredItems.length === 1 ? "" : "es"}`;
 }
-
-
 /* ---------------------------------------------------------
    Item detail
    --------------------------------------------------------- */
@@ -773,6 +834,7 @@ function renderItemDetail(item) {
 
     wireImageControls(item);
     wirePriceApproval(item);
+    wireManualPrice(item);
     wireMarkListedOnEbay(item);
 }
 
@@ -813,6 +875,74 @@ async function wirePriceApproval(item) {
     });
 }
 
+async function wireManualPrice(item) {
+    const button = document.querySelector(
+        '[data-action="revise-price"]'
+    );
+
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener("click", async () => {
+        const enteredPrice = window.prompt(
+            "Enter the price you want to use:",
+            ""
+        );
+
+        if (enteredPrice === null) {
+            return;
+        }
+
+        const normalizedPrice = enteredPrice
+            .replace("$", "")
+            .trim();
+
+        const dollars = Number(normalizedPrice);
+
+        if (!Number.isFinite(dollars) || dollars <= 0) {
+            window.alert("Please enter a valid price.");
+            return;
+        }
+
+        const enteredPriceCents = Math.round(dollars * 100);
+
+        button.disabled = true;
+        button.textContent = "Saving…";
+
+        try {
+            const response = await fetch(
+                `/api/items/${encodeURIComponent(item.item_id)}/enter-manual-price`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        entered_price_cents: enteredPriceCents
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            await loadItem(item.item_id);
+        } catch (error) {
+            console.error(
+                "Unable to enter manual price:",
+                error
+            );
+
+            button.disabled = false;
+            button.textContent = "REVISE";
+            window.alert(
+                "Unable to save the manual price. Please try again."
+            );
+        }
+    });
+}
 async function wireMarkListedOnEbay(item) {
     const button = document.querySelector(
         '[data-action="mark-listed"]'

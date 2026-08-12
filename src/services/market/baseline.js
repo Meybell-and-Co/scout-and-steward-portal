@@ -44,9 +44,7 @@ export function calculateMarketBaseline(
 // V1: both sold and active market evidence may contribute
 // to the price baseline. Status remains available for
 // competition analysis and future evidence weighting.
-const evidenceComps = comps.filter(
-    (comp) => ["sold", "active"].includes(comp.market_status)
-);
+const evidenceComps = soldComps;
 
     const defaultWindowDays =
         BUSINESS_RULES.MARKET_BASELINE.defaultWindowDays;

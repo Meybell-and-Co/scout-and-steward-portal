@@ -24,7 +24,8 @@
         "required": [
             "PUBLISH_TOKEN",
             "EBAY_CLIENT_ID",
-            "EBAY_CLIENT_SECRET"
+            "EBAY_CLIENT_SECRET",
+      "EBAY_REFRESH_TOKEN"
         ]
     }
 }
