@@ -21,6 +21,11 @@ MARIO_RESULTS = (
     "mario-wario-results.csv"
 )
 
+B_ORIENTATION_OVERRIDES = (
+    ROOT /
+    "b-orientation-overrides.csv"
+)
+
 OUTPUT = (
     ROOT /
     "production-rotation-manifest.csv"
@@ -240,7 +245,103 @@ def load_mario_truth():
                 for row in rows
             ),
             "copies": len(rows),
+            "source": "wario-verified",
         }
+
+    return truth
+
+
+def apply_b_orientation_overrides(truth):
+    """
+    Apply explicit human-reviewed B rotation corrections.
+
+    Mario/Wario results remain unchanged as historical
+    algorithm output. Overrides affect production truth only.
+    """
+
+    if not B_ORIENTATION_OVERRIDES.exists():
+        raise FileNotFoundError(
+            f"Missing B orientation overrides: "
+            f"{B_ORIENTATION_OVERRIDES}"
+        )
+
+    seen = set()
+
+    with B_ORIENTATION_OVERRIDES.open(
+        newline="",
+        encoding="utf-8-sig"
+    ) as handle:
+
+        reader = csv.DictReader(handle)
+
+        expected_fields = {
+            "SourceLayout",
+            "BRotateCW",
+        }
+
+        if set(reader.fieldnames or []) != expected_fields:
+            raise ValueError(
+                "B orientation override columns must be "
+                "exactly SourceLayout,BRotateCW"
+            )
+
+        for row in reader:
+
+            layout = (
+                row["SourceLayout"]
+                .strip()
+            )
+
+            if not layout:
+                raise ValueError(
+                    "Blank SourceLayout in "
+                    "B orientation overrides."
+                )
+
+            if layout in seen:
+                raise ValueError(
+                    f"Duplicate B orientation override: "
+                    f"{layout}"
+                )
+
+            seen.add(layout)
+
+            if layout not in truth:
+                raise ValueError(
+                    f"B orientation override references "
+                    f"unknown layout: {layout}"
+                )
+
+            try:
+                rotation = int(
+                    row["BRotateCW"]
+                )
+            except ValueError as exc:
+                raise ValueError(
+                    f"Invalid B rotation for "
+                    f"{layout}: "
+                    f"{row['BRotateCW']!r}"
+                ) from exc
+
+            if rotation not in {
+                0,
+                90,
+                180,
+                270,
+            }:
+                raise ValueError(
+                    f"Invalid B rotation for "
+                    f"{layout}: "
+                    f"{rotation}"
+                )
+
+            truth[layout][
+                "rotation"
+            ] = rotation
+
+            truth[layout][
+                "source"
+            ] = "human-corrected"
 
     return truth
 
@@ -258,6 +359,9 @@ if not SOURCE.exists():
 
 a_truth = load_orientation_truth()
 b_truth = load_mario_truth()
+b_truth = apply_b_orientation_overrides(
+    b_truth
+)
 
 
 if set(a_truth) != set(b_truth):
@@ -370,6 +474,10 @@ for a_path in a_paths:
             b_info["rotation"]
         ),
 
+        "BOrientationSource": (
+            b_info["source"]
+        ),
+
         "BMatchMinMargin": round(
             b_info["minimum_margin"],
             6
@@ -437,6 +545,7 @@ fieldnames = [
     "ARotateCW",
     "AOrientationSource",
     "BRotateCW",
+    "BOrientationSource",
     "BMatchMinMargin",
     "LayoutCopies",
     "Status",
