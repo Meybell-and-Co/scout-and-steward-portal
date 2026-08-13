@@ -12,3 +12,9 @@ scratch/autocrop-test/accepted/
 
 # Windows folder metadata
 desktop.ini
+
+# Turtle autocrop generated working artifacts
+scratch/autocrop-test/working/
+scratch/autocrop-test/exception-review/
+scratch/autocrop-test/__pycache__/
+scratch/autocrop-test/test_autocrop.before-*.py
