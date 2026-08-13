@@ -673,95 +673,6 @@ def projected_slot_center(
 
     h, w = image.shape[:2]
 
-    # ---------------------------------------------------------
-    # ISLAND HUNT
-    # ---------------------------------------------------------
-
-    (
-        projected_center,
-        neutral_angle,
-        island_results,
-    ) = island_hunt(
-        image,
-        occupied,
-        candidates,
-        missing_slot,
-        median_long,
-        median_short
-    )
-
-    island_debug = draw_island_debug(
-        image,
-        layout,
-        missing_slot,
-        occupied,
-        projected_center,
-        island_results
-    )
-
-    print(
-        f"  Island origin: "
-        f"{projected_center[0]:.0f}, "
-        f"{projected_center[1]:.0f}px"
-    )
-
-    print(
-        f"  Sibling angle: "
-        f"{neutral_angle:.1f}°"
-    )
-
-    print(
-        f"  Island trials: "
-        f"{len(island_results)}"
-    )
-
-    if island_results:
-
-        best_island = island_results[0]
-
-        print(
-            f"  Island best:   "
-            f"{best_island['score']:.2f}"
-        )
-
-        print(
-            f"  Island move:   "
-            f"x={best_island['dx']:+.2f} "
-            f"y={best_island['dy']:+.2f}"
-        )
-
-        print(
-            f"  Island angle:  "
-            f"{best_island['angle']:.1f}°"
-        )
-
-        print(
-            f"  Blue ring:     "
-            f"{best_island['blue']:.3f}"
-        )
-
-        print(
-            f"  White ring:    "
-            f"{best_island['white']:.3f}"
-        )
-
-        print(
-            f"  Visible:       "
-            f"{best_island['visible']:.3f}"
-        )
-
-    else:
-
-        print(
-            "  Island best:   "
-            "NONE"
-        )
-
-    print(
-        f"  Island debug:  "
-        f"{island_debug.name}"
-    )
-
     col, row = SLOTS[
         missing_slot
     ]
@@ -885,13 +796,8 @@ def island_hunt(
 
     results = []
 
-    step_x = (
-        median_short * 0.55
-    )
-
-    step_y = (
-        median_short * 0.55
-    )
+    step_x = median_short
+    step_y = median_long
 
     for dx_fraction in ISLAND_TRANSLATIONS:
         for dy_fraction in ISLAND_TRANSLATIONS:
@@ -1546,3 +1452,4 @@ print(
 print(
     "No source images were modified."
 )
+

@@ -9,7 +9,7 @@ import numpy as np
 ROOT = Path(__file__).parent
 
 CANON_SOURCE = Path(
-    r"C:\Users\Meybells\Downloads\incoming-assets\inventory-photos\s-and-s-sports-memorabilia\4UP"
+    r"C:\Users\Meybells\Downloads\incoming-assets\inventory-photos\s-and-s-sports-memorabilia\4UP\source"
 )
 
 WORKING_ROOT = ROOT / "working"
@@ -749,6 +749,98 @@ def mirror_candidates_to_image(
     return mirrored
 
 
+MARK_TO_DO = OUTPUT / "mark-to-do"
+
+
+def candidate_slot_name(image, candidate):
+    """
+    Assign one trusted candidate to a 2x2 quadrant
+    using its center relative to image center.
+    """
+
+    h, w = image.shape[:2]
+
+    _, box = candidate
+
+    center_x = float(box[:, 0].mean())
+    center_y = float(box[:, 1].mean())
+
+    if center_x < w / 2:
+        horizontal = "L"
+    else:
+        horizontal = "R"
+
+    if center_y < h / 2:
+        vertical = "U"
+    else:
+        vertical = "L"
+
+    return vertical + horizontal
+
+
+def missing_quadrant(image, candidates):
+    """
+    Return UL / UR / LL / LR only when exactly
+    three distinct trusted quadrants are occupied.
+
+    Otherwise return UNK.
+    """
+
+    expected = {
+        "UL",
+        "UR",
+        "LL",
+        "LR",
+    }
+
+    occupied = {
+        candidate_slot_name(
+            image,
+            candidate
+        )
+        for candidate in candidates
+    }
+
+    missing = expected - occupied
+
+    if (
+        len(candidates) == 3
+        and len(occupied) == 3
+        and len(missing) == 1
+    ):
+        return missing.pop()
+
+    return "UNK"
+
+
+def copy_to_mark_to_do(path, quadrant):
+    """
+    Copy an original source scan into the human
+    work queue without touching the source.
+
+    Example:
+        UD_001_C_056_01_a.jpg
+        ->
+        UD_001_C_056_01_a_UL.jpg
+    """
+
+    MARK_TO_DO.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    destination = (
+        MARK_TO_DO
+        / f"{path.stem}_{quadrant}{path.suffix}"
+    )
+
+    shutil.copy2(
+        path,
+        destination
+    )
+
+    return destination
+
 def pair_key(path):
     stem = path.stem
 
@@ -765,6 +857,10 @@ def process_pair(a_path, b_path):
 
     if a_image is None:
         print(f"SKIP: {a_path.name}")
+        copy_to_mark_to_do(
+            a_path,
+            "UNK"
+        )
         return
 
     (
@@ -808,6 +904,33 @@ def process_pair(a_path, b_path):
         f"centers={normalized_centers(a_image, a_candidates)}"
     )
 
+    if a_found_count != expected_count:
+        a_quadrant = missing_quadrant(
+            a_image,
+            a_candidates
+        )
+
+        copy_to_mark_to_do(
+            a_path,
+            a_quadrant
+        )
+
+        if b_path is not None:
+            b_quadrant = {
+                "UL": "UR",
+                "UR": "UL",
+                "LL": "LR",
+                "LR": "LL",
+            }.get(
+                a_quadrant,
+                "UNK"
+            )
+
+            copy_to_mark_to_do(
+                b_path,
+                b_quadrant
+            )
+
     if b_path is None:
         print(
             f"  PAIR: no matching _b source -> MANUAL"
@@ -819,6 +942,11 @@ def process_pair(a_path, b_path):
     if b_image is None:
         print(
             f"  PAIR: unable to read {b_path.name} -> MANUAL"
+        )
+
+        copy_to_mark_to_do(
+            b_path,
+            "UNK"
         )
         return
 
@@ -856,9 +984,6 @@ def process_pair(a_path, b_path):
         f"centers={normalized_centers(b_image, b_candidates)}"
     )
 
-
-
-
 def main():
     source_records, source_pairs = prepare_source_roster()
 
@@ -869,6 +994,15 @@ def main():
         if path.is_file():
             path.unlink()
 
+    if MARK_TO_DO.exists():
+        shutil.rmtree(
+            MARK_TO_DO
+        )
+
+    MARK_TO_DO.mkdir(
+        parents=True,
+        exist_ok=True
+    )
 
     # Build a history of source filenames from previous test inputs.
     previous_inputs = {}
@@ -936,3 +1070,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
