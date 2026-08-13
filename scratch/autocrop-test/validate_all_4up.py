@@ -40,7 +40,26 @@ def main():
     print("TURTLE FULL 4UP VALIDATION")
     print("--------------------------")
     print(f"Physical pairs: {total}")
-    print(f"Input:          {turtle.WORKING_SOURCE}")
+    oriented_source = (
+        turtle.CANON_SOURCE.parent / "oriented"
+    )
+
+    if not oriented_source.exists():
+        raise RuntimeError(
+            f"Missing production-oriented source: {oriented_source}"
+        )
+
+    oriented_files = list(
+        oriented_source.glob("*.jpg")
+    )
+
+    if len(oriented_files) != 428:
+        raise RuntimeError(
+            "STOP: Expected exactly 428 oriented JPGs; "
+            f"found {len(oriented_files)}."
+        )
+
+    print(f"Input:          {oriented_source}")
     print(f"Output:         {OUTPUT}")
     print()
 
@@ -51,12 +70,12 @@ def main():
         start=1
     ):
         a_path = (
-            turtle.WORKING_SOURCE
+            oriented_source
             / sides["a"]["name"]
         )
 
         b_path = (
-            turtle.WORKING_SOURCE
+            oriented_source
             / sides["b"]["name"]
         )
 

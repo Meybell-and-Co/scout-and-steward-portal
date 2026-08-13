@@ -782,16 +782,29 @@ def detect_best_candidates(image):
     selected_candidates = baseline_candidates
     selected_pass = "baseline"
 
-    if len(baseline_candidates) < 4:
+    for morphology_iterations in range(3, 7):
+        if len(selected_candidates) == 4:
+            break
+
         rescue_raw, rescue_candidates = detect_candidates(
             image,
-            morphology_iterations=3
+            morphology_iterations=morphology_iterations
         )
 
-        if len(rescue_candidates) > len(baseline_candidates):
+        if len(rescue_candidates) == 4:
             selected_raw = rescue_raw
             selected_candidates = rescue_candidates
-            selected_pass = "rescue"
+            selected_pass = (
+                f"morphology-{morphology_iterations}"
+            )
+            break
+
+        if len(rescue_candidates) > len(selected_candidates):
+            selected_raw = rescue_raw
+            selected_candidates = rescue_candidates
+            selected_pass = (
+                f"morphology-{morphology_iterations}"
+            )
 
     return (
         selected_raw,
