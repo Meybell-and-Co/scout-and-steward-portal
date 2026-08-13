@@ -10,7 +10,7 @@ import numpy as np
 ROOT = Path(__file__).parent
 
 CANON_SOURCE = Path(
-    r"C:\Users\Meybells\Downloads\incoming-assets\inventory-photos\s-and-s-sports-memorabilia\4UP\source"
+    r"C:\Users\Meybells\Downloads\incoming-assets\inventory-photos\s-and-s-sports-memorabilia\4UP\oriented"
 )
 
 WORKING_ROOT = ROOT / "working"
@@ -1285,6 +1285,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
