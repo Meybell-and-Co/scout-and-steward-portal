@@ -1,5 +1,6 @@
 from pathlib import Path
 import csv
+import hashlib
 import re
 import shutil
 
@@ -232,9 +233,57 @@ def copy_sources_to_working(records):
     return copied, unchanged
 
 
+def file_sha256(path):
+    digest = hashlib.sha256()
+
+    with Path(path).open("rb") as handle:
+        for chunk in iter(
+            lambda: handle.read(1024 * 1024),
+            b""
+        ):
+            digest.update(chunk)
+
+    return digest.hexdigest()
+
+
+def deduplicate_physical_pairs(pairs):
+    physical_pairs = {}
+    identities = {}
+
+    for pair_key, sides in sorted(pairs.items()):
+        a_record = sides["a"]
+        b_record = sides["b"]
+
+        identity = (
+            file_sha256(a_record["full_path"]),
+            file_sha256(b_record["full_path"]),
+        )
+
+        if identity not in identities:
+            identities[identity] = pair_key
+
+            physical_pairs[pair_key] = {
+                "a": a_record,
+                "b": b_record,
+                "aliases": [pair_key],
+            }
+
+            continue
+
+        canonical_key = identities[identity]
+
+        physical_pairs[
+            canonical_key
+        ]["aliases"].append(
+            pair_key
+        )
+
+    return physical_pairs
+
+
 def prepare_source_roster():
     records = inventory_canon()
-    pairs = validate_pairs(records)
+    logical_pairs = validate_pairs(records)
 
     write_source_manifest(records)
 
@@ -242,24 +291,34 @@ def prepare_source_roster():
         records
     )
 
+    physical_pairs = deduplicate_physical_pairs(
+        logical_pairs
+    )
+
     source_count = len(records)
-    pair_count = len(pairs)
-    expected_card_count = pair_count * 4
+    logical_pair_count = len(logical_pairs)
+    physical_pair_count = len(physical_pairs)
+    duplicate_pair_count = (
+        logical_pair_count - physical_pair_count
+    )
+    expected_card_count = physical_pair_count * 4
 
     print()
     print("TURTLE SOURCE ROSTER")
     print("--------------------")
-    print(f"Source files:   {source_count}")
-    print(f"A/B pairs:      {pair_count}")
-    print(f"Cards expected: {expected_card_count}")
-    print(f"Copied:         {copied}")
-    print(f"Unchanged:      {unchanged}")
-    print(f"Manifest:       {SOURCE_MANIFEST}")
-    print(f"Working source: {WORKING_SOURCE}")
-    print("Pair audit:     CLEAN")
+    print(f"Logical files:   {source_count}")
+    print(f"Logical pairs:   {logical_pair_count}")
+    print(f"Physical pairs:  {physical_pair_count}")
+    print(f"Duplicate pairs: {duplicate_pair_count}")
+    print(f"Cards expected:  {expected_card_count}")
+    print(f"Copied:          {copied}")
+    print(f"Unchanged:       {unchanged}")
+    print(f"Manifest:        {SOURCE_MANIFEST}")
+    print(f"Working source:  {WORKING_SOURCE}")
+    print("Pair audit:      CLEAN")
     print()
 
-    return records, pairs
+    return records, physical_pairs
 
 def measure_dark_edges(image):
     """
@@ -618,7 +677,46 @@ def draw_debug(image, candidates, destination):
     )
 
 
-def save_crops(image, candidates, stem):
+def crop_similarity_fingerprint(crop):
+    gray = cv2.cvtColor(
+        crop,
+        cv2.COLOR_BGR2GRAY
+    )
+
+    normalized = cv2.resize(
+        gray,
+        (128, 128),
+        interpolation=cv2.INTER_AREA
+    )
+
+    normalized = cv2.GaussianBlur(
+        normalized,
+        (3, 3),
+        0
+    )
+
+    return (
+        normalized.astype(np.float32)
+        / 255.0
+    )
+
+
+def crop_difference(first, second):
+    return float(
+        np.mean(
+            np.abs(first - second)
+        )
+    )
+
+
+def build_unique_crops(
+    image,
+    candidates,
+    duplicate_threshold=0.015
+):
+    crops = []
+    fingerprints = []
+
     for index, (_, box) in enumerate(
         candidates,
         start=1
@@ -628,6 +726,40 @@ def save_crops(image, candidates, stem):
             box
         )
 
+        fingerprint = crop_similarity_fingerprint(
+            crop
+        )
+
+        for previous_index, previous in enumerate(
+            fingerprints,
+            start=1
+        ):
+            difference = crop_difference(
+                fingerprint,
+                previous
+            )
+
+            if difference <= duplicate_threshold:
+                return (
+                    None,
+                    {
+                        "crop": index,
+                        "matches": previous_index,
+                        "difference": difference,
+                    }
+                )
+
+        crops.append(crop)
+        fingerprints.append(fingerprint)
+
+    return crops, None
+
+
+def write_crops(crops, stem):
+    for index, crop in enumerate(
+        crops,
+        start=1
+    ):
         destination = (
             OUTPUT /
             f"{stem}_crop_{index:02}.jpg"
@@ -883,15 +1015,21 @@ def process_pair(a_path, b_path):
         OUTPUT / f"{a_path.stem}_DEBUG.jpg"
     )
 
-    save_crops(
-        a_image,
-        a_candidates,
-        a_path.stem
-    )
+    a_crops = None
+    a_duplicate = None
+
+    if a_found_count == expected_count:
+        a_crops, a_duplicate = build_unique_crops(
+            a_image,
+            a_candidates
+        )
 
     a_status = (
         "READY"
-        if a_found_count == expected_count
+        if (
+            a_found_count == expected_count
+            and a_duplicate is None
+        )
         else "MANUAL"
     )
 
@@ -903,6 +1041,34 @@ def process_pair(a_path, b_path):
         f"(baseline={a_baseline_count}) "
         f"centers={normalized_centers(a_image, a_candidates)}"
     )
+
+    if a_duplicate is not None:
+        print(
+            f"  SELF-CHECK FAILED: "
+            f"crop {a_duplicate['crop']:02} "
+            f"matches crop {a_duplicate['matches']:02} "
+            f"(difference={a_duplicate['difference']:.5f}) "
+            f"-> MANUAL"
+        )
+
+        copy_to_mark_to_do(
+            a_path,
+            "DUP"
+        )
+
+        if b_path is not None:
+            copy_to_mark_to_do(
+                b_path,
+                "DUP"
+            )
+
+        return
+
+    if a_found_count == expected_count:
+        write_crops(
+            a_crops,
+            a_path.stem
+        )
 
     if a_found_count != expected_count:
         a_quadrant = missing_quadrant(
@@ -970,9 +1136,30 @@ def process_pair(a_path, b_path):
         OUTPUT / f"{b_path.stem}_DEBUG.jpg"
     )
 
-    save_crops(
+    b_crops, b_duplicate = build_unique_crops(
         b_image,
-        b_candidates,
+        b_candidates
+    )
+
+    if b_duplicate is not None:
+        print(
+            f"{b_path.name}: "
+            f"SELF-CHECK FAILED: "
+            f"crop {b_duplicate['crop']:02} "
+            f"matches crop {b_duplicate['matches']:02} "
+            f"(difference={b_duplicate['difference']:.5f}) "
+            f"-> MANUAL"
+        )
+
+        copy_to_mark_to_do(
+            b_path,
+            "DUP"
+        )
+
+        return
+
+    write_crops(
+        b_crops,
         b_path.stem
     )
 
@@ -980,7 +1167,7 @@ def process_pair(a_path, b_path):
         f"{b_path.name}: "
         f"{len(b_candidates)}/{expected_count} "
         f"READY "
-        f"[mirrored from A] "
+        f"[mirrored from A; uniqueness checked] "
         f"centers={normalized_centers(b_image, b_candidates)}"
     )
 
@@ -1019,7 +1206,8 @@ def main():
 
 
     processed_count = 0
-    duplicate_count = 0
+    previous_test_count = 0
+    physical_duplicate_count = 0
     manual_count = 0
 
     current_files = {
@@ -1033,6 +1221,8 @@ def main():
         if path.stem.endswith("_a")
     )
 
+    processed_physical_pairs = {}
+
     for a_path in a_paths:
         previous_tests = previous_inputs.get(
             a_path.name.lower()
@@ -1044,13 +1234,37 @@ def main():
                 f"already tested in {', '.join(previous_tests)} "
                 f"-> SKIPPED"
             )
-            duplicate_count += 1
+            previous_test_count += 1
             continue
 
         key = pair_key(a_path)
 
         b_name = f"{key}_b{a_path.suffix}".lower()
         b_path = current_files.get(b_name)
+
+        if b_path is not None:
+            physical_identity = (
+                file_sha256(a_path),
+                file_sha256(b_path),
+            )
+
+            original_key = processed_physical_pairs.get(
+                physical_identity
+            )
+
+            if original_key is not None:
+                print(
+                    f"PHYSICAL DUPLICATE: {key} "
+                    f"aliases {original_key} "
+                    f"-> SKIPPED"
+                )
+
+                physical_duplicate_count += 1
+                continue
+
+            processed_physical_pairs[
+                physical_identity
+            ] = key
 
         process_pair(
             a_path,
@@ -1063,8 +1277,9 @@ def main():
     print()
     print(
         f"TEST SUMMARY: "
-        f"{processed_count} A/B pair(s) processed; "
-        f"{duplicate_count} previously tested A source(s) skipped."
+        f"{processed_count} physical A/B pair(s) processed; "
+        f"{physical_duplicate_count} physical duplicate alias(es) skipped; "
+        f"{previous_test_count} previously tested A source(s) skipped."
     )
 
 
