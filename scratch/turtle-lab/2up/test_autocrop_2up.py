@@ -17,7 +17,9 @@ WORKING_ROOT = ROOT / "working"
 WORKING_SOURCE = WORKING_ROOT / "source"
 SOURCE_MANIFEST = ROOT / "4up-source-manifest.csv"
 
-TEST_NAME = "test-03"
+TEST_NAME = "test-04"
+EXPECTED_CANDIDATE_COUNT = 2
+RUN_PHYSICAL_ROSTER = True
 
 INPUT = ROOT / "input" / TEST_NAME
 OUTPUT = ROOT / "output" / TEST_NAME
@@ -783,7 +785,7 @@ def detect_best_candidates(image):
     selected_pass = "baseline"
 
     for morphology_iterations in range(3, 7):
-        if len(selected_candidates) == 4:
+        if len(selected_candidates) == EXPECTED_CANDIDATE_COUNT:
             break
 
         rescue_raw, rescue_candidates = detect_candidates(
@@ -791,7 +793,7 @@ def detect_best_candidates(image):
             morphology_iterations=morphology_iterations
         )
 
-        if len(rescue_candidates) == 4:
+        if len(rescue_candidates) == EXPECTED_CANDIDATE_COUNT:
             selected_raw = rescue_raw
             selected_candidates = rescue_candidates
             selected_pass = (
@@ -860,6 +862,39 @@ def normalized_centers(image, candidates):
 
     return centers
 
+
+def candidate_geometry(candidate):
+    area, box = candidate
+
+    rect = cv2.minAreaRect(
+        np.asarray(
+            box,
+            dtype=np.float32
+        )
+    )
+
+    width, height = rect[1]
+
+    long_side = max(
+        float(width),
+        float(height)
+    )
+
+    short_side = min(
+        float(width),
+        float(height)
+    )
+
+    return {
+        "area": float(area),
+        "long": long_side,
+        "short": short_side,
+        "aspect": (
+            long_side / short_side
+            if short_side > 0
+            else 0.0
+        ),
+    }
 
 def mirror_candidates_to_image(
     source_image,
@@ -996,7 +1031,7 @@ def pair_key(path):
 
 
 def process_pair(a_path, b_path):
-    expected_count = 4
+    expected_count = EXPECTED_CANDIDATE_COUNT
 
     a_image = cv2.imread(str(a_path))
 
@@ -1022,6 +1057,25 @@ def process_pair(a_path, b_path):
             a_candidates
         )
 
+        print(
+            f"{a_path.name}: candidate geometry"
+        )
+
+        for index, candidate in enumerate(
+            a_candidates,
+            start=1
+        ):
+            geometry = candidate_geometry(
+                candidate
+            )
+
+            print(
+                f"  candidate {index}: "
+                f"long={geometry['long']:.0f} "
+                f"short={geometry['short']:.0f} "
+                f"aspect={geometry['aspect']:.3f} "
+                f"area={geometry['area']:.0f}"
+            )
     draw_debug(
         a_image,
         a_candidates,
@@ -1223,16 +1277,33 @@ def main():
     physical_duplicate_count = 0
     manual_count = 0
 
-    current_files = {
-        path.name.lower(): path
-        for path in INPUT.glob("*.jpg")
-    }
+    if RUN_PHYSICAL_ROSTER:
+        current_files = {
+            record["name"].lower():
+            WORKING_SOURCE / record["name"]
+            for pair in source_pairs.values()
+            for record in (
+                pair["a"],
+                pair["b"]
+            )
+        }
 
-    a_paths = sorted(
-        path
-        for path in INPUT.glob("*.jpg")
-        if path.stem.endswith("_a")
-    )
+        a_paths = sorted(
+            WORKING_SOURCE / pair["a"]["name"]
+            for pair in source_pairs.values()
+        )
+
+    else:
+        current_files = {
+            path.name.lower(): path
+            for path in INPUT.glob("*.jpg")
+        }
+
+        a_paths = sorted(
+            path
+            for path in INPUT.glob("*.jpg")
+            if path.stem.endswith("_a")
+        )
 
     processed_physical_pairs = {}
 
@@ -1298,6 +1369,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
 
 
 

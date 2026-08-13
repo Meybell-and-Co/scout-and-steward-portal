@@ -21,3 +21,26 @@ scratch/autocrop-test/island-hunt-debug/
 scratch/autocrop-test/__pycache__/
 scratch/autocrop-test/test_autocrop.before-*.py
 
+
+# Turtle Lab local/generated artifacts
+scratch/turtle-lab/input/
+scratch/turtle-lab/working/
+scratch/turtle-lab/output/
+scratch/turtle-lab/accepted/
+scratch/turtle-lab/review/
+scratch/turtle-lab/__pycache__/
+
+# Turtle Lab archived/generated artifacts
+scratch/turtle-lab/archive/**/*.jpg
+scratch/turtle-lab/archive/test_autocrop.before-*.py
+
+# Turtle Lab root-level source/test imagery
+scratch/turtle-lab/*.jpg
+
+# Turtle Lab runtime logs
+scratch/turtle-lab/*.log
+
+# Temporary Git comparison artifacts
+scratch/turtle-lab/_git_*
+
+scratch/turtle-lab/orientation-recon.csv
