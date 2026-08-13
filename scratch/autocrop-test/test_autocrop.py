@@ -857,75 +857,82 @@ def process_pair(a_path, b_path):
     )
 
 
-source_records, source_pairs = prepare_source_roster()
-
-write_orientation_recon(source_pairs)
 
 
-for path in OUTPUT.glob("*"):
-    if path.is_file():
-        path.unlink()
+def main():
+    source_records, source_pairs = prepare_source_roster()
+
+    write_orientation_recon(source_pairs)
 
 
-# Build a history of source filenames from previous test inputs.
-previous_inputs = {}
-
-for test_dir in sorted((ROOT / "input").glob("test-*")):
-    if test_dir == INPUT:
-        continue
-
-    for previous_path in test_dir.glob("*.jpg"):
-        previous_inputs.setdefault(
-            previous_path.name.lower(),
-            []
-        ).append(test_dir.name)
+    for path in OUTPUT.glob("*"):
+        if path.is_file():
+            path.unlink()
 
 
-processed_count = 0
-duplicate_count = 0
-manual_count = 0
+    # Build a history of source filenames from previous test inputs.
+    previous_inputs = {}
 
-current_files = {
-    path.name.lower(): path
-    for path in INPUT.glob("*.jpg")
-}
+    for test_dir in sorted((ROOT / "input").glob("test-*")):
+        if test_dir == INPUT:
+            continue
 
-a_paths = sorted(
-    path
-    for path in INPUT.glob("*.jpg")
-    if path.stem.endswith("_a")
-)
+        for previous_path in test_dir.glob("*.jpg"):
+            previous_inputs.setdefault(
+                previous_path.name.lower(),
+                []
+            ).append(test_dir.name)
 
-for a_path in a_paths:
-    previous_tests = previous_inputs.get(
-        a_path.name.lower()
+
+    processed_count = 0
+    duplicate_count = 0
+    manual_count = 0
+
+    current_files = {
+        path.name.lower(): path
+        for path in INPUT.glob("*.jpg")
+    }
+
+    a_paths = sorted(
+        path
+        for path in INPUT.glob("*.jpg")
+        if path.stem.endswith("_a")
     )
 
-    if previous_tests:
-        print(
-            f"DUPLICATE: {a_path.name} "
-            f"already tested in {', '.join(previous_tests)} "
-            f"-> SKIPPED"
+    for a_path in a_paths:
+        previous_tests = previous_inputs.get(
+            a_path.name.lower()
         )
-        duplicate_count += 1
-        continue
 
-    key = pair_key(a_path)
+        if previous_tests:
+            print(
+                f"DUPLICATE: {a_path.name} "
+                f"already tested in {', '.join(previous_tests)} "
+                f"-> SKIPPED"
+            )
+            duplicate_count += 1
+            continue
 
-    b_name = f"{key}_b{a_path.suffix}".lower()
-    b_path = current_files.get(b_name)
+        key = pair_key(a_path)
 
-    process_pair(
-        a_path,
-        b_path
+        b_name = f"{key}_b{a_path.suffix}".lower()
+        b_path = current_files.get(b_name)
+
+        process_pair(
+            a_path,
+            b_path
+        )
+
+        processed_count += 1
+
+
+    print()
+    print(
+        f"TEST SUMMARY: "
+        f"{processed_count} A/B pair(s) processed; "
+        f"{duplicate_count} previously tested A source(s) skipped."
     )
 
-    processed_count += 1
 
-
-print()
-print(
-    f"TEST SUMMARY: "
-    f"{processed_count} A/B pair(s) processed; "
-    f"{duplicate_count} previously tested A source(s) skipped."
-)
+if __name__ == "__main__":
+    main()
