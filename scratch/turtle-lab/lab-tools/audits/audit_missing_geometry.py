@@ -7,14 +7,14 @@ import cv2
 import numpy as np
 
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parents[2]
 
 sys.path.insert(
     0,
-    str(ROOT)
+    str(ROOT / "2up")
 )
 
-from test_autocrop import (
+from test_autocrop_2up import (
     detect_best_candidates,
     sort_candidates_by_slot,
 )

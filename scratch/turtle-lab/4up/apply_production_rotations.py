@@ -8,7 +8,7 @@ import cv2
 # Paths
 # ---------------------------------------------------------
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parents[1]
 
 MANIFEST = (
     ROOT /

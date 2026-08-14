@@ -2,7 +2,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "output" / "full-validation" / "edge-review"
 DESTINATION = SOURCE / "edge-review-sheet.jpg"
 

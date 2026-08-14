@@ -110,8 +110,8 @@ def deduplicate(pairs):
 
 
 def configure_turtle():
-    sys.path.insert(0, str(ROOT))
-    import test_autocrop as turtle
+    sys.path.insert(0, str(ROOT.parent / "2up"))
+    import test_autocrop_2up as turtle
 
     turtle.CANON_SOURCE = CANON_SOURCE
     turtle.OUTPUT = PRODUCTION_OUTPUT

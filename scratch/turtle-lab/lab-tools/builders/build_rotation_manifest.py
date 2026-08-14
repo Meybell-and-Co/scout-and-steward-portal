@@ -3,7 +3,7 @@ import csv
 from collections import Counter, defaultdict
 
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parents[2]
 
 SOURCE = (
     ROOT /

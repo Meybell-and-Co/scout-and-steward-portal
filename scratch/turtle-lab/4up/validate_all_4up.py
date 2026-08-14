@@ -2,10 +2,11 @@ from pathlib import Path
 import shutil
 import sys
 
-import test_autocrop as turtle
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "2up"))
+import test_autocrop_2up as turtle
 
 
-ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "output" / "full-validation"
 MARK_TO_DO = OUTPUT / "mark-to-do"
 

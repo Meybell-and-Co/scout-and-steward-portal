@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "working" / "source"
 OUTPUT = ROOT / "exception-review"
 

@@ -3,7 +3,7 @@ import csv
 import cv2
 import numpy as np
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parents[2]
 
 WORKING_SOURCE = ROOT / "working" / "source"
 OUTPUT_CSV = ROOT / "c-shape-recon.csv"
