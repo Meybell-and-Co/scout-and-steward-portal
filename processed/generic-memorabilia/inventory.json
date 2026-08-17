@@ -1,0 +1,909 @@
+{
+  "inventory_type": "generic_memorabilia",
+  "phase": 1,
+  "source_directory": "C:\\Users\\Meybells\\Downloads\\incoming-assets\\inventory-photos\\s-and-s-sports-memorabilia\\Ready to List",
+  "source_jpg_count": 106,
+  "object_count": 29,
+  "derivative_count": 106,
+  "objects": [
+    {
+      "slug": "2008-mlb-all-star-game-pin-set",
+      "object_type": "pin set",
+      "source_stem": "2008-mlb-all-star-game-pin-set",
+      "media": [
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-case-angled.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-case-angled.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-case-angled.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-case-angled.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-case.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-case.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-case.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-case.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-detail-1.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-detail-1.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-1.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-1.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-detail-2.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-detail-2.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-2.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-detail-3.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-detail-3.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-3.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-3.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-detail-4.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-detail-4.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-4.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-4.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-detail-5.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-detail-5.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-5.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-5.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-detail-holo-tag.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-detail-holo-tag.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-holo-tag.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-holo-tag.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-detail-verso-2.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-detail-verso-2.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-verso-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-verso-2.webp"
+        },
+        {
+          "source_filename": "2008-mlb-all-star-game-pin-set-detail-verso.jpg",
+          "derivative_filename": "2008-mlb-all-star-game-pin-set-detail-verso.webp",
+          "r2_key": "generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/2008-mlb-all-star-game-pin-set-detail-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1985-mlb-world-series-ticket-stubs",
+      "object_type": "ticket stubs",
+      "source_stem": "85-mlb-world-series-stubs",
+      "media": [
+        {
+          "source_filename": "85-mlb-world-series-stubs-front-measure.jpg",
+          "derivative_filename": "85-mlb-world-series-stubs-front-measure.webp",
+          "r2_key": "generic-memorabilia/85-mlb-world-series-stubs-front-measure.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/85-mlb-world-series-stubs-front-measure.webp"
+        },
+        {
+          "source_filename": "85-mlb-world-series-stubs-front.jpg",
+          "derivative_filename": "85-mlb-world-series-stubs-front.webp",
+          "r2_key": "generic-memorabilia/85-mlb-world-series-stubs-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/85-mlb-world-series-stubs-front.webp"
+        },
+        {
+          "source_filename": "85-mlb-world-series-stubs-verso.jpg",
+          "derivative_filename": "85-mlb-world-series-stubs-verso.webp",
+          "r2_key": "generic-memorabilia/85-mlb-world-series-stubs-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/85-mlb-world-series-stubs-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1990-kc-royals-yearbook",
+      "object_type": "yearbook",
+      "source_stem": "90-kc-royals-yearbook",
+      "media": [
+        {
+          "source_filename": "90-kc-royals-yearbook-front.jpg",
+          "derivative_filename": "90-kc-royals-yearbook-front.webp",
+          "r2_key": "generic-memorabilia/90-kc-royals-yearbook-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/90-kc-royals-yearbook-front.webp"
+        },
+        {
+          "source_filename": "90-kc-royals-yearbook-inner-1.jpg",
+          "derivative_filename": "90-kc-royals-yearbook-inner-1.webp",
+          "r2_key": "generic-memorabilia/90-kc-royals-yearbook-inner-1.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/90-kc-royals-yearbook-inner-1.webp"
+        },
+        {
+          "source_filename": "90-kc-royals-yearbook-inner-2.jpg",
+          "derivative_filename": "90-kc-royals-yearbook-inner-2.webp",
+          "r2_key": "generic-memorabilia/90-kc-royals-yearbook-inner-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/90-kc-royals-yearbook-inner-2.webp"
+        },
+        {
+          "source_filename": "90-kc-royals-yearbook-verso.jpg",
+          "derivative_filename": "90-kc-royals-yearbook-verso.webp",
+          "r2_key": "generic-memorabilia/90-kc-royals-yearbook-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/90-kc-royals-yearbook-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1993-george-brett-final-home-game",
+      "object_type": "ticket stub",
+      "source_stem": "93-george-brett-final-home-game",
+      "media": [
+        {
+          "source_filename": "93-george-brett-final-home-game-front.jpg",
+          "derivative_filename": "93-george-brett-final-home-game-front.webp",
+          "r2_key": "generic-memorabilia/93-george-brett-final-home-game-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/93-george-brett-final-home-game-front.webp"
+        },
+        {
+          "source_filename": "93-george-brett-final-home-game-verso.jpg",
+          "derivative_filename": "93-george-brett-final-home-game-verso.webp",
+          "r2_key": "generic-memorabilia/93-george-brett-final-home-game-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/93-george-brett-final-home-game-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1998-ncaa-womens-final-four-ticket-stubs",
+      "object_type": "ticket stubs",
+      "source_stem": "98-ncaa-womens-ff-ticket-stubs",
+      "media": [
+        {
+          "source_filename": "98-ncaa-womens-ff-ticket-stubs-front.jpg",
+          "derivative_filename": "98-ncaa-womens-ff-ticket-stubs-front.webp",
+          "r2_key": "generic-memorabilia/98-ncaa-womens-ff-ticket-stubs-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/98-ncaa-womens-ff-ticket-stubs-front.webp"
+        },
+        {
+          "source_filename": "98-ncaa-womens-ff-ticket-stubs-inner.jpg",
+          "derivative_filename": "98-ncaa-womens-ff-ticket-stubs-inner.webp",
+          "r2_key": "generic-memorabilia/98-ncaa-womens-ff-ticket-stubs-inner.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/98-ncaa-womens-ff-ticket-stubs-inner.webp"
+        },
+        {
+          "source_filename": "98-ncaa-womens-ff-ticket-stubs-verso.jpg",
+          "derivative_filename": "98-ncaa-womens-ff-ticket-stubs-verso.webp",
+          "r2_key": "generic-memorabilia/98-ncaa-womens-ff-ticket-stubs-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/98-ncaa-womens-ff-ticket-stubs-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1998-world-series-pennant",
+      "object_type": "pennant",
+      "source_stem": "98-world-series-pennant",
+      "media": [
+        {
+          "source_filename": "98-world-series-pennant-detail-hologram.jpg",
+          "derivative_filename": "98-world-series-pennant-detail-hologram.webp",
+          "r2_key": "generic-memorabilia/98-world-series-pennant-detail-hologram.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/98-world-series-pennant-detail-hologram.webp"
+        },
+        {
+          "source_filename": "98-world-series-pennant-folded.jpg",
+          "derivative_filename": "98-world-series-pennant-folded.webp",
+          "r2_key": "generic-memorabilia/98-world-series-pennant-folded.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/98-world-series-pennant-folded.webp"
+        },
+        {
+          "source_filename": "98-world-series-pennant-front.jpg",
+          "derivative_filename": "98-world-series-pennant-front.webp",
+          "r2_key": "generic-memorabilia/98-world-series-pennant-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/98-world-series-pennant-front.webp"
+        },
+        {
+          "source_filename": "98-world-series-pennant-verso.jpg",
+          "derivative_filename": "98-world-series-pennant-verso.webp",
+          "r2_key": "generic-memorabilia/98-world-series-pennant-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/98-world-series-pennant-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1996-atlanta-summer-games-publication",
+      "object_type": "publication",
+      "source_stem": "atlanta-summer-games-96",
+      "media": [
+        {
+          "source_filename": "atlanta-summer-games-96-front-fan.jpg",
+          "derivative_filename": "atlanta-summer-games-96-front-fan.webp",
+          "r2_key": "generic-memorabilia/atlanta-summer-games-96-front-fan.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/atlanta-summer-games-96-front-fan.webp"
+        },
+        {
+          "source_filename": "atlanta-summer-games-96-front.jpg",
+          "derivative_filename": "atlanta-summer-games-96-front.webp",
+          "r2_key": "generic-memorabilia/atlanta-summer-games-96-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/atlanta-summer-games-96-front.webp"
+        },
+        {
+          "source_filename": "atlanta-summer-games-96-verso-2.jpg",
+          "derivative_filename": "atlanta-summer-games-96-verso-2.webp",
+          "r2_key": "generic-memorabilia/atlanta-summer-games-96-verso-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/atlanta-summer-games-96-verso-2.webp"
+        },
+        {
+          "source_filename": "atlanta-summer-games-96-verso.jpg",
+          "derivative_filename": "atlanta-summer-games-96-verso.webp",
+          "r2_key": "generic-memorabilia/atlanta-summer-games-96-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/atlanta-summer-games-96-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "bryan-barker-chiefs-signed-photograph",
+      "object_type": "signed photograph",
+      "source_stem": "bryan-barker-chiefs-signed-photo-bw",
+      "media": [
+        {
+          "source_filename": "bryan-barker-chiefs-signed-photo-bw.jpg",
+          "derivative_filename": "bryan-barker-chiefs-signed-photo-bw.webp",
+          "r2_key": "generic-memorabilia/bryan-barker-chiefs-signed-photo-bw.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/bryan-barker-chiefs-signed-photo-bw.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "2002-cmh-golf-classic-publication",
+      "object_type": "publication",
+      "source_stem": "cmh-golf-classic-2002-bhcc",
+      "media": [
+        {
+          "source_filename": "cmh-golf-classic-2002-bhcc-detail.jpg",
+          "derivative_filename": "cmh-golf-classic-2002-bhcc-detail.webp",
+          "r2_key": "generic-memorabilia/cmh-golf-classic-2002-bhcc-detail.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/cmh-golf-classic-2002-bhcc-detail.webp"
+        },
+        {
+          "source_filename": "cmh-golf-classic-2002-bhcc-front.jpg",
+          "derivative_filename": "cmh-golf-classic-2002-bhcc-front.webp",
+          "r2_key": "generic-memorabilia/cmh-golf-classic-2002-bhcc-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/cmh-golf-classic-2002-bhcc-front.webp"
+        },
+        {
+          "source_filename": "cmh-golf-classic-2002-bhcc-measured.jpg",
+          "derivative_filename": "cmh-golf-classic-2002-bhcc-measured.webp",
+          "r2_key": "generic-memorabilia/cmh-golf-classic-2002-bhcc-measured.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/cmh-golf-classic-2002-bhcc-measured.webp"
+        },
+        {
+          "source_filename": "cmh-golf-classic-2002-bhcc-verso.jpg",
+          "derivative_filename": "cmh-golf-classic-2002-bhcc-verso.webp",
+          "r2_key": "generic-memorabilia/cmh-golf-classic-2002-bhcc-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/cmh-golf-classic-2002-bhcc-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "george-brett-3000-hit-souvenir",
+      "object_type": "souvenir publication",
+      "source_stem": "george-brett-3000-hit-souvenir",
+      "media": [
+        {
+          "source_filename": "george-brett-3000-hit-souvenir-front.jpg",
+          "derivative_filename": "george-brett-3000-hit-souvenir-front.webp",
+          "r2_key": "generic-memorabilia/george-brett-3000-hit-souvenir-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/george-brett-3000-hit-souvenir-front.webp"
+        },
+        {
+          "source_filename": "george-brett-3000-hit-souvenir-inner-1.jpg",
+          "derivative_filename": "george-brett-3000-hit-souvenir-inner-1.webp",
+          "r2_key": "generic-memorabilia/george-brett-3000-hit-souvenir-inner-1.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/george-brett-3000-hit-souvenir-inner-1.webp"
+        },
+        {
+          "source_filename": "george-brett-3000-hit-souvenir-inner-2.jpg",
+          "derivative_filename": "george-brett-3000-hit-souvenir-inner-2.webp",
+          "r2_key": "generic-memorabilia/george-brett-3000-hit-souvenir-inner-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/george-brett-3000-hit-souvenir-inner-2.webp"
+        },
+        {
+          "source_filename": "george-brett-3000-hit-souvenir-inner-3.jpg",
+          "derivative_filename": "george-brett-3000-hit-souvenir-inner-3.webp",
+          "r2_key": "generic-memorabilia/george-brett-3000-hit-souvenir-inner-3.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/george-brett-3000-hit-souvenir-inner-3.webp"
+        },
+        {
+          "source_filename": "george-brett-3000-hit-souvenir-verso.jpg",
+          "derivative_filename": "george-brett-3000-hit-souvenir-verso.webp",
+          "r2_key": "generic-memorabilia/george-brett-3000-hit-souvenir-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/george-brett-3000-hit-souvenir-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "george-brett-1993-number-retired",
+      "object_type": "commemorative publication",
+      "source_stem": "george-brett-93-number-retired",
+      "media": [
+        {
+          "source_filename": "george-brett-93-number-retired-verso.jpg",
+          "derivative_filename": "george-brett-93-number-retired-verso.webp",
+          "r2_key": "generic-memorabilia/george-brett-93-number-retired-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/george-brett-93-number-retired-verso.webp"
+        },
+        {
+          "source_filename": "george-brett-93-number-retired.jpg",
+          "derivative_filename": "george-brett-93-number-retired.webp",
+          "r2_key": "generic-memorabilia/george-brett-93-number-retired.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/george-brett-93-number-retired.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "jj-birden-signed-card",
+      "object_type": "signed card",
+      "source_stem": "jj-birden-card-signed",
+      "media": [
+        {
+          "source_filename": "jj-birden-card-signed-front.jpg",
+          "derivative_filename": "jj-birden-card-signed-front.webp",
+          "r2_key": "generic-memorabilia/jj-birden-card-signed-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/jj-birden-card-signed-front.webp"
+        },
+        {
+          "source_filename": "jj-birden-card-signed-verso.jpg",
+          "derivative_filename": "jj-birden-card-signed-verso.webp",
+          "r2_key": "generic-memorabilia/jj-birden-card-signed-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/jj-birden-card-signed-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "jj-birden-chiefs-signed-photograph",
+      "object_type": "signed photograph",
+      "source_stem": "jj-birden-chiefs-signed-photo-bw",
+      "media": [
+        {
+          "source_filename": "jj-birden-chiefs-signed-photo-bw-detail.jpg",
+          "derivative_filename": "jj-birden-chiefs-signed-photo-bw-detail.webp",
+          "r2_key": "generic-memorabilia/jj-birden-chiefs-signed-photo-bw-detail.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/jj-birden-chiefs-signed-photo-bw-detail.webp"
+        },
+        {
+          "source_filename": "jj-birden-chiefs-signed-photo-bw-portrait-detail.jpg",
+          "derivative_filename": "jj-birden-chiefs-signed-photo-bw-portrait-detail.webp",
+          "r2_key": "generic-memorabilia/jj-birden-chiefs-signed-photo-bw-portrait-detail.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/jj-birden-chiefs-signed-photo-bw-portrait-detail.webp"
+        },
+        {
+          "source_filename": "jj-birden-chiefs-signed-photo-bw-portrait.jpg",
+          "derivative_filename": "jj-birden-chiefs-signed-photo-bw-portrait.webp",
+          "r2_key": "generic-memorabilia/jj-birden-chiefs-signed-photo-bw-portrait.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/jj-birden-chiefs-signed-photo-bw-portrait.webp"
+        },
+        {
+          "source_filename": "jj-birden-chiefs-signed-photo-bw.jpg",
+          "derivative_filename": "jj-birden-chiefs-signed-photo-bw.webp",
+          "r2_key": "generic-memorabilia/jj-birden-chiefs-signed-photo-bw.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/jj-birden-chiefs-signed-photo-bw.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1985-kc-royals-championship-pennant",
+      "object_type": "pennant",
+      "source_stem": "kc-royals-85-championship-pennant",
+      "media": [
+        {
+          "source_filename": "kc-royals-85-championship-pennant-folded.jpg",
+          "derivative_filename": "kc-royals-85-championship-pennant-folded.webp",
+          "r2_key": "generic-memorabilia/kc-royals-85-championship-pennant-folded.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-85-championship-pennant-folded.webp"
+        },
+        {
+          "source_filename": "kc-royals-85-championship-pennant-front-31in-x-12in.jpg",
+          "derivative_filename": "kc-royals-85-championship-pennant-front-31in-x-12in.webp",
+          "r2_key": "generic-memorabilia/kc-royals-85-championship-pennant-front-31in-x-12in.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-85-championship-pennant-front-31in-x-12in.webp"
+        },
+        {
+          "source_filename": "kc-royals-85-championship-pennant-verso.jpg",
+          "derivative_filename": "kc-royals-85-championship-pennant-verso.webp",
+          "r2_key": "generic-memorabilia/kc-royals-85-championship-pennant-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-85-championship-pennant-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1993-kc-royals-scorecard",
+      "object_type": "scorecard",
+      "source_stem": "kc-royals-93-scorecard",
+      "media": [
+        {
+          "source_filename": "kc-royals-93-scorecard-front.jpg",
+          "derivative_filename": "kc-royals-93-scorecard-front.webp",
+          "r2_key": "generic-memorabilia/kc-royals-93-scorecard-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-93-scorecard-front.webp"
+        },
+        {
+          "source_filename": "kc-royals-93-scorecard-inner.jpg",
+          "derivative_filename": "kc-royals-93-scorecard-inner.webp",
+          "r2_key": "generic-memorabilia/kc-royals-93-scorecard-inner.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-93-scorecard-inner.webp"
+        },
+        {
+          "source_filename": "kc-royals-93-scorecard-verso.jpg",
+          "derivative_filename": "kc-royals-93-scorecard-verso.webp",
+          "r2_key": "generic-memorabilia/kc-royals-93-scorecard-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-93-scorecard-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "kc-royals-kemper-commemorative-coin",
+      "object_type": "commemorative coin",
+      "source_stem": "kc-royals-kemper-25-coin",
+      "media": [
+        {
+          "source_filename": "kc-royals-kemper-25-coin-back.jpg",
+          "derivative_filename": "kc-royals-kemper-25-coin-back.webp",
+          "r2_key": "generic-memorabilia/kc-royals-kemper-25-coin-back.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-kemper-25-coin-back.webp"
+        },
+        {
+          "source_filename": "kc-royals-kemper-25-coin-front.jpg",
+          "derivative_filename": "kc-royals-kemper-25-coin-front.webp",
+          "r2_key": "generic-memorabilia/kc-royals-kemper-25-coin-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-kemper-25-coin-front.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "kc-royals-25th-anniversary-pin",
+      "object_type": "pin",
+      "source_stem": "kc-royals-pin-25",
+      "media": [
+        {
+          "source_filename": "kc-royals-pin-25-back.jpg",
+          "derivative_filename": "kc-royals-pin-25-back.webp",
+          "r2_key": "generic-memorabilia/kc-royals-pin-25-back.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-pin-25-back.webp"
+        },
+        {
+          "source_filename": "kc-royals-pin-25-front-alt.jpg",
+          "derivative_filename": "kc-royals-pin-25-front-alt.webp",
+          "r2_key": "generic-memorabilia/kc-royals-pin-25-front-alt.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-pin-25-front-alt.webp"
+        },
+        {
+          "source_filename": "kc-royals-pin-25-front.jpg",
+          "derivative_filename": "kc-royals-pin-25-front.webp",
+          "r2_key": "generic-memorabilia/kc-royals-pin-25-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kc-royals-pin-25-front.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "kevin-siers-dej-memorial-original-drawing",
+      "object_type": "original drawing",
+      "source_stem": "kevin-siers-dej-memorial-drawing",
+      "media": [
+        {
+          "source_filename": "kevin-siers-dej-memorial-drawing-front.jpg",
+          "derivative_filename": "kevin-siers-dej-memorial-drawing-front.webp",
+          "r2_key": "generic-memorabilia/kevin-siers-dej-memorial-drawing-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kevin-siers-dej-memorial-drawing-front.webp"
+        },
+        {
+          "source_filename": "kevin-siers-dej-memorial-drawing-mailer.jpg",
+          "derivative_filename": "kevin-siers-dej-memorial-drawing-mailer.webp",
+          "r2_key": "generic-memorabilia/kevin-siers-dej-memorial-drawing-mailer.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/kevin-siers-dej-memorial-drawing-mailer.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "mlb-25-patch",
+      "object_type": "patch",
+      "source_stem": "mlb-25-patch",
+      "media": [
+        {
+          "source_filename": "mlb-25-patch-back.jpg",
+          "derivative_filename": "mlb-25-patch-back.webp",
+          "r2_key": "generic-memorabilia/mlb-25-patch-back.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-25-patch-back.webp"
+        },
+        {
+          "source_filename": "mlb-25-patch-detail.jpg",
+          "derivative_filename": "mlb-25-patch-detail.webp",
+          "r2_key": "generic-memorabilia/mlb-25-patch-detail.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-25-patch-detail.webp"
+        },
+        {
+          "source_filename": "mlb-25-patch-front.jpg",
+          "derivative_filename": "mlb-25-patch-front.webp",
+          "r2_key": "generic-memorabilia/mlb-25-patch-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-25-patch-front.webp"
+        },
+        {
+          "source_filename": "mlb-25-patch-side.jpg",
+          "derivative_filename": "mlb-25-patch-side.webp",
+          "r2_key": "generic-memorabilia/mlb-25-patch-side.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-25-patch-side.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1998-mlb-all-star-game-nyc-patch",
+      "object_type": "patch",
+      "source_stem": "mlb-all-star-game-98-nyc-patch",
+      "media": [
+        {
+          "source_filename": "mlb-all-star-game-98-nyc-patch-back.jpg",
+          "derivative_filename": "mlb-all-star-game-98-nyc-patch-back.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-98-nyc-patch-back.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-98-nyc-patch-back.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-98-nyc-patch-details.jpg",
+          "derivative_filename": "mlb-all-star-game-98-nyc-patch-details.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-98-nyc-patch-details.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-98-nyc-patch-details.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-98-nyc-patch-front.jpg",
+          "derivative_filename": "mlb-all-star-game-98-nyc-patch-front.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-98-nyc-patch-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-98-nyc-patch-front.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "mlb-all-star-game-ticket-stub-and-program",
+      "object_type": "ticket stub and program",
+      "source_stem": "mlb-all-star-game-stub-and-program",
+      "media": [
+        {
+          "source_filename": "mlb-all-star-game-stub-and-program-detail-1.jpg",
+          "derivative_filename": "mlb-all-star-game-stub-and-program-detail-1.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-stub-and-program-detail-1.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-stub-and-program-detail-1.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-stub-and-program-detail-2-5.jpg",
+          "derivative_filename": "mlb-all-star-game-stub-and-program-detail-2-5.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-stub-and-program-detail-2-5.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-stub-and-program-detail-2-5.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-stub-and-program-detail-2.jpg",
+          "derivative_filename": "mlb-all-star-game-stub-and-program-detail-2.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-stub-and-program-detail-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-stub-and-program-detail-2.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-stub-and-program-detail-3.JPG",
+          "derivative_filename": "mlb-all-star-game-stub-and-program-detail-3.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-stub-and-program-detail-3.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-stub-and-program-detail-3.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-stub-and-program-detail-thickness.jpg",
+          "derivative_filename": "mlb-all-star-game-stub-and-program-detail-thickness.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-stub-and-program-detail-thickness.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-stub-and-program-detail-thickness.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-stub-and-program-front.jpg",
+          "derivative_filename": "mlb-all-star-game-stub-and-program-front.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-stub-and-program-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-stub-and-program-front.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-stub-and-program-thickness-2.jpg",
+          "derivative_filename": "mlb-all-star-game-stub-and-program-thickness-2.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-stub-and-program-thickness-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-stub-and-program-thickness-2.webp"
+        },
+        {
+          "source_filename": "mlb-all-star-game-stub-and-program-verso.jpg",
+          "derivative_filename": "mlb-all-star-game-stub-and-program-verso.webp",
+          "r2_key": "generic-memorabilia/mlb-all-star-game-stub-and-program-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/mlb-all-star-game-stub-and-program-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "2001-nascar-illustrated-earnhardt-memorial",
+      "object_type": "magazine",
+      "source_stem": "nascar-illustrated-earnhardt-memorial-2001",
+      "media": [
+        {
+          "source_filename": "nascar-illustrated-earnhardt-memorial-2001-detail-upc.jpg",
+          "derivative_filename": "nascar-illustrated-earnhardt-memorial-2001-detail-upc.webp",
+          "r2_key": "generic-memorabilia/nascar-illustrated-earnhardt-memorial-2001-detail-upc.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/nascar-illustrated-earnhardt-memorial-2001-detail-upc.webp"
+        },
+        {
+          "source_filename": "nascar-illustrated-earnhardt-memorial-2001-front.jpg",
+          "derivative_filename": "nascar-illustrated-earnhardt-memorial-2001-front.webp",
+          "r2_key": "generic-memorabilia/nascar-illustrated-earnhardt-memorial-2001-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/nascar-illustrated-earnhardt-memorial-2001-front.webp"
+        },
+        {
+          "source_filename": "nascar-illustrated-earnhardt-memorial-2001-verso.jpg",
+          "derivative_filename": "nascar-illustrated-earnhardt-memorial-2001-verso.webp",
+          "r2_key": "generic-memorabilia/nascar-illustrated-earnhardt-memorial-2001-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/nascar-illustrated-earnhardt-memorial-2001-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "2001-sports-illustrated-dale-earnhardt-memorial",
+      "object_type": "magazine",
+      "source_stem": "si-dale-earnhardt-memorial-2001",
+      "media": [
+        {
+          "source_filename": "si-dale-earnhardt-memorial-2001-front.jpg",
+          "derivative_filename": "si-dale-earnhardt-memorial-2001-front.webp",
+          "r2_key": "generic-memorabilia/si-dale-earnhardt-memorial-2001-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/si-dale-earnhardt-memorial-2001-front.webp"
+        },
+        {
+          "source_filename": "si-dale-earnhardt-memorial-2001-inner.jpg",
+          "derivative_filename": "si-dale-earnhardt-memorial-2001-inner.webp",
+          "r2_key": "generic-memorabilia/si-dale-earnhardt-memorial-2001-inner.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/si-dale-earnhardt-memorial-2001-inner.webp"
+        },
+        {
+          "source_filename": "si-dale-earnhardt-memorial-2001-verso.jpg",
+          "derivative_filename": "si-dale-earnhardt-memorial-2001-verso.webp",
+          "r2_key": "generic-memorabilia/si-dale-earnhardt-memorial-2001-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/si-dale-earnhardt-memorial-2001-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "2001-sports-illustrated-fiery-family-earnhardt-special",
+      "object_type": "special issue",
+      "source_stem": "si-fiery-family-earnhardt-special-2001",
+      "media": [
+        {
+          "source_filename": "si-fiery-family-earnhardt-special-2001-front.jpg",
+          "derivative_filename": "si-fiery-family-earnhardt-special-2001-front.webp",
+          "r2_key": "generic-memorabilia/si-fiery-family-earnhardt-special-2001-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/si-fiery-family-earnhardt-special-2001-front.webp"
+        },
+        {
+          "source_filename": "si-fiery-family-earnhardt-special-2001-verso.jpg",
+          "derivative_filename": "si-fiery-family-earnhardt-special-2001-verso.webp",
+          "r2_key": "generic-memorabilia/si-fiery-family-earnhardt-special-2001-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/si-fiery-family-earnhardt-special-2001-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "1980-sports-illustrated-kc-royals",
+      "object_type": "magazine",
+      "source_stem": "si-june-1980-kc-royals",
+      "media": [
+        {
+          "source_filename": "si-june-1980-kc-royals-detail.jpg",
+          "derivative_filename": "si-june-1980-kc-royals-detail.webp",
+          "r2_key": "generic-memorabilia/si-june-1980-kc-royals-detail.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/si-june-1980-kc-royals-detail.webp"
+        },
+        {
+          "source_filename": "si-june-1980-kc-royals-front.jpg",
+          "derivative_filename": "si-june-1980-kc-royals-front.webp",
+          "r2_key": "generic-memorabilia/si-june-1980-kc-royals-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/si-june-1980-kc-royals-front.webp"
+        },
+        {
+          "source_filename": "si-june-1980-kc-royals-verso.jpg",
+          "derivative_filename": "si-june-1980-kc-royals-verso.webp",
+          "r2_key": "generic-memorabilia/si-june-1980-kc-royals-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/si-june-1980-kc-royals-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "2002-salt-lake-city-winter-games-pin-set",
+      "object_type": "pin set",
+      "source_stem": "slc-2002-winter-games-pin-set",
+      "media": [
+        {
+          "source_filename": "slc-2002-winter-games-pin-set-backs.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set-backs.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set-backs.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set-backs.webp"
+        },
+        {
+          "source_filename": "slc-2002-winter-games-pin-set-pin-1.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set-pin-1.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set-pin-1.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set-pin-1.webp"
+        },
+        {
+          "source_filename": "slc-2002-winter-games-pin-set-pin-2.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set-pin-2.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set-pin-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set-pin-2.webp"
+        },
+        {
+          "source_filename": "slc-2002-winter-games-pin-set-pin-3.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set-pin-3.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set-pin-3.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set-pin-3.webp"
+        },
+        {
+          "source_filename": "slc-2002-winter-games-pin-set-pin-4.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set-pin-4.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set-pin-4.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set-pin-4.webp"
+        },
+        {
+          "source_filename": "slc-2002-winter-games-pin-set-pin-5.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set-pin-5.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set-pin-5.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set-pin-5.webp"
+        },
+        {
+          "source_filename": "slc-2002-winter-games-pin-set-pin-6.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set-pin-6.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set-pin-6.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set-pin-6.webp"
+        },
+        {
+          "source_filename": "slc-2002-winter-games-pin-set-spread.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set-spread.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set-spread.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set-spread.webp"
+        },
+        {
+          "source_filename": "slc-2002-winter-games-pin-set.jpg",
+          "derivative_filename": "slc-2002-winter-games-pin-set.webp",
+          "r2_key": "generic-memorabilia/slc-2002-winter-games-pin-set.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/slc-2002-winter-games-pin-set.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "2001-time-earnhardt-memorial",
+      "object_type": "magazine",
+      "source_stem": "time-earnhardt-memorial-2001",
+      "media": [
+        {
+          "source_filename": "time-earnhardt-memorial-2001-front-.jpg",
+          "derivative_filename": "time-earnhardt-memorial-2001-front.webp",
+          "r2_key": "generic-memorabilia/time-earnhardt-memorial-2001-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/time-earnhardt-memorial-2001-front.webp"
+        },
+        {
+          "source_filename": "time-earnhardt-memorial-2001-verso.jpg",
+          "derivative_filename": "time-earnhardt-memorial-2001-verso.webp",
+          "r2_key": "generic-memorabilia/time-earnhardt-memorial-2001-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/time-earnhardt-memorial-2001-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "toronto-blue-jays-hot-wheels-die-cast-vehicle",
+      "object_type": "die-cast vehicle",
+      "source_stem": "toronto-blue-jays-hot-wheels",
+      "media": [
+        {
+          "source_filename": "toronto-blue-jays-hot-wheels-detail.jpg",
+          "derivative_filename": "toronto-blue-jays-hot-wheels-detail.webp",
+          "r2_key": "generic-memorabilia/toronto-blue-jays-hot-wheels-detail.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/toronto-blue-jays-hot-wheels-detail.webp"
+        },
+        {
+          "source_filename": "toronto-blue-jays-hot-wheels-front-2.jpg",
+          "derivative_filename": "toronto-blue-jays-hot-wheels-front-2.webp",
+          "r2_key": "generic-memorabilia/toronto-blue-jays-hot-wheels-front-2.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/toronto-blue-jays-hot-wheels-front-2.webp"
+        },
+        {
+          "source_filename": "toronto-blue-jays-hot-wheels-front.jpg",
+          "derivative_filename": "toronto-blue-jays-hot-wheels-front.webp",
+          "r2_key": "generic-memorabilia/toronto-blue-jays-hot-wheels-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/toronto-blue-jays-hot-wheels-front.webp"
+        },
+        {
+          "source_filename": "toronto-blue-jays-hot-wheels-top.jpg",
+          "derivative_filename": "toronto-blue-jays-hot-wheels-top.webp",
+          "r2_key": "generic-memorabilia/toronto-blue-jays-hot-wheels-top.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/toronto-blue-jays-hot-wheels-top.webp"
+        },
+        {
+          "source_filename": "toronto-blue-jays-hot-wheels-verso.jpg",
+          "derivative_filename": "toronto-blue-jays-hot-wheels-verso.webp",
+          "r2_key": "generic-memorabilia/toronto-blue-jays-hot-wheels-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/toronto-blue-jays-hot-wheels-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    },
+    {
+      "slug": "toronto-blue-jays-25th-anniversary-patch",
+      "object_type": "patch",
+      "source_stem": "toronto-blue-jays-patch-25th",
+      "media": [
+        {
+          "source_filename": "toronto-blue-jays-patch-25th-detail.jpg",
+          "derivative_filename": "toronto-blue-jays-patch-25th-detail.webp",
+          "r2_key": "generic-memorabilia/toronto-blue-jays-patch-25th-detail.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/toronto-blue-jays-patch-25th-detail.webp"
+        },
+        {
+          "source_filename": "toronto-blue-jays-patch-25th-front.jpg",
+          "derivative_filename": "toronto-blue-jays-patch-25th-front.webp",
+          "r2_key": "generic-memorabilia/toronto-blue-jays-patch-25th-front.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/toronto-blue-jays-patch-25th-front.webp"
+        },
+        {
+          "source_filename": "toronto-blue-jays-patch-25th-verso.jpg",
+          "derivative_filename": "toronto-blue-jays-patch-25th-verso.webp",
+          "r2_key": "generic-memorabilia/toronto-blue-jays-patch-25th-verso.webp",
+          "r2_url": "https://pub-2bccab9e377e4ad8a7f475705f0aedb0.r2.dev/generic-memorabilia/toronto-blue-jays-patch-25th-verso.webp"
+        }
+      ],
+      "status": "ready_for_visual_reading",
+      "ambiguity": null
+    }
+  ],
+  "ambiguous_groupings": [],
+  "unassigned_files": []
+}
