@@ -1,0 +1,20 @@
+{
+    "marketplace_id": "EBAY_US",
+    "feed_type": "FX_LISTING",
+    "schema_version": "1.0",
+    "action": "Draft",
+    "input_file": "ebay-upload-clean-10-v2.csv",
+    "record_count": 10,
+    "content_changed": false,
+    "purpose": "Seller Hub draft-import probe",
+    "contract_layers": {
+        "internal_listing_state": "draft",
+        "csv_action": "Draft",
+        "upload_feed_type": "FX_LISTING"
+    },
+    "evidence": {
+        "failed_receipt": "ebay-receipt-upload-clean-10-v2-Aug-2026-16-11-56-56-12339462553.csv",
+        "official_feed_reference": "https://developer.ebay.com/api-docs/sell/static/feed/fx-feeds-quick-reference.html"
+    },
+    "execution_note": "Create the Sell Feed task with feedType FX_LISTING and schemaVersion 1.0, then upload the unchanged CSV. Do not publish or use FX_DRAFT unless eBay supplies new authoritative evidence."
+}

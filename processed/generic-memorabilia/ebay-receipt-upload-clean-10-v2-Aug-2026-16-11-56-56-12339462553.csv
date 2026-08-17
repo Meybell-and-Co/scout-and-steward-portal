@@ -1,0 +1,11 @@
+﻿Line Number,Action,Status,ErrorCode,ErrorMessage,WarningCode,WarningMessage,Code,Message,ItemID,ReferenceID,ApplicationData,StartTime,EndTime,AuctionLengthFee,BoldFee,BorderFee,BuyItNowFee,CategoryFeaturedFee,CurrencyID,FeaturedFee,FeaturedGalleryFee,FixedPriceDurationFee,GalleryFee,GiftIconFee,HighlightFee,InsertionFee,InternationalInsertionFee,ListingDesignerFee,ListingFee,PhotoDisplayFee,PhotoFee,ProPackBundleFee,ReserveFee,SchedulingFee,SubtitleFee,CustomLabel,PrivateNotes,BasicUpgradePackBundleFee,ValuePackBundleFee,ProPackPlusBundleFee,SellerInventoryID,CrossBorderTradeNorthAmericaFee,CrossBorderTradeGBFee,RefundFromSeller,TotalRefundToBuyer,CorrelationID
+2,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1996-atlanta-summer-games-publication,,,,,,,,,,
+3,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,mlb-all-star-game-ticket-stub-and-program,,,,,,,,,,
+4,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,toronto-blue-jays-hot-wheels-die-cast-vehicle,,,,,,,,,,
+5,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1998-ncaa-womens-final-four-ticket-stubs,,,,,,,,,,
+6,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,2001-sports-illustrated-dale-earnhardt-memorial,,,,,,,,,,
+7,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1990-kc-royals-yearbook,,,,,,,,,,
+8,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,2002-cmh-golf-classic-publication,,,,,,,,,,
+9,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,mlb-25-patch,,,,,,,,,,
+10,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1998-mlb-all-star-game-nyc-patch,,,,,,,,,,
+11,Draft,Failure,BAF.Error.5,Unable to find Task Action Id for task Draft,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,2001-nascar-illustrated-earnhardt-memorial,,,,,,,,,,
