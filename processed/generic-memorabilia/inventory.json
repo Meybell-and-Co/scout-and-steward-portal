@@ -1,6 +1,6 @@
 {
   "inventory_type": "generic_memorabilia",
-  "phase": 1,
+  "phase": 2,
   "source_directory": "C:\\Users\\Meybells\\Downloads\\incoming-assets\\inventory-photos\\s-and-s-sports-memorabilia\\Ready to List",
   "source_jpg_count": 106,
   "object_count": 29,
@@ -73,7 +73,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "2008 MLB All-Star Game New York City baseball pin set in a presentation case; MLB hologram/officially licensed tag visible.",
+        "condition_observations": "Case and contents photographed together; visible case surface scuffs/dust and plastic reflections. Completeness appears consistent with the photographed set; verify pin count before listing.",
+        "market_evidence_summary": "Comparable event pin-set and display-case memorabilia class; sold extraction unavailable because eBay challenged the public search.",
+        "baseline_bin_usd": 29.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Visible 2008 MLB All-Star Game / N.Y.C. branding and hologram tag; price is a practical collector BIN, not an appraisal.",
+        "review_flag": true,
+        "review_reason": "Confirm exact pin count and edition/completeness before final listing."
+      }
     },
     {
       "slug": "1985-mlb-world-series-ticket-stubs",
@@ -100,7 +110,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Three 1985 MLB World Series ticket stubs; Kansas City Royals championship-era event tickets are visually supported, but exact game/seat details require close transcription.",
+        "condition_observations": "Paper tickets show age-related handling; fronts and versos photographed, with one measurement view. Do not describe as unused or mint without further inspection.",
+        "market_evidence_summary": "Vintage World Series ticket-stub lot class; scarcity and exact game materially affect price, while sold extraction was blocked.",
+        "baseline_bin_usd": 39.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Three-stub lot tied to the 1985 Royals/Cardinals World Series; exact game identification is consequential.",
+        "review_flag": true,
+        "review_reason": "Historically significant Royals championship material; verify exact games, authenticity, and deeper sold comps."
+      }
     },
     {
       "slug": "1990-kc-royals-yearbook",
@@ -133,7 +153,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "1990 Kansas City Royals Yearbook; cover title and $5.00 printed price visible.",
+        "condition_observations": "Softcover/publication appears used with cover wear and edge/corner handling; interior/verso photographed.",
+        "market_evidence_summary": "Ordinary team yearbook class with broad low-dollar collector demand; sold extraction unavailable.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Printed 1990 Kansas City Royals Yearbook title; photographed approximately 8.5 x 11 inches.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "1993-george-brett-final-home-game",
@@ -154,7 +184,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "1993 George Brett final-home-game commemorative piece, identified from the clear filename grouping and baseball image; exact publication/ticket format is not fully readable from the overview.",
+        "condition_observations": "Paper/cardstock item shows visible edge and surface handling; avoid asserting pristine condition.",
+        "market_evidence_summary": "George Brett retirement/final-game memorabilia class; exact format drives value and public sold search was blocked.",
+        "baseline_bin_usd": 19.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Subject is George Brett's 1993 final home game; exact printed title should be confirmed during listing prep.",
+        "review_flag": true,
+        "review_reason": "Material format/identification uncertainty; Mark should confirm whether this is a ticket, program, or souvenir."
+      }
     },
     {
       "slug": "1998-ncaa-womens-final-four-ticket-stubs",
@@ -181,7 +221,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "1998 NCAA Women's Final Four ticket stubs for March 27th and 29th, 1998, Kemper Arena, Kansas City, Missouri; Big 12 Conference host text visible.",
+        "condition_observations": "Ticket stack appears clean but handled; edges and perforations should be described from photos rather than assumed unused.",
+        "market_evidence_summary": "Event ticket-stub lot class; niche regional/college demand, with eBay sold extraction blocked.",
+        "baseline_bin_usd": 19.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Printed event/date/venue details are directly visible.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "1998-world-series-pennant",
@@ -214,7 +264,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "1998 World Series pennant; MLB hologram/commemorative detail visible, but team/venue text should be transcribed from detail views before listing.",
+        "condition_observations": "Pennant is photographed folded; visible textile/felt creasing and storage handling. Do not claim display-free condition.",
+        "market_evidence_summary": "Vintage World Series pennant class; exact team and textile condition drive pricing; sold extraction blocked.",
+        "baseline_bin_usd": 24.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "1998 World Series branding and hologram detail are visible.",
+        "review_flag": true,
+        "review_reason": "Confirm team/issuer and inspect for folds, stains, or edge separation."
+      }
     },
     {
       "slug": "1996-atlanta-summer-games-publication",
@@ -247,7 +307,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "1996 Atlanta Summer Games/XXVI Olympiad basketball ticket lot, including Georgia Dome, Atlanta GA, Aug 1, 10:00 AM, aisle U26, section 326, row 13, seat 11, $16.00 face value.",
+        "condition_observations": "Multiple paper tickets with visible edge handling and a folded/stacked presentation; printed details remain legible.",
+        "market_evidence_summary": "1996 Atlanta Olympics ticket lot class; broad supply keeps routine tickets modest; sold extraction blocked.",
+        "baseline_bin_usd": 24.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Photographed ticket text supplies date, venue, event, seat, and face value.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "bryan-barker-chiefs-signed-photograph",
@@ -262,7 +332,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Bryan Barker Kansas City Chiefs black-and-white punter photograph, signed in black marker with number 4 inscription; printed caption identifies Bryan Barker, P, Kansas City Chiefs.",
+        "condition_observations": "Glossy photo has visible handling/reflection; autograph is bold and legible. Approximate 8 x 10 inch format shown with ruler.",
+        "market_evidence_summary": "Autographed former NFL player photo class; value depends heavily on autograph authenticity and provenance; sold extraction blocked.",
+        "baseline_bin_usd": 34.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Printed subject/caption and visible signature; no authentication or provenance shown.",
+        "review_flag": true,
+        "review_reason": "Autograph authenticity/provenance must be disclosed and reviewed before listing."
+      }
     },
     {
       "slug": "2002-cmh-golf-classic-publication",
@@ -295,7 +375,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "2002 CMH Golf Classic / Blue Hills Country Club commemorative publication or program; cover reads Children's Mercy Hospital Golf Classic, June 18, 2002.",
+        "condition_observations": "Small bound/boxed paper item appears clean with normal handling; cover and interior/verso photographed.",
+        "market_evidence_summary": "Local charity golf-program class with limited specialist demand; sold extraction blocked.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Clear event, date, and Blue Hills Country Club text.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "george-brett-3000-hit-souvenir",
@@ -334,7 +424,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "George Brett commemorative souvenir for 3,000 career hits; large “3000!” cover, George Brett text, and $3.00 printed price visible.",
+        "condition_observations": "Paper souvenir shows normal handling and edge wear; a handwritten-looking mark/signature appears on the cover and should not be called an autograph without verification. Approx. 8.5 x 11 inches shown.",
+        "market_evidence_summary": "George Brett milestone souvenir class; routine unsigned examples are modest, with possible premium only if the mark is authenticated.",
+        "baseline_bin_usd": 19.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Clear 3,000-hit milestone cover and printed $3.00 price.",
+        "review_flag": true,
+        "review_reason": "Determine whether the cover mark is an authentic George Brett signature or incidental writing."
+      }
     },
     {
       "slug": "george-brett-1993-number-retired",
@@ -355,7 +455,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "George Brett / Kansas City Royals 1993 number-retirement commemorative publication or program; photographed interior includes a statistical table and Royals-related content.",
+        "condition_observations": "Paper item shows handling and edge wear; no severe damage visible in overview.",
+        "market_evidence_summary": "Royals retirement-program class with regional collector demand; sold extraction blocked.",
+        "baseline_bin_usd": 17.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "1993 number-retirement subject is supported by filename grouping and interior content.",
+        "review_flag": true,
+        "review_reason": "Confirm exact printed title and whether any signature/inscription is present."
+      }
     },
     {
       "slug": "jj-birden-signed-card",
@@ -376,7 +486,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "JJ Birden signed football card; Chiefs-associated subject and a front signature are visible, with verso photographed.",
+        "condition_observations": "Card appears handled with autograph across the front; condition should be described as photographed, not graded.",
+        "market_evidence_summary": "Former NFL player signed-card class; authenticity and exact card issue control value; sold extraction blocked.",
+        "baseline_bin_usd": 19.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Visible JJ Birden signature and Chiefs association; no authentication shown.",
+        "review_flag": true,
+        "review_reason": "Autograph authenticity and exact card issue require Mark/Cy review."
+      }
     },
     {
       "slug": "jj-birden-chiefs-signed-photograph",
@@ -409,7 +529,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "JJ Birden Kansas City Chiefs signed black-and-white football photograph; multiple signatures/inscriptions are visible, including a large foreground autograph.",
+        "condition_observations": "Glossy photo has handling/reflection and multiple marker signatures; one portrait/detail view supports the autographs. Approx. 8 x 10 inches likely, but record as approximate.",
+        "market_evidence_summary": "Multi-signed former NFL photo class; authenticity/provenance dominates value; sold extraction blocked.",
+        "baseline_bin_usd": 39.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Photographed signed Chiefs image with multiple visible signatures; no certificate/provenance shown.",
+        "review_flag": true,
+        "review_reason": "Autograph identity, count, and authenticity need human review."
+      }
     },
     {
       "slug": "1985-kc-royals-championship-pennant",
@@ -436,7 +566,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Kansas City Royals “World Champions 1985” felt pennant with roster names printed in the banner area; MLB logo and Royals branding visible.",
+        "condition_observations": "Folded/rolled felt shows creasing, storage wear, and possible age discoloration; front and verso photographed. One filename indicates 31 x 12 inches.",
+        "market_evidence_summary": "1985 championship pennant class with meaningful Royals collector interest; exact textile condition affects value and sold extraction blocked.",
+        "baseline_bin_usd": 49.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Directly visible “World Champions 1985 Kansas City Royals”; approximately 31 x 12 inches per photographed filename.",
+        "review_flag": true,
+        "review_reason": "Championship material warrants deeper valuation and condition inspection."
+      }
     },
     {
       "slug": "1993-kc-royals-scorecard",
@@ -463,7 +603,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "1993 Kansas City Royals scorecard/program with Royals branding and game/statistical content visible.",
+        "condition_observations": "Paper publication shows handling/edge wear; interior and verso photographed.",
+        "market_evidence_summary": "Routine vintage Royals scorecard class; low-dollar regional demand; sold extraction blocked.",
+        "baseline_bin_usd": 12.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "1993 Royals scorecard identity supported by cover and filename grouping.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "kc-royals-kemper-commemorative-coin",
@@ -484,7 +634,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Kansas City Royals/Kemper commemorative coin or medallion in a presentation holder; front and back photographed.",
+        "condition_observations": "Holder shows light handling; coin surfaces are not sufficiently close for metal/content grading. Do not claim precious-metal composition.",
+        "market_evidence_summary": "Team commemorative coin class; composition and issuer materially affect value, with sold extraction blocked.",
+        "baseline_bin_usd": 19.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Royals/Kemper attribution supported by grouping; metal content not visually established.",
+        "review_flag": true,
+        "review_reason": "Verify issuer, composition, diameter, and any denomination before final listing."
+      }
     },
     {
       "slug": "kc-royals-25th-anniversary-pin",
@@ -511,7 +671,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Kansas City Royals 25th Anniversary pin, marked with an Imprinted Products reverse and Royals/25th anniversary imagery.",
+        "condition_observations": "Metal pin and backing show ordinary age/storage handling; reverse photographed.",
+        "market_evidence_summary": "Single team anniversary pin class; modest collector demand; sold extraction blocked.",
+        "baseline_bin_usd": 12.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Visible Royals 25th anniversary design and reverse manufacturer marking.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "kevin-siers-dej-memorial-original-drawing",
@@ -532,7 +702,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Original black-and-white “33”/wing drawing by Kevin Siers, signed “Kevin Siers ©2001 The Charlotte Observer”; photographed ruler indicates roughly 9 x 7 inches of artwork/paper area.",
+        "condition_observations": "Original paper artwork appears clean overall with minor edge/handling marks; mailed/protective envelope also photographed.",
+        "market_evidence_summary": "Unique original editorial/cartoon artwork class; ordinary magazine comps are not appropriate and sold extraction was blocked.",
+        "baseline_bin_usd": 99.99,
+        "pricing_confidence": "low",
+        "notable_comps_or_evidence": "Original signed/dated artwork and newspaper attribution are directly visible.",
+        "review_flag": true,
+        "review_reason": "Potentially unique historically/editorially significant original; deeper valuation and rights/context review required."
+      }
     },
     {
       "slug": "mlb-25-patch",
@@ -565,7 +745,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "MLB 25 commemorative embroidered patch/emblem; MLB/National League branding and officially licensed warning text visible on reverse.",
+        "condition_observations": "Patch appears unused or minimally handled in clear packaging; packaging reflections and edge condition visible.",
+        "market_evidence_summary": "Official MLB commemorative patch class; routine low-dollar accessory market; sold extraction blocked.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Reverse text states authentic embroidered emblem officially licensed by Major League Baseball Properties.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "1998-mlb-all-star-game-nyc-patch",
@@ -592,7 +782,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "1998 MLB All-Star Game New York City commemorative patch/emblem in packaging; Major League Baseball Collectibles header and National League branding visible.",
+        "condition_observations": "Packaged patch appears clean; packaging has ordinary handling/storage wear.",
+        "market_evidence_summary": "Official MLB event patch class; modest collector market; sold extraction blocked.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Printed Major League Baseball Collectibles/1998 All-Star Game context is visible.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "mlb-all-star-game-ticket-stub-and-program",
@@ -649,7 +849,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "2008 MLB All-Star Game N.Y.C. official program/commemorative ticket package; visible text reads Official Program, Limited Stadium Edition, Tuesday July 15, Yankee Stadium, NYC, Gate 6, and special pre-game ceremony.",
+        "condition_observations": "Program/ticket is photographed in original plastic; plastic is wrinkled and may obscure minor paper wear. No claim of mint condition.",
+        "market_evidence_summary": "2008 MLB All-Star Game program/ticket class; routine event souvenir market; sold extraction blocked.",
+        "baseline_bin_usd": 24.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Clear official program, limited stadium edition, Yankee Stadium, and date text.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "2001-nascar-illustrated-earnhardt-memorial",
@@ -676,7 +886,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "NASCAR Illustrated special/memorial issue for Dale Earnhardt, 2001; cover and UPC photographed.",
+        "condition_observations": "Magazine shows ordinary shelf/storage handling; cover and verso/UPC visible.",
+        "market_evidence_summary": "Dale Earnhardt memorial magazine class; common low-dollar publication market; sold extraction blocked.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "2001 memorial issue identity and barcode are visible.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "2001-sports-illustrated-dale-earnhardt-memorial",
@@ -703,7 +923,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Sports Illustrated Dale Earnhardt memorial issue, 2001; cover reads “Death of a Champion” and identifies Dale Earnhardt.",
+        "condition_observations": "Magazine cover shows minor handling/edge wear; approximately 8.5 x 11 inches shown with ruler.",
+        "market_evidence_summary": "Sports Illustrated memorial issue class; common-to-moderate collector demand; sold extraction blocked.",
+        "baseline_bin_usd": 16.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Clear Sports Illustrated/Dale Earnhardt/Death of a Champion cover text.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "2001-sports-illustrated-fiery-family-earnhardt-special",
@@ -724,7 +954,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Sports Illustrated special issue “Fiery Family,” 2001, focused on Dale Earnhardt Jr./Earnhardt family; cover text visible.",
+        "condition_observations": "Magazine shows light handling and edge wear; cover/verso photographed.",
+        "market_evidence_summary": "Earnhardt family special-issue magazine class; modest collector demand; sold extraction blocked.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Cover visibly reads Fiery Family and identifies the 2001 special issue.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "1980-sports-illustrated-kc-royals",
@@ -751,7 +991,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Sports Illustrated June 1980 Kansas City Royals issue; cover/UPC and verso photographed.",
+        "condition_observations": "Magazine appears handled with age/storage wear; barcode/cover details visible.",
+        "market_evidence_summary": "Vintage Sports Illustrated team issue class; low-to-moderate demand depending on cover/contents; sold extraction blocked.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "June 1980 KC Royals issue supported by filename and cover/UPC evidence.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "2002-salt-lake-city-winter-games-pin-set",
@@ -814,7 +1064,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "2002 Salt Lake City Winter Games/Olympic pin set in a black presentation case; individual pin images, backs, and spread photographed.",
+        "condition_observations": "Case shows visible scuffs/storage wear; pins appear housed together. Verify exact count/completeness from detail photos.",
+        "market_evidence_summary": "2002 Olympic pin-set class; broad supply but collector interest; sold extraction blocked.",
+        "baseline_bin_usd": 29.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Event/year and multi-pin set presentation are visually supported.",
+        "review_flag": true,
+        "review_reason": "Confirm complete pin count and whether the case is original to the set."
+      }
     },
     {
       "slug": "2001-time-earnhardt-memorial",
@@ -835,7 +1095,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "TIME magazine Dale Earnhardt memorial issue, 2001; cover reads “Death in the Fast Lane” and shows Earnhardt portrait.",
+        "condition_observations": "Magazine has ordinary handling/storage wear; approximately 8.5 x 11 inches shown with ruler.",
+        "market_evidence_summary": "TIME memorial issue class; common low-dollar publication market; sold extraction blocked.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Clear TIME/Dale Earnhardt/Death in the Fast Lane cover text.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "toronto-blue-jays-hot-wheels-die-cast-vehicle",
@@ -874,7 +1144,17 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Mattel Hot Wheels die-cast vehicle in Toronto Blue Jays 25th-season packaging; package shows Blue Jays logos and A summer tradition since 1977.",
+        "condition_observations": "Sealed blister/package photographed from multiple angles; card and blister show light storage wear, with no loose-car inspection possible.",
+        "market_evidence_summary": "Licensed sports Hot Wheels/single die-cast package class; packaging condition drives price; sold extraction blocked.",
+        "baseline_bin_usd": 24.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Mattel/Hot Wheels branding, Blue Jays logos, and 25th-season text are directly visible.",
+        "review_flag": false,
+        "review_reason": null
+      }
     },
     {
       "slug": "toronto-blue-jays-25th-anniversary-patch",
@@ -901,9 +1181,20 @@
         }
       ],
       "status": "ready_for_visual_reading",
-      "ambiguity": null
+      "ambiguity": null,
+      "phase2": {
+        "supported_identification": "Toronto Blue Jays 25th anniversary MLB/National League embroidered patch/emblem; reverse packaging includes official licensing warning.",
+        "condition_observations": "Patch appears unused/in packaging; package has ordinary storage wear and reflections.",
+        "market_evidence_summary": "Official MLB team anniversary patch class; modest collector market; sold extraction blocked.",
+        "baseline_bin_usd": 14.99,
+        "pricing_confidence": "medium-low",
+        "notable_comps_or_evidence": "Blue Jays 25th-season branding and officially licensed MLB reverse text visible.",
+        "review_flag": false,
+        "review_reason": null
+      }
     }
   ],
   "ambiguous_groupings": [],
-  "unassigned_files": []
+  "unassigned_files": [],
+  "phase2_market_method": "eBay sold/completed searches attempted; public result pages were bot-challenged, so BINs are provisional class-level triage recommendations rather than exhaustive appraisal."
 }
