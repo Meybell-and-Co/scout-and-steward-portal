@@ -14,6 +14,11 @@
     },
     "evidence": {
         "failed_receipt": "ebay-receipt-upload-clean-10-v2-Aug-2026-16-11-56-56-12339462553.csv",
+        "failed_receipts": [
+            "ebay-receipt-upload-clean-10-v2-Aug-2026-16-11-56-56-12339462553.csv",
+            "ebay-upload-clean-10-v2-Aug-2026-17-12-06-06-11327986695.csv"
+        ],
+        "receipt_comparison": "Both receipts contain the same 10 Draft rows and BAF.Error.5 message; no task timestamps were included, so no meaningful run-level difference is available.",
         "official_feed_reference": "https://developer.ebay.com/api-docs/sell/static/feed/fx-feeds-quick-reference.html"
     },
     "execution_note": "Create the Sell Feed task with feedType FX_LISTING and schemaVersion 1.0, then upload the unchanged CSV. Do not publish or use FX_DRAFT unless eBay supplies new authoritative evidence."
