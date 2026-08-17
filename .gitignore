@@ -29,6 +29,7 @@ scratch/turtle-lab/output/
 scratch/turtle-lab/accepted/
 scratch/turtle-lab/review/
 scratch/turtle-lab/__pycache__/
+**/__pycache__/
 
 # Turtle Lab archived/generated artifacts
 scratch/turtle-lab/archive/**/*.jpg
